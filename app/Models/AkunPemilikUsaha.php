@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AkunPemilikUsaha extends Model
 {
     use HasFactory;
-    protected $table = "konten_berandas";
+    protected $table = "akun_pemilik_usahas";
     protected $primaryKey = "id";
     protected $fillable = [
         'id', 'nama_pemilik', 'nama_usaha', 'jenis_usaha', 'email', 'password', 'foto',
