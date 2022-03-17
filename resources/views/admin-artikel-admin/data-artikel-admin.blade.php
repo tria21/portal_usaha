@@ -44,7 +44,7 @@
               <th>Judul</th>
               <th>Gambar</th>
               <th>Caption Gambar</th>
-              <th>Isi Konten</th>
+              <th>Isi Artikel</th>
               <th>Aksi</th>
             </tr>
             <?php $no = 1 ?>
@@ -58,10 +58,10 @@
                 {{-- {{$item->image}} --}}
               </th>
               <th>{{$item->caption_gambar}}</th>
-              <th>{{$item->isi_konten}}</th>
+              <th>{{$item->isi_artikel}}</th>
               <th>
-                <a href=""><i class="fas fa-edit"></i></a> |
-                <a href=""><i class="fas fa-trash-alt" style="color: red" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')"></i></a>
+                <a href="{{route('edit-artikel-admin',$item->id)}}"><i class="fas fa-edit"></i></a> |
+                <a href="{{route('hapus-artikel-admin',$item->id)}}"><i class="fas fa-trash-alt" style="color: red" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')"></i></a>
               </th>
             </tr>
             @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\KontenArtikel;
 
 class Admin_DataArtikelAdminController extends Controller
 {
@@ -42,9 +43,9 @@ class Admin_DataArtikelAdminController extends Controller
         $dtUpload = new KontenArtikel;
         // $dtUpload->id_user      = session('loginId');
         $dtUpload->judul            = $request->judul;
-        $dtUpload->gambar           = $gambar;
+        $dtUpload->gambar           = $namaFile;
         $dtUpload->caption_gambar   = $request->caption_gambar;
-        $dtUpload->isi_konten       = $request->isi_konten;
+        $dtUpload->isi_artikel      = $request->isi_artikel;
 
         $nm->move('img/', $namaFile);
         $dtUpload->save();
@@ -71,7 +72,8 @@ class Admin_DataArtikelAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dtArtikelAdmin = KontenArtikel::findorfail($id);
+        return view('admin-artikel-admin.edit-artikel-admin',compact('dtArtikelAdmin'));
     }
 
     /**
@@ -83,7 +85,24 @@ class Admin_DataArtikelAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ubah = KontenArtikel::findorfail($id);
+        $awal = $ubah->gambar;
+
+        $dtArtikelAdmin = [
+            'judul'             => $request['judul'],
+            'gambar'            => $awal,
+            'caption_gambar'    => $request['caption_gambar'],
+            'isi_artikel'       => $request['isi_artikel'],
+        ];
+        
+        if ($request->hasFile('gambar')) {
+            // $ubah->delete_image();
+            $gambar = $request->file('gambar');
+            $request->gambar->move('img/', $awal);
+        }
+
+        $ubah->update($dtArtikelAdmin);
+        return redirect('data-artikel-admin');
     }
 
     /**
@@ -94,6 +113,17 @@ class Admin_DataArtikelAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+        $hapus = KontenArtikel::findorfail($id);
+
+        $file = ('img/').$hapus->gambar;
+        //cek jika ada gambar
+        if (file_exists($file)){
+            //maka hapus file dari folder img
+            @unlink($file);
+        }
+        //hapus data drai db
+        $hapus->delete();
+        return back();
     }
 }

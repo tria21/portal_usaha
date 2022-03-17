@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -22,7 +21,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Input Data Artikel Admin</h1>
+            <h1 class="m-0">Edit Data Artikel Admin</h1>
           </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -33,24 +32,28 @@
     <section class="content">
       <div class="card card-info card-outline">
         <div class="card-body">
-        <form action="{{route('input-proses-artikel-admin')}}" method="POST" enctype="multipart/form-data">
-            
+        <form action="{{route('edit-proses-artikel-admin', $dtArtikelAdmin->id)}}" method="POST" enctype="multipart/form-data">
+
           {{ csrf_field() }}
           <div class="form-group">
             <label>Judul</label>
-            <input type="text" name="judul" placeholder="Masukkan Judul Artikel..." class="form-control">
+            <input type="text" name="judul" class="form-control" value="{{$dtArtikelAdmin->judul}}">
           </div>
           <div class="form-group">
             <label>Gambar</label>
-            <input type="file" name="gambar" placeholder="" class="form-control">
+            <input type="file" name="gambar" class="form-control">
+          </div>
+          <div class="form-group">
+            <img src="{{asset('img/'.$dtArtikelAdmin->gambar)}}" height="10%" width="50%" alt="" srcset="">
           </div>
           <div class="form-group">
             <label>Caption Gambar</label>
-            <textarea type="text" name="caption_gambar" placeholder="Tuliskan Caption Gambar..." class="form-control"></textarea>
+            <input type="text" id="caption_gambar" name="caption_gambar" class="form-control" height="20px" value="{{$dtArtikelAdmin->caption_gambar}}">
           </div>
           <div class="form-group">
             <label>Isi Artikel</label>
-            <textarea type="text" name="isi_artikel" placeholder="Tuliskan Isi Artikel..." class="form-control"></textarea>
+            <input type="text" id="isi_artikel" name="isi_artikel" class="form-control" height="20px" value="{{$dtArtikelAdmin->isi_artikel}}">
+            {{-- <textarea type="text" name="deskripsi" class="form-control" value="{{$dt->deskripsi}}"></textarea> --}}
           </div>
           <div class="form-group">
             <a href="{{route('data-artikel-admin')}}" class="btn btn-danger float-right">Batal</a>
