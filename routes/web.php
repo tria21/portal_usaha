@@ -20,7 +20,9 @@ Route::get('/', function () {
 //Route Login
 Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'login']);
 Route::get('/registration', [App\Http\Controllers\CustomAuthController::class, 'registration']);
+Route::get('/registration-owner-form', [App\Http\Controllers\CustomAuthController::class, 'registrationOwnerForm']);
 Route::post('/registration-user', [App\Http\Controllers\CustomAuthController::class, 'registrationUser'])->name('register-user');
+Route::post('/registration-owner', [App\Http\Controllers\CustomAuthController::class, 'registrationOwner'])->name('register-owner');
 Route::post('/login-user', [App\Http\Controllers\CustomAuthController::class, 'loginUser'])->name('login-user');
 Route::get('/dashboard', [App\Http\Controllers\CustomAuthController::class, 'dashboard']);
 Route::get('/coba', function () {

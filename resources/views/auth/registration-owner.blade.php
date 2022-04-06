@@ -16,7 +16,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="{{asset('templete/css/style.css')}}">
 
-    <title>Guest Registration</title>
+    <title>Business Owner Registration</title>
   </head>
   <body>
         <div class="content">
@@ -29,12 +29,12 @@
                         <div class="row justify-content-center">
                             <div class="col-md-8">
                                 <div class="mb-4">
-                                    <h1>Guest Registration</h1>
+                                    <h1>Business Owner Registration</h1>
                                 </div>
                                 <div class="mb-4">
-                                    <span class="ml-auto"><a href="registration-owner-form" class="forgot-pass">Business Owner Registration Here!</a></span>
+                                    <span class="ml-auto"><a href="registration" class="forgot-pass">Guest Registration Here!</a></span>
                                 </div>
-                                <form action="{{route('register-user')}}" method="POST">
+                                <form action="{{route('register-owner')}}" method="POST">
                                     @if(Session::has('success'))
                                     <div class="alert alert-success">{{Session::get('success')}}</div>
                                     @endif

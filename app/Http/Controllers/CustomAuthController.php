@@ -17,6 +17,9 @@ class CustomAuthController extends Controller
     public function registration(){
         return view("auth.registration");
     }
+    public function registrationOwnerForm(){
+        return view("auth.registration-owner");
+    }
     public function registrationUser(Request $request){
         $request->validate([
             'name'=>'required',
@@ -28,6 +31,24 @@ class CustomAuthController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = '2';
+        $res = $user->save();
+        if ($res) {
+            return back()->with('success', 'You have registered Succesfuly');
+        }else{
+            return back()->with('fail', 'Something wrong');
+        }
+    }
+    public function registrationOwner(Request $request){
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:8'
+        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = '1';
         $res = $user->save();
         if ($res) {
             return back()->with('success', 'You have registered Succesfuly');
