@@ -17,6 +17,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route Login
+Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'login']);
+Route::get('/registration', [App\Http\Controllers\CustomAuthController::class, 'registration']);
+Route::post('/registration-user', [App\Http\Controllers\CustomAuthController::class, 'registrationUser'])->name('register-user');
+Route::post('/login-user', [App\Http\Controllers\CustomAuthController::class, 'loginUser'])->name('login-user');
+Route::get('/dashboard', [App\Http\Controllers\CustomAuthController::class, 'dashboard']);
+Route::get('/coba', function () {
+    return view('auth.coba');
+});
+Route::get('/logout', ['as' => 'logout', function (){
+    if(session()->has('loginId')){
+        session()->pull('loginId');
+        session()->pull('loginName');
+        return redirect('login');
+    }
+}]);
+
 //Dashboard
 Route::get('/dashboard-admin', [App\Http\Controllers\DashboardAdminController::class, 'index'])->name('dashboard-admin');
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');
