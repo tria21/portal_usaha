@@ -40,8 +40,11 @@ Route::get('/logout', ['as' => 'logout', function (){
 Route::get('/dashboard-admin', [App\Http\Controllers\DashboardAdminController::class, 'index'])->name('dashboard-admin');
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');
 
-//Admin-Akun Pemilik Resort
+//Admin-Akun-Pemilik-Usaha
 Route::get('/data-akun-pemilik-usaha-admin', [App\Http\Controllers\Admin_DataAkunPemilikUsahaController::class, 'index'])->name('data-akun-pemilik-usaha-admin');
+
+//Admin-Akun-Masyarakat
+Route::get('/data-akun-masyarakat-admin', [App\Http\Controllers\Admin_DataAkunMasyarakatController::class, 'index'])->name('data-akun-masyarakat-admin');
 
 //Admin-Artikel-Admin
 Route::get('/data-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'index'])->name('data-artikel-admin');
@@ -50,3 +53,6 @@ Route::post('/input-proses-artikel-admin', [App\Http\Controllers\Admin_DataArtik
 Route::get('/edit-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'edit'])->name('edit-artikel-admin');
 Route::post('/edit-proses-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'update'])->name('edit-proses-artikel-admin');
 Route::get('/hapus-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'destroy'])->name('hapus-artikel-admin');
+
+//Admin-Artikel-Usaha
+Route::get('/data-artikel-usaha', [App\Http\Controllers\Admin_DataArtikelUsahaController::class, 'index'])->name('data-artikel-usaha');
