@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -32,6 +32,7 @@ class CustomAuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = '2';
         $res = $user->save();
+        event(new Registered($user));
         if ($res) {
             return back()->with('success', 'You have registered Succesfuly');
         }else{
@@ -50,6 +51,7 @@ class CustomAuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = '1';
         $res = $user->save();
+        event(new Registered($user));
         if ($res) {
             return back()->with('success', 'You have registered Succesfuly');
         }else{

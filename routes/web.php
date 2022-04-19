@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,14 @@ Route::get('/registration-owner-form', [App\Http\Controllers\CustomAuthControlle
 Route::post('/registration-user', [App\Http\Controllers\CustomAuthController::class, 'registrationUser'])->name('register-user');
 Route::post('/registration-owner', [App\Http\Controllers\CustomAuthController::class, 'registrationOwner'])->name('register-owner');
 Route::post('/login-user', [App\Http\Controllers\CustomAuthController::class, 'loginUser'])->name('login-user');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 Route::get('/dashboard', [App\Http\Controllers\CustomAuthController::class, 'dashboard']);
 Route::get('/coba', function () {
     return view('auth.coba');
