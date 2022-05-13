@@ -34,7 +34,7 @@ class CustomAuthController extends Controller
         $res = $user->save();
         event(new Registered($user));
         if ($res) {
-            return back()->with('success', 'You have registered Succesfuly');
+            return back()->with('success', 'You have registered succesfuly. An email has been sent. Please check your inbox.');
         }else{
             return back()->with('fail', 'Something wrong');
         }
@@ -53,7 +53,7 @@ class CustomAuthController extends Controller
         $res = $user->save();
         event(new Registered($user));
         if ($res) {
-            return back()->with('success', 'You have registered Succesfuly');
+            return back()->with('success', 'You have registered succesfuly. An email has been sent. Please check your inbox.');
         }else{
             return back()->with('fail', 'Something wrong');
         }

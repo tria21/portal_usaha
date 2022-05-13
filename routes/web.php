@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 //Route Login
-Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'login']);
+Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'login'])->name('login');
 Route::get('/registration', [App\Http\Controllers\CustomAuthController::class, 'registration']);
 Route::get('/registration-owner-form', [App\Http\Controllers\CustomAuthController::class, 'registrationOwnerForm']);
 Route::post('/registration-user', [App\Http\Controllers\CustomAuthController::class, 'registrationUser'])->name('register-user');
@@ -31,7 +31,7 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
  
-    return redirect('/home');
+    return redirect('/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 Route::get('/dashboard', [App\Http\Controllers\CustomAuthController::class, 'dashboard']);
 Route::get('/coba', function () {
