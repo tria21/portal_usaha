@@ -143,21 +143,29 @@
                         <tr>
                           <th>No</th>
                           <th>Nama Pemilik</th>
-                          <th>Nama Usaha</th>
-                          <th>Foto</th>
-                          <th>Jenis Usaha</th>
                           <th>Email</th>
-                          <th>Password</th>
+                          <th>Nama Usaha</th>
+                          <th>Jenis Usaha</th>
                           <th>Alamat</th>
-                          <th>Instagram</th>
-                          <th>Facebook</th>
-                          <th>Shopee</th>
-                          <th>Tokopedia</th>
-                          <th>Aksi</th>
+                          {{-- <th>Aksi</th> --}}
                         </tr>
                       </thead>
                       <tbody>
-                        
+                        <?php $no = 1 ?>
+                        @foreach ($dtUsaha as $item)
+                        <tr>
+                          <th>{{$no++}}</th>
+                          <th>{{$item->name}}</th>
+                          <th>{{$item->email}}</th>
+                          <th>{{$item->nama_usaha}}</th>
+                          <th>{{$item->jenis_usaha}}</th>
+                          <th>{{$item->alamat_usaha}}</th>
+                          {{-- <th>
+                            <a href="{{route('edit-pemilik-resort',$item->id)}}"><i class="fas fa-edit"></i></a> |
+                            <a href="{{route('hapus-pemilik-resort',$item->id)}}"><i class="fas fa-trash-alt" style="color: red" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')"></i></a>
+                          </th> --}}
+                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

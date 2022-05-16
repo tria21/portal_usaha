@@ -49,9 +49,9 @@
               <img src="{{asset('../skydash/template/images/faces/face28.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="{{route('logout')}}">
                 <i class="ti-power-off text-primary"></i>
-                Logout
+                  Logout
               </a>
             </div>
           </li>
@@ -144,12 +144,22 @@
                           <th>No</th>
                           <th>Nama</th>
                           <th>Email</th>
-                          <th>Password</th>
-                          <th>Aksi</th>
+                          {{-- <th>Aksi</th> --}}
                         </tr>
                       </thead>
                       <tbody>
-                        
+                        <?php $no = 1 ?>
+                        @foreach ($dtMas as $item)
+                        <tr>
+                          <th>{{$no++}}</th>
+                          <th>{{$item->name}}</th>
+                          <th>{{$item->email}}</th>
+                          {{-- <th>
+                            <a href="{{route('edit-pemilik-resort',$item->id)}}"><i class="fas fa-edit"></i></a> |
+                            <a href="{{route('hapus-pemilik-resort',$item->id)}}"><i class="fas fa-trash-alt" style="color: red" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')"></i></a>
+                          </th> --}}
+                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

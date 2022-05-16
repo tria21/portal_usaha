@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Hash;
+use Session;
 
 class Admin_DataAkunMasyarakatController extends Controller
 {
@@ -13,7 +16,8 @@ class Admin_DataAkunMasyarakatController extends Controller
      */
     public function index()
     {
-        return view('admin-akun-masyarakat.data-akun-masyarakat');
+        $dtMas = DB::select('select * from users where role = ?', ['2']);
+        return view('admin-akun-masyarakat.data-akun-masyarakat', compact('dtMas'));
     }
 
     /**
