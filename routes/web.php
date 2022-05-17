@@ -67,4 +67,6 @@ Route::get('/hapus-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelA
 Route::get('/data-artikel-usaha', [App\Http\Controllers\Admin_DataArtikelUsahaController::class, 'index'])->name('data-artikel-usaha');
 
 //Pemilik-Profil
-Route::get('/data-profil-pemilik', [App\Http\Controllers\Pemilik_DataProfilController::class, 'index'])->name('data-profil-pemilik');
+Route::get('/data-profil-pemilik', [App\Http\Controllers\CustomAuthController::class, 'profile'])->name('data-profil-pemilik');
+Route::post('/update-profile-pemilik/{id}', [App\Http\Controllers\CustomAuthController::class, 'update'])->name('update-profile-pemilik');
+Route::post('/update-password-pemilik/{id}', [App\Http\Controllers\CustomAuthController::class, 'update_password'])->name('update-password-pemilik');

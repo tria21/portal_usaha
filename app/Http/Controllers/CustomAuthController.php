@@ -87,4 +87,48 @@ class CustomAuthController extends Controller
             return back()->with('fail','The email is not registered.');
         }
     }
+
+    public function profile(){
+        $user = DB::select('select * from users where id = ?', [session('loginId')]);
+        return view('pemilik-profile.data-profil-pemilik', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $ubah = User::findorfail($id);
+
+        $user = [
+            'nama_usaha'    => $request['nama_usaha'],
+            'name'          => $request['name'],
+            'jenis_usaha'   => $request['jenis_usaha'],
+            'alamat_usaha'  => $request['alamat_usaha'],
+            'facebook'      => $request['facebook'],
+            'instagram'     => $request['instagram'],
+            'shopee'        => $request['shopee'],
+            'tokopedia'     => $request['tokopedia']
+        ];
+
+        $image = $request->file('image');
+        
+        if ($image) {
+            $namaFile = $image->getClientOriginalName(); 
+            $user['image'] = $namaFile;
+            $proses = $image->move('img/', $namaFile);
+        }
+
+        $ubah->update($user);
+        return redirect('data-profil-pemilik');
+    }
+
+    public function update_password(Request $request, $id)
+    {
+        $ubah = User::findorfail($id);
+
+        $user = [
+            'password' => Hash::make($request['password']),
+        ];
+
+        $ubah->update($user);
+        return redirect('data-profil-pemilik')->with('success', 'Password Berhasil Diubah!');
+    }
 }
