@@ -65,3 +65,6 @@ Route::get('/hapus-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelA
 
 //Admin-Artikel-Usaha
 Route::get('/data-artikel-usaha', [App\Http\Controllers\Admin_DataArtikelUsahaController::class, 'index'])->name('data-artikel-usaha');
+
+//Pemilik-Profil
+Route::get('/data-profil-pemilik', [App\Http\Controllers\Pemilik_DataProfilController::class, 'index'])->name('data-profil-pemilik');

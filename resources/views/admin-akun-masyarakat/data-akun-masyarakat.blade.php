@@ -19,7 +19,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" />
+  {{-- <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" /> --}}
 </head>
 <body>
   <div class="container-scroller">
@@ -46,12 +46,12 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{{asset('../skydash/template/images/faces/face28.jpg')}}" alt="profile"/>
+              <img src="{{asset('../skydash/template/images/faces/admin.png')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="{{route('logout')}}">
                 <i class="ti-power-off text-primary"></i>
-                  Logout
+                Logout
               </a>
             </div>
           </li>
@@ -133,9 +133,6 @@
                     <div class="col-10">
                       <h4 class="card-title">Akun Masyarakat</h4>
                     </div>
-                    {{-- <div class="col-2">
-                      <a href="{{route('input-artikel-admin')}}" class="btn btn-primary btn-sm">Tambah Data</a>
-                    </div> --}}
                   {{-- </div> --}}
                   <div class="table-responsive">
                     <table class="table table-striped">
@@ -144,7 +141,6 @@
                           <th>No</th>
                           <th>Nama</th>
                           <th>Email</th>
-                          {{-- <th>Aksi</th> --}}
                         </tr>
                       </thead>
                       <tbody>
@@ -154,10 +150,6 @@
                           <th>{{$no++}}</th>
                           <th>{{$item->name}}</th>
                           <th>{{$item->email}}</th>
-                          {{-- <th>
-                            <a href="{{route('edit-pemilik-resort',$item->id)}}"><i class="fas fa-edit"></i></a> |
-                            <a href="{{route('hapus-pemilik-resort',$item->id)}}"><i class="fas fa-trash-alt" style="color: red" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')"></i></a>
-                          </th> --}}
                         </tr>
                         @endforeach
                       </tbody>

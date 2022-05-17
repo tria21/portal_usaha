@@ -19,7 +19,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" />
+  {{-- <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" /> --}}
 </head>
 <body>
   <div class="container-scroller">
@@ -50,6 +50,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
+                <i class="ti-user text-primary"></i>
+                Profile
+              </a>
+              <a class="dropdown-item" href="{{route('logout')}}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -91,16 +95,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="{{route('data-profil-pemilik')}}" >
               <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Data Akun</span>
-              <i class="menu-arrow"></i>
+              <span class="menu-title">Profil</span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="">Profil Usaha</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">

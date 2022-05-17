@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Dashboard Admin</title>
+  <title>Dashboard Business Owner</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/vendors/feather/feather.css')}}">
   <link rel="stylesheet" href="{{asset('../skydash/template/vendors/ti-icons/css/themify-icons.css')}}">
@@ -49,6 +49,10 @@
               <img src="{{asset('../skydash/template/images/faces/face28.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-user text-primary"></i>
+                Profile
+              </a>
               <a class="dropdown-item" href="{{route('logout')}}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
@@ -85,23 +89,16 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" href="{{route('dashboard-admin')}}">
+            <a class="nav-link active" href="{{route('dashboard-pemilik-usaha')}}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="{{route('data-profil-pemilik')}}" >
               <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Data Akun</span>
-              <i class="menu-arrow"></i>
+              <span class="menu-title">Profil</span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('data-akun-pemilik-usaha-admin')}}">Akun Pemilik Usaha</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('data-akun-masyarakat-admin')}}">Akun Masyarakat</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
@@ -111,73 +108,118 @@
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-admin')}}">Artikel Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Kelola Artikel</a></li>
               </ul>
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-usaha')}}">Artikel Usaha</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Kelola Komentar</a></li>
               </ul>
             </div>
           </li>
         </ul>
       </nav>
       <!-- end sidebar -->
-      
+
       <!-- CONTENT -->
-      <div class="main-panel">
+      <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  {{-- <div class="col-lg-12 grid-margin stretch-card"> --}}
-                    <div class="col-10">
-                      <h4 class="card-title">Akun Pemilik Usaha</h4>
-                    </div>
-                  {{-- </div> --}}
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Foto</th>
-                          <th>Nama Pemilik</th>
-                          <th>Email</th>
-                          <th>Nama Usaha</th>
-                          <th>Jenis Usaha</th>
-                          <th>Alamat</th>
-                          <th>Facebook</th>
-                          <th>Instagram</th>
-                          <th>Shopee</th>
-                          <th>Tokopedia</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $no = 1 ?>
-                        @foreach ($dtUsaha as $item)
-                        <tr>
-                          <th>{{$no++}}</th>
-                          <th>{{$item->name}}</th>
-                          <th>{{$item->image}}</th>
-                          <th>{{$item->email}}</th>
-                          <th>{{$item->nama_usaha}}</th>
-                          <th>{{$item->jenis_usaha}}</th>
-                          <th>{{$item->alamat_usaha}}</th>
-                          <th>{{$item->facebook}}</th>
-                          <th>{{$item->instagram}}</th>
-                          <th>{{$item->shopee}}</th>
-                          <th>{{$item->tokopedia}}</th>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Nama Usaha</h4>
+                    <p class="card-description">
+                      Nama Pemilik
+                    </p>
+                    <form class="forms-sample">
+                      <div class="form-group row">
+                        <label for="nama_usaha" class="col-sm-3 col-form-label">Nama Usaha</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="nama_usaha">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label">Nama Pemilik</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="jenis_usaha">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="alamat_usaha" class="col-sm-3 col-form-label">Alamat</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="alamat_usaha">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="facebook" class="col-sm-3 col-form-label">Facebook</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="facebook">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="instagram" class="col-sm-3 col-form-label">Instagram</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="instagram">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="shopee" class="col-sm-3 col-form-label">Shopee</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="shopee">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="tokopedia" class="col-sm-3 col-form-label">Tokopedia</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="tokopedia">
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
                   </div>
                 </div>
               </div>
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Data Akun</h4>
+                  <br><br>
+                  <form class="forms-sample">
+                    <div class="form-group row">
+                      <label for="email" class="col-sm-3 col-form-label">Email</label>
+                      <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="password" class="col-sm-3 col-form-label">New Password</label>
+                      <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="password" class="col-sm-3 col-form-label">Confirm New Password</label>
+                      <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
             </div>
-          </div>
         </div>
+        <!-- main-panel ends -->
+      </div>
         <!-- END CONTENT -->
-        
+
         <!-- footer -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -217,3 +259,4 @@
 </body>
 
 </html>
+

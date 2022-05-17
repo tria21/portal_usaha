@@ -19,7 +19,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" />
+  {{-- <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" /> --}}
 </head>
 <body>
   <div class="container-scroller">
@@ -49,7 +49,7 @@
               <img src="{{asset('../skydash/template/images/faces/face28.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="{{route('logout')}}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -133,9 +133,6 @@
                     <div class="col-10">
                       <h4 class="card-title">Artikel Usaha</h4>
                     </div>
-                    {{-- <div class="col-2">
-                      <a href="#" class="btn btn-primary btn-sm">Tambah Data</a>
-                    </div> --}}
                   </div>
                   <div class="table-responsive">
                     <table class="table table-striped">
