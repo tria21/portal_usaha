@@ -119,40 +119,50 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-12 grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Hai Business Owner!</h3>
-                    <h6 class="font-weight-normal mb-0">Selamat Datang di Sistem Informasi Portal Usaha Mikro</h6>
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Edit Artikel Pemilik Usaha</h4>
+                    <form class="forms-sample" action="{{route('edit-proses-artikel-pemilik', $dtArtikelPemilik->id)}}" method="POST" enctype="multipart/form-data">
+
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <label>Judul</label>
+                      <input type="text" name="judul" class="form-control" id="judul" value="{{$dtArtikelPemilik->judul}}">
+                    </div>
+                    {{-- <div class="form-group">
+                      <label>Unggah Gambar</label>
+                      <input type="file" name="gambar" class="file-upload-default">
+                      <div class="input-group col-xs-12">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah Gambar">
+                        <span class="input-group-append">
+                          <button class="file-upload-browse btn btn-primary" type="button">Pilih File</button>
+                        </span>
+                      </div>
+                    </div> --}}
+                    <div class="mb-3">
+                      <label class="form-label">Unggah Gambar</label>
+                      <input class="form-control" type="file" id="gambar" name="gambar">
+                    </div>
+                    <div class="form-group">
+                      <img src="{{asset('img/'.$dtArtikelPemilik->gambar)}}" height="10%" width="50%" alt="" srcset="">
+                    </div>
+                    <div class="form-group">
+                      <label>Caption Gambar</label>
+                      <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" value="{{$dtArtikelPemilik->caption_gambar}}">
+                    </div>
+                    <div class="form-group">
+                      <label>Isi Artikel</label>
+                      <input type="text" name="isi_artikel" class="form-control" height="20px" value="{{$dtArtikelPemilik->isi_artikel}}">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    <a href="{{route('data-artikel-pemilik')}}" class="btn btn-light">Batal</a>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin transparent">
-              <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">Data Artikel</p>
-                      <p class="fs-30 mb-2">15</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-dark-blue">
-                    <div class="card-body">
-                      <p class="mb-4">Komentar</p>
-                      <p class="fs-30 mb-2">10</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
         <!-- END CONTENT -->
 
         <!-- footer -->
@@ -194,4 +204,3 @@
 </body>
 
 </html>
-

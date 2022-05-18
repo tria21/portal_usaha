@@ -119,40 +119,56 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-12 grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Hai Business Owner!</h3>
-                    <h6 class="font-weight-normal mb-0">Selamat Datang di Sistem Informasi Portal Usaha Mikro</h6>
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="col-10">
+                      <h4 class="card-title">Artikel Pemilik Usaha</h4>
+                    </div>
+                    <div class="col-2">
+                      <a href="{{route('input-artikel-pemilik')}}" class="btn btn-primary btn-sm">Tambah Data</a>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Judul</th>
+                          <th>Gambar</th>
+                          <th>Caption Gambar</th>
+                          <th>Isi Artikel</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php $no = 1 ?>
+                        @foreach ($dtArtikelPemilik as $item)
+                        <tr>
+                          <th>{{ $no++ }}</th>
+                          <th>{{$item->judul}}</th>
+                          <th width="20%">
+                            {{-- <a href="{{asset('img/'.$item->image)}}" target="_blank" rel="">Lihat Gambar</a> --}}
+                            <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
+                            {{-- {{$item->image}} --}}
+                          </th>
+                          <th>{{$item->caption_gambar}}</th>
+                          <th>{{$item->isi_artikel}}</th>
+                          <th>
+                            <a href="{{route('edit-artikel-pemilik',$item->id)}}" class="btn btn-info btn-sm">Edit</a>
+                            <a href="{{route('hapus-artikel-pemilik',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>
+                          </th>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin transparent">
-              <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">Data Artikel</p>
-                      <p class="fs-30 mb-2">15</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-dark-blue">
-                    <div class="card-body">
-                      <p class="mb-4">Komentar</p>
-                      <p class="fs-30 mb-2">10</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
         <!-- END CONTENT -->
 
         <!-- footer -->
@@ -194,4 +210,3 @@
 </body>
 
 </html>
-
