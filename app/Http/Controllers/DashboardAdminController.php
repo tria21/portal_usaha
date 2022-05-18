@@ -41,6 +41,7 @@ class DashboardAdminController extends Controller
 
     public function index_artikel_usaha()
     {
-        return view('admin.data-artikel-usaha');
+        $dtArtikelPemilik = DB::select('select * from konten_artikels where role = ?', ['1']);
+        return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
     }
 }

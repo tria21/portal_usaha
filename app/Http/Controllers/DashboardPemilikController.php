@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class DashboardPemilikController extends Controller
 {
@@ -29,7 +31,7 @@ class DashboardPemilikController extends Controller
 
     public function index_data_artikel()
     {
-        $dtArtikelPemilik = KontenArtikel::all();
+        $dtArtikelPemilik = DB::select('select * from konten_artikels where id_user = ?', [session('loginId')]);
         return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik'));
     }
 
@@ -51,16 +53,18 @@ class DashboardPemilikController extends Controller
      */
     public function store(Request $request)
     {
+        $role = User::find(session('loginId'));
         // dd($request->all());
         $nm = $request->gambar;
         $namaFile = time().rand(100,999).".".$nm->getClientOriginalExtension(); //memberi nama file dengan nomor acak
 
         $dtUpload = new KontenArtikel;
-        // $dtUpload->id_user      = session('loginId');
+        $dtUpload->id_user          = session('loginId');
         $dtUpload->judul            = $request->judul;
         $dtUpload->gambar           = $namaFile;
         $dtUpload->caption_gambar   = $request->caption_gambar;
         $dtUpload->isi_artikel      = $request->isi_artikel;
+        $dtUpload->role             = $role->role;
 
         $nm->move('img/', $namaFile);
         $dtUpload->save();
@@ -96,7 +100,7 @@ class DashboardPemilikController extends Controller
             'judul'             => $request['judul'],
             'gambar'            => $awal,
             'caption_gambar'    => $request['caption_gambar'],
-            'isi_artikel'       => $request['isi_artikel'],
+            'isi_artikel'       => $request[session('loginId')],
         ];
         
         if ($request->hasFile('gambar')) {

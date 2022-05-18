@@ -148,7 +148,24 @@
                         </tr>
                       </thead>
                       <tbody>
-
+                        <?php $no = 1 ?>
+                        @foreach ($dtArtikelPemilik as $item)
+                        <tr>
+                          <th>{{ $no++ }}</th>
+                          <th>{{$item->judul}}</th>
+                          <th width="20%">
+                            {{-- <a href="{{asset('img/'.$item->image)}}" target="_blank" rel="">Lihat Gambar</a> --}}
+                            <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
+                            {{-- {{$item->image}} --}}
+                          </th>
+                          <th>{{$item->caption_gambar}}</th>
+                          <th>{{$item->isi_artikel}}</th>
+                          <th>
+                            <a href="{{route('edit-artikel-pemilik',$item->id)}}" class="btn btn-info btn-sm">Edit</a>
+                            <a href="{{route('hapus-artikel-pemilik',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>
+                          </th>
+                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

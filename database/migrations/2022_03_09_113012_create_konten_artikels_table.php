@@ -19,6 +19,8 @@ class CreateKontenArtikelsTable extends Migration
             $table->string('gambar');
             $table->text('caption_gambar');
             $table->text('isi_artikel');
+            $table->text('id_user');
+            $table->text('role');
             $table->timestamps();
         });
     }

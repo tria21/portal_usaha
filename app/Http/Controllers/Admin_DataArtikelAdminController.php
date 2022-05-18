@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Admin_DataArtikelAdminController extends Controller
 {
@@ -14,7 +16,7 @@ class Admin_DataArtikelAdminController extends Controller
      */
     public function index()
     {
-        $dtArtikelAdmin = KontenArtikel::all();
+        $dtArtikelAdmin = DB::select('select * from konten_artikels where id_user = ?', [session('loginId')]);
         return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
     }
 
@@ -36,16 +38,18 @@ class Admin_DataArtikelAdminController extends Controller
      */
     public function store(Request $request)
     {
+        $role = User::find(session('loginId'));
         // dd($request->all());
         $nm = $request->gambar;
         $namaFile = time().rand(100,999).".".$nm->getClientOriginalExtension(); //memberi nama file dengan nomor acak
 
         $dtUpload = new KontenArtikel;
-        // $dtUpload->id_user      = session('loginId');
+        $dtUpload->id_user      = session('loginId');
         $dtUpload->judul            = $request->judul;
         $dtUpload->gambar           = $namaFile;
         $dtUpload->caption_gambar   = $request->caption_gambar;
         $dtUpload->isi_artikel      = $request->isi_artikel;
+        $dtUpload->role             = $role->role;
 
         $nm->move('img/', $namaFile);
         $dtUpload->save();
