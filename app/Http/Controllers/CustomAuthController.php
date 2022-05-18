@@ -88,9 +88,9 @@ class CustomAuthController extends Controller
         }
     }
 
-    public function profile(){
+    public function profil(){
         $user = DB::select('select * from users where id = ?', [session('loginId')]);
-        return view('pemilik-profile.data-profil-pemilik', compact('user'));
+        return view('pemilik.data-profil-pemilik', compact('user'));
     }
 
     public function update(Request $request, $id)

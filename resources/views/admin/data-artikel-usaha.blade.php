@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Dashboard Business Owner</title>
+  <title>Dashboard Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/vendors/feather/feather.css')}}">
   <link rel="stylesheet" href="{{asset('../skydash/template/vendors/ti-icons/css/themify-icons.css')}}">
@@ -46,13 +46,9 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{{asset('../skydash/template/images/faces/face28.jpg')}}" alt="profile"/>
+              <img src="{{asset('../skydash/template/images/faces/admin.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-user text-primary"></i>
-                Profile
-              </a>
               <a class="dropdown-item" href="{{route('logout')}}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
@@ -89,16 +85,23 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" href="{{route('dashboard-pemilik-usaha')}}">
+            <a class="nav-link active" href="{{route('dashboard-admin')}}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('data-profil-pemilik')}}" >
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Profil</span>
+              <span class="menu-title">Data Akun</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('data-akun-pemilik-usaha-admin')}}">Akun Pemilik Usaha</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('data-akun-masyarakat-admin')}}">Akun Masyarakat</a></li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
@@ -108,141 +111,54 @@
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="">Kelola Artikel</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-admin')}}">Artikel Admin</a></li>
               </ul>
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="">Kelola Komentar</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-usaha')}}">Artikel Usaha</a></li>
               </ul>
             </div>
           </li>
         </ul>
       </nav>
       <!-- end sidebar -->
-
+      
       <!-- CONTENT -->
-      <div class="main-panel">        
+      <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
-                  @csrf
-                  @foreach ($user as $item)
-                  <div class="card-body">
-                    <div class="text-center">
-                      <img class="profile-user-img img-fluid img-square" src="{{asset('img/'.$item->image)}}" alt="User profile picture" height="10%" width="50%">
-                    </div>
-                    <center><h4 class="card-title">{{$item->nama_usaha}}</h4></center>
-                    <center>
-                    <p class="card-description">
-                      {{$item->name}}
-                    </p></center>
-                    <form class="forms-sample" action="{{route('update-profile-pemilik', $item->id)}}" method="POST" enctype="multipart/form-data">
-                      {{ csrf_field() }}
-                      <div class="form-group row">
-                        <label for="nama_usaha" class="col-sm-3 col-form-label">Nama Usaha</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="nama_usaha" name="nama_usaha" value="{{$item->nama_usaha}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Nama Pemilik</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="name" name="name" value="{{$item->name}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="email" class="col-sm-3 col-form-label">Email</label>
-                        <div class="col-sm-9">
-                          <input type="email" class="form-control" id="email" name="email" value="{{$item->email}}" readonly>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="image" class="col-sm-3 col-form-label">Foto</label>
-                        <div class="col-sm-9">
-                          <input type="file" class="form-control" id="image" name="image">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <img src="{{asset('img/'.$item->image)}}" height="10%" width="50%" alt="" srcset="">
-                      </div>
-                      <div class="form-group row">
-                        <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="jenis_usaha" name="jenis_usaha" value="{{$item->jenis_usaha}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="alamat_usaha" class="col-sm-3 col-form-label">Alamat</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="alamat_usaha" name="alamat_usaha" value="{{$item->alamat_usaha}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="facebook" class="col-sm-3 col-form-label">Link Facebook</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="facebook" name="facebook" value="{{$item->facebook}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="instagram" class="col-sm-3 col-form-label">Link Instagram</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="instagram" name="instagram" value="{{$item->instagram}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="shopee" class="col-sm-3 col-form-label">Link Shopee</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="shopee" name="shopee" value="{{$item->shopee}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="tokopedia" class="col-sm-3 col-form-label">Link Tokopedia</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="tokopedia" name="tokopedia" value="{{$item->tokopedia}}">
-                        </div>
-                      </div>
-                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                      <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Cancel</a>
-                    </form>
-                  </div>
-                </div>
-                @endforeach
-              </div>
-
-            <div class="col-md-6 grid-margin stretch-card">
-              @csrf
-              @foreach ($user as $item)
+            <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Ubah Password</h4>
-                  <form class="forms-sample" action="{{route('update-password-pemilik', $item->id)}}" method="POST">
-                    {{ csrf_field() }}
-                    <div class="form-group row">
-                      <label for="password" class="col-sm-3 col-form-label">New Password</label>
-                      <div class="col-sm-9">
-                        <input type="password" class="form-control" id="password" name="password">
-                        <span class="text-danger">@error('password') {{$message}} @enderror</span>
-                      </div>
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="col-10">
+                      <h4 class="card-title">Artikel Usaha</h4>
                     </div>
-                    <div class="form-group row">
-                      <label for="password" class="col-sm-3 col-form-label">Confirm New Password</label>
-                      <div class="col-sm-9">
-                        <input type="password" class="form-control" id="password" name="password">
-                        <span class="text-danger">@error('password') {{$message}} @enderror</span>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Cancel</a>
-                  </form>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Judul</th>
+                          <th>Gambar</th>
+                          <th>Caption Gambar</th>
+                          <th>Isi Artikel</th>
+                          <th>Penulis</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-            @endforeach
+          </div>
         </div>
-        <!-- main-panel ends -->
-      </div>
         <!-- END CONTENT -->
-
+        
         <!-- footer -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">

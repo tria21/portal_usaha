@@ -46,7 +46,7 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{{asset('../skydash/template/images/faces/face28.jpg')}}" alt="profile"/>
+              <img src="{{asset('../skydash/template/images/faces/admin.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="{{route('logout')}}">
@@ -139,8 +139,8 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Foto</th>
                           <th>Nama Pemilik</th>
+                          <th>Foto</th>
                           <th>Email</th>
                           <th>Nama Usaha</th>
                           <th>Jenis Usaha</th>
@@ -157,7 +157,11 @@
                         <tr>
                           <th>{{$no++}}</th>
                           <th>{{$item->name}}</th>
-                          <th>{{$item->image}}</th>
+                          <th width="20%">
+                            {{-- <a href="{{asset('img/'.$item->image)}}" target="_blank" rel="">Lihat Gambar</a> --}}
+                            <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
+                            {{-- {{$item->image}} --}}
+                          </th>
                           <th>{{$item->email}}</th>
                           <th>{{$item->nama_usaha}}</th>
                           <th>{{$item->jenis_usaha}}</th>

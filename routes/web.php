@@ -45,17 +45,16 @@ Route::get('/logout', ['as' => 'logout', function (){
     }
 }]);
 
-//Dashboard
+//DashboardAdminController
 Route::get('/dashboard-admin', [App\Http\Controllers\DashboardAdminController::class, 'index'])->name('dashboard-admin');
+Route::get('/data-akun-pemilik-usaha-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_pemilik'])->name('data-akun-pemilik-usaha-admin');
+Route::get('/data-akun-masyarakat-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_masyarakat'])->name('data-akun-masyarakat-admin');
+Route::get('/data-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'index_artikel_usaha'])->name('data-artikel-usaha');
+
+//DashboardPemilikController
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');
 
-//Admin-Akun-Pemilik-Usaha
-Route::get('/data-akun-pemilik-usaha-admin', [App\Http\Controllers\Admin_DataAkunPemilikUsahaController::class, 'index'])->name('data-akun-pemilik-usaha-admin');
-
-//Admin-Akun-Masyarakat
-Route::get('/data-akun-masyarakat-admin', [App\Http\Controllers\Admin_DataAkunMasyarakatController::class, 'index'])->name('data-akun-masyarakat-admin');
-
-//Admin-Artikel-Admin
+//Admin_DataArtikelAdminController
 Route::get('/data-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'index'])->name('data-artikel-admin');
 Route::get('/input-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'create'])->name('input-artikel-admin');
 Route::post('/input-proses-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'store'])->name('input-proses-artikel-admin');
@@ -63,10 +62,7 @@ Route::get('/edit-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAd
 Route::post('/edit-proses-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'update'])->name('edit-proses-artikel-admin');
 Route::get('/hapus-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'destroy'])->name('hapus-artikel-admin');
 
-//Admin-Artikel-Usaha
-Route::get('/data-artikel-usaha', [App\Http\Controllers\Admin_DataArtikelUsahaController::class, 'index'])->name('data-artikel-usaha');
-
-//Pemilik-Profil
-Route::get('/data-profil-pemilik', [App\Http\Controllers\CustomAuthController::class, 'profile'])->name('data-profil-pemilik');
-Route::post('/update-profile-pemilik/{id}', [App\Http\Controllers\CustomAuthController::class, 'update'])->name('update-profile-pemilik');
+//CustomAuthController
+Route::get('/data-profil-pemilik', [App\Http\Controllers\CustomAuthController::class, 'profil'])->name('data-profil-pemilik');
+Route::post('/update-profil-pemilik/{id}', [App\Http\Controllers\CustomAuthController::class, 'update'])->name('update-profil-pemilik');
 Route::post('/update-password-pemilik/{id}', [App\Http\Controllers\CustomAuthController::class, 'update_password'])->name('update-password-pemilik');
