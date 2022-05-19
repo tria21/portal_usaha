@@ -144,7 +144,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">Akun Pemilik Usaha</p>
-                      <p class="fs-30 mb-2">15</p>
+                      <p class="fs-30 mb-2">1</p>
                     </div>
                   </div>
                 </div>
@@ -152,7 +152,7 @@
                   <div class="card card-dark-blue">
                     <div class="card-body">
                       <p class="mb-4">Akun Masyarakat</p>
-                      <p class="fs-30 mb-2">{{$dtCountArMas}}</p>
+                      <p class="fs-30 mb-2">4</p>
                     </div>
                   </div>
                 </div>

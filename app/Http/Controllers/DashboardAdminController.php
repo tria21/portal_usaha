@@ -25,6 +25,8 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
+        // $CountArAdm = KontenArtikel::where('role', 3)->count();
+        // return view('dashboard.dashboard-admin')->with('CountArAdm', $CountArAdm);
         return view('dashboard.dashboard-admin');
     }
 
@@ -60,8 +62,8 @@ class DashboardAdminController extends Controller
 
     public function count_artikel_masyarakat()
     {
-        $dtCountArMas = DB::select('select count(*) from konten_artikels where role = ?', ['2'])->count();
-        return view('dashboard.dashboard-admin', compact('dtCountArMas'));
+        $dtCountArAdm = DB::select('select count(*) from konten_artikels where role = ?', ['2'])->count();
+        return view('dashboard.dashboard-admin', compact('dtCountArAdm'));
     }
 
     public function count_artikel_pemilik()
