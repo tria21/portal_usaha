@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -43,5 +44,29 @@ class DashboardAdminController extends Controller
     {
         $dtArtikelPemilik = DB::select('select * from konten_artikels where role = ?', ['1']);
         return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
+    }
+
+    public function count_akun_pemilik()
+    {
+        $dtCountAkPemilik = DB::select('select count(*) from users where role = ?', ['1'])->count();
+        return view('dashboard.dashboard-admin', compact('dtCountAkPemilik'));
+    }
+
+    public function count_akun_masyarakat()
+    {
+        $dtCountAkMas = DB::select('select count(*) from users where role = ?', ['2'])->count();
+        return view('dashboard.dashboard-admin', compact('dtCountAkMas'));
+    }
+
+    public function count_artikel_masyarakat()
+    {
+        $dtCountArMas = DB::select('select count(*) from konten_artikels where role = ?', ['2'])->count();
+        return view('dashboard.dashboard-admin', compact('dtCountArMas'));
+    }
+
+    public function count_artikel_pemilik()
+    {
+        $dtCountArPemilik = DB::select('select * from konten_artikels where role = ?', ['1'])->count();
+        return view('dashboard.dashboard-admin', compact('dtCountArPemilik'));
     }
 }

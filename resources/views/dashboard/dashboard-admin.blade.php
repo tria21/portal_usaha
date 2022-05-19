@@ -152,7 +152,7 @@
                   <div class="card card-dark-blue">
                     <div class="card-body">
                       <p class="mb-4">Akun Masyarakat</p>
-                      <p class="fs-30 mb-2">10</p>
+                      <p class="fs-30 mb-2">{{$dtCountArMas}}</p>
                     </div>
                   </div>
                 </div>
