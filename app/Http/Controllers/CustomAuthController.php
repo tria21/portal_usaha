@@ -75,7 +75,7 @@ class CustomAuthController extends Controller
                         return redirect()->route('dashboard-admin');
                     }else if($role=='1'){
                         // return view('dashboard.dashboard-pemilik');
-                        return redirect()->route('dashboard-pemilik');
+                        return redirect()->route('dashboard-pemilik-usaha');
                     }else{
                         // return view('dashboard.dashboard-pengunjung');
                         return redirect()->route('dashboard-pengunjung');

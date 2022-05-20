@@ -26,7 +26,9 @@ class DashboardPemilikController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboard-pemilik');
+        $CountArtikel = KontenArtikel::where('id_user', [session('loginId')])->count();
+        // $CountKomentar = KontenArtikel::where('role', 1)->count();
+        return view('dashboard.dashboard-pemilik', compact('CountArtikel'));
     }
 
     public function index_data_artikel()
