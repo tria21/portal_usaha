@@ -144,7 +144,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">Akun Pemilik Usaha</p>
-                      <p class="fs-30 mb-2">1</p>
+                      <p class="fs-30 mb-2">{{$CountAkPemilik}}</p>
                     </div>
                   </div>
                 </div>
@@ -152,7 +152,7 @@
                   <div class="card card-dark-blue">
                     <div class="card-body">
                       <p class="mb-4">Akun Masyarakat</p>
-                      <p class="fs-30 mb-2">4</p>
+                      <p class="fs-30 mb-2">{{$CountAkMasy}}</p>
                     </div>
                   </div>
                 </div>
@@ -162,7 +162,7 @@
                   <div class="card card-light-blue">
                     <div class="card-body">
                       <p class="mb-4">Artikel Admin</p>
-                      <p class="fs-30 mb-2">15</p>
+                      <p class="fs-30 mb-2">{{$CountArAdmin}}</p>
                     </div>
                   </div>
                 </div>
@@ -170,7 +170,7 @@
                   <div class="card card-light-danger">
                     <div class="card-body">
                       <p class="mb-4">Artikel Pemilik Usaha</p>
-                      <p class="fs-30 mb-2">4</p>
+                      <p class="fs-30 mb-2">{{$CountArPemilik}}</p>
                     </div>
                   </div>
                 </div>
