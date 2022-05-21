@@ -16,7 +16,8 @@ class Admin_DataArtikelAdminController extends Controller
      */
     public function index()
     {
-        $dtArtikelAdmin = DB::select('select * from konten_artikels where id_user = ?', [session('loginId')])->orderBy('created_at', 'asc');
+        $dtArtikelAdmin = KontenArtikel::where('id_user', [session('loginId')])->orderBy('created_at', 'asc');
+        // $dtArtikelAdmin = DB::select('select * from konten_artikels where id_user = ?', [session('loginId')])->orderBy('created_at', 'asc');
         return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
     }
 

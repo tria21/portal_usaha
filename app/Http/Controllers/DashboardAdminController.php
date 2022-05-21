@@ -35,19 +35,19 @@ class DashboardAdminController extends Controller
 
     public function index_akun_masyarakat()
     {
-        $dtMas = DB::select('select * from users where role = ?', ['2'])->orderBy('created_at', 'asc');
+        $dtMas = User::where('id', ['2'])->orderBy('created_at', 'asc');
         return view('admin.data-akun-masyarakat', compact('dtMas'));
     }
 
     public function index_akun_pemilik()
     {
-        $dtUsaha = DB::select('select * from users where role = ?', ['1'])->orderBy('created_at', 'asc');
+        $dtUsaha = User::where('id', ['1'])->orderBy('created_at', 'asc');
         return view('admin.data-akun-pemilik-usaha', compact('dtUsaha'));
     }
 
     public function index_artikel_usaha()
     {
-        $dtArtikelPemilik = DB::select('select * from konten_artikels where role = ?', ['1'])->orderBy('created_at', 'asc');
+        $dtArtikelPemilik = KontenArtikel::where('id', ['1'])->orderBy('created_at', 'asc');
         return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
     }
 }
