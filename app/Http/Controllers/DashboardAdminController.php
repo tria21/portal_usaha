@@ -47,7 +47,11 @@ class DashboardAdminController extends Controller
 
     public function index_artikel_usaha()
     {
-        $dtArtikelPemilik = KontenArtikel::where('id', ['1'])->orderBy('created_at', 'asc');
+        $dtArtikelPemilik = KontenArtikel::select("*")    
+                            ->where('role', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        // $dtArtikelPemilik = KontenArtikel::where('id', ['1'])->orderBy('created_at', 'asc');
         return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
     }
 }

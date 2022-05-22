@@ -160,6 +160,7 @@
                           </th>
                           <th>{{$item->caption_gambar}}</th>
                           <th>{{$item->isi_artikel}}</th>
+                          <th>{{session('loginName')}}</th>
                           <th>
                             <a href="{{route('edit-artikel-pemilik',$item->id)}}" class="btn btn-info btn-sm">Edit</a>
                             <a href="{{route('hapus-artikel-pemilik',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>

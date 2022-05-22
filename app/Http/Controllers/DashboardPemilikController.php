@@ -33,7 +33,11 @@ class DashboardPemilikController extends Controller
 
     public function index_data_artikel()
     {
-        $dtArtikelPemilik = KontenArtikel::where('id_user', [session('loginId')])->orderBy('created_at', 'asc');
+        $dtArtikelPemilik = KontenArtikel::select("*")    
+                            ->where('id_user', session('loginId'))
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        // $dtArtikelPemilik = KontenArtikel::where('id_user', [session('loginId')])->orderBy('created_at', 'asc');
         // $dtArtikelPemilik = DB::select('select * from konten_artikels where id_user = ?', [session('loginId')])->orderBy('created_at', 'asc');
         return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik'));
     }

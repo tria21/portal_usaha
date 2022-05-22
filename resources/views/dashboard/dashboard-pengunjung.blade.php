@@ -89,7 +89,7 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: {{asset("../newsroom/assets/img/hero-carousel/1.jpg")}}">
+          <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/hero-carousel/1.jpg")}})">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">The Best Business Information </h2>
@@ -99,7 +99,7 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: {{asset("../newsroom/assets/img/hero-carousel/2.jpg")}}">
+          <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/hero-carousel/2.jpg")}})">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">At vero eos et accusamus</h2>
@@ -108,17 +108,6 @@
               </div>
             </div>
           </div>
-
-          <div class="carousel-item" style="background-image: {{asset("../newsroom/assets/img/hero-carousel/3.jpg)")}}">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Temporibus autem quibusdam</h2>
-                <p class="animate__animated animate__fadeInUp">Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem</p>
-                <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
@@ -765,11 +754,12 @@
           </div>
           <div class="row">
             <!-- Start Left Blog -->
+            @foreach ($TampilArAdmin as $item)
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
                 <div class="single-blog-img">
                   <a href="blog.html">
-                    <img src="{{asset("../newsroom/assets/img/blog/1.jpg")}}" alt="">
+                    <img src="{{asset('img/'.$item->gambar)}}" alt="">
                   </a>
                 </div>
                 <div class="blog-meta">
@@ -783,10 +773,10 @@
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">Assumenda repud eum veniam</a>
+                    <a href="blog.html">{{$item->judul}}</a>
                   </h4>
                   <p>
-                    Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
+                    {{$item->isi_artikel}}
                   </p>
                 </div>
                 <span>
@@ -795,6 +785,7 @@
               </div>
               <!-- Start single blog -->
             </div>
+            @endforeach
             <!-- End Left Blog-->
             <!-- Start Left Blog -->
             <div class="col-md-4 col-sm-4 col-xs-12">
