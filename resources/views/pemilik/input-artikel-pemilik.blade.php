@@ -149,8 +149,8 @@
                       <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" placeholder="Masukkan Caption Gambar">
                     </div>
                     <div class="form-group">
-                      <label>Isi Artikel</label>
-                      <textarea class="form-control" name="isi_artikel" id="isi_artikel" placeholder="Tuliskan Isi Artikel" rows="4"></textarea>
+                      <label for="editor">Isi Artikel</label>
+                      <textarea class="form-control" name="isi_artikel" id="editor" placeholder="Tuliskan Isi Artikel" rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                     <a href="{{route('data-artikel-pemilik')}}" class="btn btn-light">Batal</a>
@@ -161,6 +161,19 @@
           </div>
         </div>
         <!-- END CONTENT -->
+        
+      @section('ck-editor')
+        <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+
+        <script>
+          ClassicEditor
+          .create( document.querySelector( '#editor' ) )
+          .catch( error => {
+            console.error( error );
+          } );
+        </script>
+      @endsection
+      @yield('ck-editor')
 
         <!-- footer -->
         <footer class="footer">

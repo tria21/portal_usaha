@@ -42,6 +42,15 @@ class DashboardPemilikController extends Controller
         return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik'));
     }
 
+    public function detail()
+    {
+        $dtArtikelPemilik = KontenArtikel::select("*")    
+                            ->where('id_user', session('loginId'))
+                            // ->orderBy('created_at', 'desc')
+                            ->get();
+        return view('pemilik.detail-artikel-pemilik', compact('dtArtikelPemilik'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -107,7 +116,8 @@ class DashboardPemilikController extends Controller
             'judul'             => $request['judul'],
             'gambar'            => $awal,
             'caption_gambar'    => $request['caption_gambar'],
-            'isi_artikel'       => $request[session('loginId')],
+            // 'isi_artikel'       => $request[session('loginId')],
+            'isi_artikel'       => $request['isi_artikel'],
         ];
         
         if ($request->hasFile('gambar')) {

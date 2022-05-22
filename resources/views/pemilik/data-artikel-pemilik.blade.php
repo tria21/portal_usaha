@@ -137,8 +137,9 @@
                           <th>No</th>
                           <th>Judul</th>
                           <th>Gambar</th>
-                          <th>Caption Gambar</th>
-                          <th>Isi Artikel</th>
+                          <th>Kategori</th>
+                          {{-- <th>Caption Gambar</th> --}}
+                          {{-- <th>Isi Artikel</th> --}}
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -153,9 +154,11 @@
                             <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
                             {{-- {{$item->image}} --}}
                           </th>
-                          <th>{{$item->caption_gambar}}</th>
-                          <th>{{$item->isi_artikel}}</th>
+                          <th>-</th>
+                          {{-- <th>{{$item->caption_gambar}}</th> --}}
+                          {{-- <th>{!!$item->isi_artikel!!}</th> --}}
                           <th>
+                            <a href="{{route('detail-artikel-pemilik',$item->id)}}" class="btn btn-success btn-sm">Detail</a>
                             <a href="{{route('edit-artikel-pemilik',$item->id)}}" class="btn btn-info btn-sm">Edit</a>
                             <a href="{{route('hapus-artikel-pemilik',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>
                           </th>

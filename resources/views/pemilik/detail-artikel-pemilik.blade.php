@@ -119,54 +119,30 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-12 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Edit Artikel Pemilik Usaha</h4>
-                    <form class="forms-sample" action="{{route('edit-proses-artikel-pemilik', $dtArtikelPemilik->id)}}" method="POST" enctype="multipart/form-data">
-
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                      <label>Judul</label>
-                      <input type="text" name="judul" class="form-control" id="judul" value="{{$dtArtikelPemilik->judul}}">
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="col-10">
+                      <h4 class="card-title">Detail Artikel Pemilik Usaha</h4>
                     </div>
-                    <div class="mb-3">
-                      <label class="form-label">Unggah Gambar</label>
-                      <input class="form-control" type="file" id="gambar" name="gambar">
+                  </div>
+                  @foreach ($dtArtikelPemilik as $item)
+                  <div>
+                    <img src="{{asset('img/'.$item->gambar)}}" height="450px" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h2 class="card-title">{{$item->judul}}</h2>
+                        <p class="card-text">{!!$item->isi_artikel!!}</p>
                     </div>
-                    <div class="form-group">
-                      <img src="{{asset('img/'.$dtArtikelPemilik->gambar)}}" height="10%" width="50%" alt="" srcset="">
-                    </div>
-                    <div class="form-group">
-                      <label>Caption Gambar</label>
-                      <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" value="{{$dtArtikelPemilik->caption_gambar}}">
-                    </div>
-                    <div class="form-group">
-                      <label for="editor">Isi Artikel</label>
-                      <textarea class="form-control" name="isi_artikel" id="editor" value="{!!$dtArtikelPemilik->isi_artikel!!}"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                    <a href="{{route('data-artikel-pemilik')}}" class="btn btn-light">Batal</a>
-                  </form>
+                  </div>
+                  @endforeach
+                  <a href="{{route('data-artikel-pemilik')}}" class="btn btn-danger">Kembali</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
         <!-- END CONTENT -->
-        
-        @section('ck-editor')
-        <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
-
-        <script>
-          ClassicEditor
-          .create( document.querySelector( '#editor' ) )
-          .catch( error => {
-            console.error( error );
-          } );
-        </script>
-      @endsection
-      @yield('ck-editor')
 
         <!-- footer -->
         <footer class="footer">
