@@ -768,7 +768,7 @@
                     <a href="#">13 comments</a>
                   </span>
                   <span class="date-type">
-                    <i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
+                    <i class="fa fa-calendar"></i>{{$item->created_at}}
                   </span>
                 </div>
                 <div class="blog-text">

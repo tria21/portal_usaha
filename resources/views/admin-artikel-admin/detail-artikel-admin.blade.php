@@ -122,77 +122,50 @@
       </nav>
       <!-- end sidebar -->
       
-      <!-- CONTENT -->
-      <div class="main-panel">
+    <!-- CONTENT -->
+    <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="col-5">
-                      <h4 class="card-title">Artikel Admin</h4>
-                    </div>
-                    <div class="col-5">
-                      <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                            <span class="input-group-text" id="search">
-                              <i class="icon-search"></i>
-                            </span>
-                          </div>
-                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-                        </div>
-                      </li>
-                    </div>
-                    <div class="col-2">
-                      <a href="{{route('input-artikel-admin')}}" class="btn btn-primary btn-sm">Tambah Data</a>
+                    <div class="col-10">
+                      <h4 class="card-title">Detail Artikel Admin</h4>
                     </div>
                   </div>
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Judul</th>
-                          <th>Gambar</th>
-                          <th>Kategori</th>
-                          {{-- <th>Caption Gambar</th>
-                          <th>Isi Artikel</th> --}}
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $no = 1 ?>
-                        @foreach ($dtArtikelAdmin as $item)
-                        <tr>
-                          <th>{{ $no++ }}</th>
-                          <th>{{$item->judul}}</th>
-                          <th width="20%">
-                            {{-- <a href="{{asset('img/'.$item->image)}}" target="_blank" rel="">Lihat Gambar</a> --}}
-                            <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
-                            {{-- {{$item->image}} --}}
-                          </th>
-                          <th>-</th>
-                          {{-- <th>{{$item->caption_gambar}}</th>
-                          <th>{{$item->isi_artikel}}</th> --}}
-                          <th>
-                            <a href="{{route('detail-artikel-admin',$item->id)}}" class="btn btn-success btn-sm">Detail</a>
-                            <a href="{{route('edit-artikel-admin',$item->id)}}" class="btn btn-info btn-sm">Edit</a>
-                            <a href="{{route('hapus-artikel-admin',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>
-                          </th>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
+                  @foreach ($dtArtikelAdmin as $item)
+                  <div>
+                    <center><h2>{{$item->judul}}</h2></center>
+                    <img src="{{asset('img/'.$item->gambar)}}" height="450px" class="card-img-top" alt="...">
+                    <center><p class="card-text">{{$item->caption_gambar}}</p></center>
+                    <div class="card-body">
+                        <p class="card-text">Diunggah pada {{$item->created_at}}</p>
+                        <p class="card-text">{!!$item->isi_artikel!!}</p>
+                    </div>
+                  </div>
+                  @endforeach
+                  <a href="{{route('data-artikel-admin')}}" class="btn btn-danger">Kembali</a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <!-- END CONTENT -->
-        
+        </div>  
+    <!-- END CONTENT -->
+
+        @section('ck-editor')
+          <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+
+          <script>
+            ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+              console.error( error );
+            } );
+          </script>
+        @endsection
+        @yield('ck-editor')
+
         <!-- footer -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">

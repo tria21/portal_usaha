@@ -123,8 +123,20 @@
               <div class="card">
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="col-10">
+                    <div class="col-5">
                       <h4 class="card-title">Artikel Pemilik Usaha</h4>
+                    </div>
+                    <div class="col-5">
+                      <li class="nav-item nav-search d-none d-lg-block">
+                        <div class="input-group">
+                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <span class="input-group-text" id="search">
+                              <i class="icon-search"></i>
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                        </div>
+                      </li>
                     </div>
                     <div class="col-2">
                       <a href="{{route('input-artikel-pemilik')}}" class="btn btn-primary btn-sm">Tambah Data</a>

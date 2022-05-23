@@ -19,10 +19,19 @@ class Admin_DataArtikelAdminController extends Controller
         // $dtArtikelAdmin = KontenArtikel::where('role', 3)->orderBy('created_at', 'asc');
         // $dtArtikelAdmin = DB::select('select * from konten_artikels where id_user = ?', [session('loginId')]);
         $dtArtikelAdmin = KontenArtikel::select("*")    
-                            ->where('role', 3)
-                            ->orderBy('created_at', 'desc')
-                            ->get();
+                        ->where('role', 3)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
         return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
+    }
+
+    public function detail()
+    {
+        $dtArtikelAdmin = KontenArtikel::select("*")    
+                        ->where('role', 3)
+                            // ->orderBy('created_at', 'desc')
+                        ->get();
+       return view('admin-artikel-admin.detail-artikel-admin', compact('dtArtikelAdmin'));
     }
 
     /**

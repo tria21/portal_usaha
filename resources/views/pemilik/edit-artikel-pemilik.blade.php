@@ -143,7 +143,7 @@
                     </div>
                     <div class="form-group">
                       <label for="editor">Isi Artikel</label>
-                      <textarea class="form-control" name="isi_artikel" id="editor" value="{!!$dtArtikelPemilik->isi_artikel!!}"></textarea>
+                      <textarea class="form-control" name="isi_artikel" id="editor">{!!$dtArtikelPemilik->isi_artikel!!}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                     <a href="{{route('data-artikel-pemilik')}}" class="btn btn-light">Batal</a>

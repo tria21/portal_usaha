@@ -129,10 +129,12 @@
                   </div>
                   @foreach ($dtArtikelPemilik as $item)
                   <div>
+                    <h2>{{$item->judul}}</h2>
                     <img src="{{asset('img/'.$item->gambar)}}" height="450px" class="card-img-top" alt="...">
+                    <center><p class="card-text">{{$item->caption_gambar}}</p></center>
                     <div class="card-body">
-                        <h2 class="card-title">{{$item->judul}}</h2>
-                        <p class="card-text">{!!$item->isi_artikel!!}</p>
+                      <p class="card-text">Diunggah pada {{$item->created_at}}</p>
+                      <p class="card-text">{!!$item->isi_artikel!!}</p>
                     </div>
                   </div>
                   @endforeach

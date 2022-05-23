@@ -159,8 +159,8 @@
                       <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" value="{{$dtArtikelAdmin->caption_gambar}}">
                     </div>
                     <div class="form-group">
-                      <label>Isi Artikel</label>
-                      <input type="text" name="isi_artikel" class="form-control" height="20px" value="{{$dtArtikelAdmin->isi_artikel}}">
+                      <label for="editor">Isi Artikel</label>
+                      <textarea class="form-control" name="isi_artikel" id="editor">{!!$dtArtikelAdmin->isi_artikel!!}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                     <a href="{{route('data-artikel-admin')}}" class="btn btn-light">Batal</a>
@@ -171,6 +171,19 @@
           </div>
         </div>
         <!-- END CONTENT -->
+
+        @section('ck-editor')
+          <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+
+          <script>
+            ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+              console.error( error );
+            } );
+          </script>
+        @endsection
+        @yield('ck-editor')
 
         <!-- footer -->
         <footer class="footer">

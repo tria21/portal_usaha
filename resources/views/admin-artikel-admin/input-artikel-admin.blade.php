@@ -137,16 +137,6 @@
                       <label>Judul</label>
                       <input type="text" name="judul" class="form-control" id="judul" placeholder="Masukkan Judul Artikel">
                     </div>
-                    {{-- <div class="form-group">
-                      <label>Unggah Gambar</label>
-                      <input type="file" name="gambar" class="file-upload-default">
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah Gambar">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Pilih File</button>
-                        </span>
-                      </div>
-                    </div> --}}
                     <div class="mb-3">
                       <label class="form-label">Unggah Gambar</label>
                       <input class="form-control" type="file" id="gambar" name="gambar">
@@ -156,8 +146,8 @@
                       <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" placeholder="Masukkan Caption Gambar">
                     </div>
                     <div class="form-group">
-                      <label>Isi Artikel</label>
-                      <textarea class="form-control" name="isi_artikel" id="isi_artikel" placeholder="Tuliskan Isi Artikel" rows="4"></textarea>
+                      <label for="editor">Isi Artikel</label>
+                      <textarea class="form-control" name="isi_artikel" id="editor" placeholder="Tuliskan Isi Artikel" rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                     <a href="{{route('data-artikel-admin')}}" class="btn btn-light">Batal</a>
@@ -168,6 +158,19 @@
           </div>
         </div>
         <!-- END CONTENT -->
+
+        @section('ck-editor')
+          <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+
+          <script>
+            ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+              console.error( error );
+            } );
+          </script>
+        @endsection
+        @yield('ck-editor')
 
         <!-- footer -->
         <footer class="footer">

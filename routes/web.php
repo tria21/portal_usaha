@@ -63,6 +63,7 @@ Route::get('/hapus-artikel-pemilik/{id}', [App\Http\Controllers\DashboardPemilik
 
 //Admin_DataArtikelAdminController
 Route::get('/data-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'index'])->name('data-artikel-admin');
+Route::get('/detail-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'detail'])->name('detail-artikel-admin');
 Route::get('/input-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'create'])->name('input-artikel-admin');
 Route::post('/input-proses-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'store'])->name('input-proses-artikel-admin');
 Route::get('/edit-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'edit'])->name('edit-artikel-admin');
