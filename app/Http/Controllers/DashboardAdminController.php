@@ -43,13 +43,21 @@ class DashboardAdminController extends Controller
         return view('admin.data-akun-masyarakat', compact('dtMas'));
     }
 
+    public function cetak_akun_masyarakat()
+    {
+        $cetakAkMasy = User::select("*")    
+                        ->where('role', 2)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        return view('admin.cetak-akun-masyarakat', compact('cetakAkMasy'));
+    }
+
     public function index_akun_pemilik()
     {
         $dtUsaha = User::select("*")    
                 ->where('role', 1)
                 ->orderBy('created_at', 'desc')
                 ->get();
-        // $dtUsaha = User::where('id', ['1'])->orderBy('created_at', 'asc');
         return view('admin.data-akun-pemilik-usaha', compact('dtUsaha'));
     }
 
@@ -59,6 +67,15 @@ class DashboardAdminController extends Controller
                 ->where('role', 1)
                 ->get();
         return view('admin.detail-akun-pemilik-usaha', compact('dtUsaha'));
+    }
+
+    public function cetak_akun_pemilik()
+    {
+        $cetakAkUsaha = User::select("*")    
+                ->where('role', 1)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        return view('admin.cetak-akun-pemilik-usaha', compact('cetakAkUsaha'));
     }
 
     public function index_artikel_usaha()

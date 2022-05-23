@@ -49,7 +49,9 @@ Route::get('/logout', ['as' => 'logout', function (){
 Route::get('/dashboard-admin', [App\Http\Controllers\DashboardAdminController::class, 'index'])->name('dashboard-admin');
 Route::get('/data-akun-pemilik-usaha-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_pemilik'])->name('data-akun-pemilik-usaha-admin');
 Route::get('/detail-akun-pemilik-usaha', [App\Http\Controllers\DashboardAdminController::class, 'detail_akun_pemilik'])->name('detail-akun-pemilik-usaha');
+Route::get('/cetak-akun-pemilik-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cetak_akun_pemilik'])->name('cetak-akun-pemilik-usaha');
 Route::get('/data-akun-masyarakat-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_masyarakat'])->name('data-akun-masyarakat-admin');
+Route::get('/cetak-akun-masyarakat', [App\Http\Controllers\DashboardAdminController::class, 'cetak_akun_masyarakat'])->name('cetak-akun-masyarakat');
 Route::get('/data-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'index_artikel_usaha'])->name('data-artikel-usaha');
 Route::get('/detail-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'detail_artikel_usaha'])->name('detail-artikel-usaha');
 

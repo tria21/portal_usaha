@@ -134,10 +134,9 @@
                       <h4 class="card-title">Akun Masyarakat</h4>
                     </div>
                     <div class="col-2">
-                      <button type="button" class="btn btn-info btn-icon-text">
+                      <a href="{{route('cetak-akun-masyarakat')}}" target="_blank" class="btn btn-info btn-icon-text">
                         Print
-                        <i class="ti-printer btn-icon-append"></i>                                                                              
-                      </button>
+                      <i class="ti-printer btn-icon-append"></i></a>
                     </div>
                   </div>
                   <div class="table-responsive">

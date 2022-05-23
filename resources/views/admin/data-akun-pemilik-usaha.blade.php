@@ -151,10 +151,9 @@
                       </li>
                     </div>
                     <div class="col-2">
-                      <button type="button" class="btn btn-info btn-icon-text">
+                      <a href="{{route('cetak-akun-pemilik-usaha')}}" target="_blank" class="btn btn-info btn-icon-text">
                         Print
-                        <i class="ti-printer btn-icon-append"></i>                                                                              
-                      </button>
+                      <i class="ti-printer btn-icon-append"></i></a>
                     </div>
                   </div>
                   <div class="table-responsive">
