@@ -62,6 +62,7 @@ class Admin_DataArtikelAdminController extends Controller
         $dtUpload->judul            = $request->judul;
         $dtUpload->gambar           = $namaFile;
         $dtUpload->caption_gambar   = $request->caption_gambar;
+        $dtUpload->kategori         = $request->kategori;
         $dtUpload->isi_artikel      = $request->isi_artikel;
         $dtUpload->role             = $role->role;
 
@@ -110,6 +111,7 @@ class Admin_DataArtikelAdminController extends Controller
             'judul'             => $request['judul'],
             'gambar'            => $awal,
             'caption_gambar'    => $request['caption_gambar'],
+            'kategori'          => $request['kategori'],
             'isi_artikel'       => $request['isi_artikel'],
         ];
         

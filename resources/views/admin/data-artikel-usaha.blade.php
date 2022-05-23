@@ -168,7 +168,9 @@
                             <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
                           </th>
                           <th>{{$item->caption_gambar}}</th>
-                          <th>{{session('loginName')}}</th>
+                          @foreach ($dtPenulis as $pen)
+                          <th>{{$pen->name}}</th>
+                          @endforeach
                           <th>
                             <a href="{{route('detail-artikel-usaha',$item->id)}}" class="btn btn-success btn-sm">
                               <i class="ti-eye btn-icon-append"></i></a>

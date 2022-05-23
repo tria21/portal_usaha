@@ -67,8 +67,12 @@ class DashboardAdminController extends Controller
                             ->where('role', 1)
                             ->orderBy('created_at', 'desc')
                             ->get();
+        $dtPenulis = DB::table('users')
+                    ->join('konten_artikels', 'users.id', '=', 'konten_artikels.id_user')
+                    ->select('users.*')
+                    ->get(); 
         // $dtArtikelPemilik = KontenArtikel::where('id', ['1'])->orderBy('created_at', 'asc');
-        return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
+        return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtPenulis'));
     }
 
     public function detail_artikel_usaha()
@@ -76,6 +80,10 @@ class DashboardAdminController extends Controller
         $dtArtikelPemilik = KontenArtikel::select("*")    
                             ->where('role', 1)
                             ->get();
-        return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik'));
+        $dtPenulis = DB::table('users')
+                    ->join('konten_artikels', 'users.id', '=', 'konten_artikels.id_user')
+                    ->select('users.*')
+                    ->get(); 
+        return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik', 'dtPenulis'));
     }
 }
