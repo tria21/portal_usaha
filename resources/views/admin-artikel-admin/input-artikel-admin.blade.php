@@ -147,15 +147,15 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleSelectGender">Kategori</label>
-                        <select class="form-control" name="kategori" id="exampleSelectGender">
+                        <select name="kategori" class="form-control">
                           <option value="">--Pilih Kategori--</option>
-                          <option value="Produk">Produk</option>
-                          <option value="Pelatihan">Pelatihan</option>
-                          <option value="Bantuan">Bantuan</option>
-                          <option value="Lomba">Lomba</option>
-                          <option value="Teknologi">Teknologi</option>
-                          <option value="Tips">Tips</option>
-                          <option value="Lainnya">Lainnya</option>
+                          <option @if(old('kategori')=='Produk') selected @endif value="Produk">Produk</option>
+                          <option @if(old('kategori')=='Teknologi') selected @endif value="Teknologi">Teknologi</option>
+                          <option @if(old('kategori')=='Pelatihan') selected @endif value="Pelatihan">Pelatihan</option>
+                          <option @if(old('kategori')=='Lomba') selected @endif value="Lomba">Lomba</option>
+                          <option @if(old('kategori')=='Bantuan') selected @endif value="Bantuan">Bantuan</option>
+                          <option @if(old('kategori')=='Tips') selected @endif value="Tips">Tips</option>
+                          <option @if(old('kategori')=='Lainnya') selected @endif value="Lainnya">Lainnya</option>
                         </select>
                     </div>
                     <div class="form-group">
