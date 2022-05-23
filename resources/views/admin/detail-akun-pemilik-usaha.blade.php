@@ -122,60 +122,93 @@
       </nav>
       <!-- end sidebar -->
       
-      <!-- CONTENT -->
-      <div class="main-panel">
+    <!-- CONTENT -->
+    <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  @csrf
+                  @foreach ($dtUsaha as $item)
+                  <div class="card-body">
+                    <h4 class="card-title">Informasi Akun Pemilik Usaha</h4>
+                    <div class="text-center">
+                      <img class="profile-user-img img-fluid img-square" src="{{asset('img/'.$item->image)}}" alt="User profile picture" height="10%" width="50%">
+                    </div>
+                    <center><h4 class="card-title">{{$item->nama_usaha}}</h4></center>
+                    <center>
+                    <p class="card-description">
+                      {{$item->name}}
+                    </p></center>
+                    <form class="forms-sample" enctype="multipart/form-data">
+                      {{ csrf_field() }}
+                      <div class="form-group row">
+                        <label for="email" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                          <input type="email" class="form-control" id="email" name="email" value="{{$item->email}}" readonly>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="jenis_usaha" name="jenis_usaha" value="{{$item->jenis_usaha}}" readonly>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="alamat_usaha" class="col-sm-3 col-form-label">Alamat</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="alamat_usaha" name="alamat_usaha" value="{{$item->alamat_usaha}}" readonly>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                @endforeach
+              </div>
+
+            <div class="col-md-6 grid-margin stretch-card">
+              @csrf
+              @foreach ($dtUsaha as $item)
               <div class="card">
                 <div class="card-body">
-                  {{-- <div class="col-lg-12 grid-margin stretch-card"> --}}
-                    <div class="col-10">
-                      <h4 class="card-title">Akun Pemilik Usaha</h4>
+                    <h4 class="card-title">Informasi Akun Sosial Media</h4>
+                  <form class="forms-sample">
+                    {{ csrf_field() }}
+                    <div class="form-group row">
+                      <label for="facebook" class="col-sm-3 col-form-label">Link Facebook</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="facebook" name="facebook" value="{{$item->facebook}}">
+                      </div>
                     </div>
-                  {{-- </div> --}}
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Nama Pemilik</th>
-                          <th>Foto</th>
-                          <th>Email</th>
-                          <th>Nama Usaha</th>
-                          <th>Jenis Usaha</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $no = 1 ?>
-                        @foreach ($dtUsaha as $item)
-                        <tr>
-                          <th>{{$no++}}</th>
-                          <th>{{$item->name}}</th>
-                          <th width="20%">
-                            {{-- <a href="{{asset('img/'.$item->image)}}" target="_blank" rel="">Lihat Gambar</a> --}}
-                            <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
-                            {{-- {{$item->image}} --}}
-                          </th>
-                          <th>{{$item->email}}</th>
-                          <th>{{$item->nama_usaha}}</th>
-                          <th>{{$item->jenis_usaha}}</th>
-                          <th>
-                            <a href="{{route('detail-akun-pemilik-usaha',$item->id)}}" class="btn btn-success btn-sm">Detail</a>
-                          </th>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
+                    <div class="form-group row">
+                      <label for="instagram" class="col-sm-3 col-form-label">Link Instagram</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="instagram" name="instagram" value="{{$item->instagram}}">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="shopee" class="col-sm-3 col-form-label">Link Shopee</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="shopee" name="shopee" value="{{$item->shopee}}">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="tokopedia" class="col-sm-3 col-form-label">Link Tokopedia</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="tokopedia" name="tokopedia" value="{{$item->tokopedia}}">
+                      </div>
+                    </div>
+                    <a href="{{route('data-akun-pemilik-usaha-admin')}}" class="btn btn-danger">Kembali</a>
+                  </form>
                 </div>
               </div>
             </div>
-          </div>
+            @endforeach
         </div>
-        <!-- END CONTENT -->
-        
+        <!-- main-panel ends -->
+      </div>
+    <!-- END CONTENT -->
+
         <!-- footer -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">

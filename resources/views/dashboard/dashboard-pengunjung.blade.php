@@ -776,7 +776,7 @@
                     <a href="blog.html">{{$item->judul}}</a>
                   </h4>
                   <p>
-                    {{$item->isi_artikel}}
+                    {!!$item->isi_artikel!!}
                   </p>
                 </div>
                 <span>

@@ -122,60 +122,50 @@
       </nav>
       <!-- end sidebar -->
       
-      <!-- CONTENT -->
-      <div class="main-panel">
+    <!-- CONTENT -->
+    <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  {{-- <div class="col-lg-12 grid-margin stretch-card"> --}}
+                  <div class="col-lg-12 grid-margin stretch-card">
                     <div class="col-10">
-                      <h4 class="card-title">Akun Pemilik Usaha</h4>
+                      <h4 class="card-title">Detail Artikel Pemilik Usaha</h4>
                     </div>
-                  {{-- </div> --}}
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Nama Pemilik</th>
-                          <th>Foto</th>
-                          <th>Email</th>
-                          <th>Nama Usaha</th>
-                          <th>Jenis Usaha</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $no = 1 ?>
-                        @foreach ($dtUsaha as $item)
-                        <tr>
-                          <th>{{$no++}}</th>
-                          <th>{{$item->name}}</th>
-                          <th width="20%">
-                            {{-- <a href="{{asset('img/'.$item->image)}}" target="_blank" rel="">Lihat Gambar</a> --}}
-                            <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
-                            {{-- {{$item->image}} --}}
-                          </th>
-                          <th>{{$item->email}}</th>
-                          <th>{{$item->nama_usaha}}</th>
-                          <th>{{$item->jenis_usaha}}</th>
-                          <th>
-                            <a href="{{route('detail-akun-pemilik-usaha',$item->id)}}" class="btn btn-success btn-sm">Detail</a>
-                          </th>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
+                  </div>
+                  @foreach ($dtArtikelPemilik as $item)
+                  <div>
+                    <center><h2>{{$item->judul}}</h2></center>
+                    <img src="{{asset('img/'.$item->gambar)}}" height="450px" class="card-img-top" alt="...">
+                    <center><p class="card-text">{{$item->caption_gambar}}</p></center>
+                    <div class="card-body">
+                        <p class="card-text">Diunggah pada {{$item->created_at}} oleh {{session('loginName')}}</p>
+                        <p class="card-text">{!!$item->isi_artikel!!}</p>
+                    </div>
+                  </div>
+                  @endforeach
+                  <a href="{{route('data-artikel-usaha')}}" class="btn btn-danger">Kembali</a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <!-- END CONTENT -->
-        
+        </div>  
+    <!-- END CONTENT -->
+
+        @section('ck-editor')
+          <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+
+          <script>
+            ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+              console.error( error );
+            } );
+          </script>
+        @endsection
+        @yield('ck-editor')
+
         <!-- footer -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
