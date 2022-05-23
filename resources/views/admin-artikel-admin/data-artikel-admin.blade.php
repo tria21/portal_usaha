@@ -34,7 +34,7 @@
           <span class="icon-menu"></span>
         </button>
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-search d-none d-lg-block">
+          {{-- <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
               <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
                 <span class="input-group-text" id="search">
@@ -43,7 +43,7 @@
               </div>
               <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
             </div>
-          </li>
+          </li> --}}
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{{asset('../skydash/template/images/faces/admin.jpg')}}" alt="profile"/>
@@ -130,10 +130,10 @@
               <div class="card">
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="col-5">
+                    <div class="col-4">
                       <h4 class="card-title">Artikel Admin</h4>
                     </div>
-                    <div class="col-5">
+                    <div class="col-4">
                       <li class="nav-item nav-search d-none d-lg-block">
                         <div class="input-group">
                           <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -141,12 +141,23 @@
                               <i class="icon-search"></i>
                             </span>
                           </div>
+                          <div class="input-group-prepend hover-cursor" id="navbar-print-icon">
+                            <span class="input-group-text" id="print">
+                              <i class="ti-printer btn-icon-append"></i>
+                            </span>
+                          </div>
                           <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
                         </div>
                       </li>
                     </div>
                     <div class="col-2">
-                      <a href="{{route('input-artikel-admin')}}" class="btn btn-primary btn-sm">Tambah Data</a>
+                      <button type="button" class="btn btn-info btn-icon-text">
+                        Print
+                        <i class="ti-printer btn-icon-append"></i>                                                                              
+                      </button>
+                    </div>
+                    <div class="col-2">
+                      <a href="{{route('input-artikel-admin')}}" class="btn btn-primary btn-md">Tambah Data</a>
                     </div>
                   </div>
                   <div class="table-responsive">
@@ -157,8 +168,6 @@
                           <th>Judul</th>
                           <th>Gambar</th>
                           <th>Kategori</th>
-                          {{-- <th>Caption Gambar</th>
-                          <th>Isi Artikel</th> --}}
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -169,17 +178,16 @@
                           <th>{{ $no++ }}</th>
                           <th>{{$item->judul}}</th>
                           <th width="20%">
-                            {{-- <a href="{{asset('img/'.$item->image)}}" target="_blank" rel="">Lihat Gambar</a> --}}
                             <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
-                            {{-- {{$item->image}} --}}
                           </th>
                           <th>-</th>
-                          {{-- <th>{{$item->caption_gambar}}</th>
-                          <th>{{$item->isi_artikel}}</th> --}}
                           <th>
-                            <a href="{{route('detail-artikel-admin',$item->id)}}" class="btn btn-success btn-sm">Detail</a>
-                            <a href="{{route('edit-artikel-admin',$item->id)}}" class="btn btn-info btn-sm">Edit</a>
-                            <a href="{{route('hapus-artikel-admin',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>
+                            <a href="{{route('detail-artikel-admin',$item->id)}}" class="btn btn-success btn-sm">
+                              <i class="ti-eye btn-icon-append"></i></a>
+                            <a href="{{route('edit-artikel-admin',$item->id)}}" class="btn btn-info btn-sm">
+                              <i class="ti-pencil btn-icon-append"></i></a>
+                            <a href="{{route('hapus-artikel-admin',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">
+                              <i class="ti-trash btn-icon-append"></i></a>
                           </th>
                         </tr>
                         @endforeach

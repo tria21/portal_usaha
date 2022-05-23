@@ -125,7 +125,7 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    <div id="about" class="about-area area-padding">
+    {{-- <div id="about" class="about-area area-padding">
       <div class="container">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -738,7 +738,7 @@
         </div>
 
       </div>
-    </div><!-- End Testimonials Section -->
+    </div><!-- End Testimonials Section --> --}}
 
     <!-- ======= Blog Section ======= -->
     <div id="blog" class="blog-area">
@@ -788,7 +788,7 @@
             @endforeach
             <!-- End Left Blog-->
             <!-- Start Left Blog -->
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            {{-- <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
                 <div class="single-blog-img">
                   <a href="blog.html">
@@ -958,12 +958,12 @@
           </div>
         </div>
       </div>
-    </div><!-- End Contact Section -->
+    </div><!-- End Contact Section --> --}}
 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer>
+  {{-- <footer>
     <div class="footer-area">
       <div class="container">
         <div class="row">
@@ -1051,7 +1051,7 @@
         </div>
       </div>
     </div>
-  </footer><!-- End  Footer -->
+  </footer><!-- End  Footer --> --}}
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

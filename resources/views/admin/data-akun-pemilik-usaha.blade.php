@@ -34,7 +34,7 @@
           <span class="icon-menu"></span>
         </button>
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-search d-none d-lg-block">
+          {{-- <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
               <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
                 <span class="input-group-text" id="search">
@@ -43,7 +43,7 @@
               </div>
               <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
             </div>
-          </li>
+          </li> --}}
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{{asset('../skydash/template/images/faces/admin.jpg')}}" alt="profile"/>
@@ -129,11 +129,34 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  {{-- <div class="col-lg-12 grid-margin stretch-card"> --}}
-                    <div class="col-10">
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="col-5">
                       <h4 class="card-title">Akun Pemilik Usaha</h4>
                     </div>
-                  {{-- </div> --}}
+                    <div class="col-5">
+                      <li class="nav-item nav-search d-none d-lg-block">
+                        <div class="input-group">
+                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <span class="input-group-text" id="search">
+                              <i class="icon-search"></i>
+                            </span>
+                          </div>
+                          <div class="input-group-prepend hover-cursor" id="navbar-print-icon">
+                            <span class="input-group-text" id="print">
+                              <i class="ti-printer btn-icon-append"></i>
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                        </div>
+                      </li>
+                    </div>
+                    <div class="col-2">
+                      <button type="button" class="btn btn-info btn-icon-text">
+                        Print
+                        <i class="ti-printer btn-icon-append"></i>                                                                              
+                      </button>
+                    </div>
+                  </div>
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
@@ -154,15 +177,14 @@
                           <th>{{$no++}}</th>
                           <th>{{$item->name}}</th>
                           <th width="20%">
-                            {{-- <a href="{{asset('img/'.$item->image)}}" target="_blank" rel="">Lihat Gambar</a> --}}
                             <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
-                            {{-- {{$item->image}} --}}
                           </th>
                           <th>{{$item->email}}</th>
                           <th>{{$item->nama_usaha}}</th>
                           <th>{{$item->jenis_usaha}}</th>
                           <th>
-                            <a href="{{route('detail-akun-pemilik-usaha',$item->id)}}" class="btn btn-success btn-sm">Detail</a>
+                            <a href="{{route('detail-akun-pemilik-usaha',$item->id)}}" class="btn btn-success btn-sm">
+                              <i class="ti-eye btn-icon-append"></i></a>
                           </th>
                         </tr>
                         @endforeach
