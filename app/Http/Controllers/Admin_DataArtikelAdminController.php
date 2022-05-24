@@ -65,6 +65,7 @@ class Admin_DataArtikelAdminController extends Controller
         $dtUpload->kategori         = $request->kategori;
         $dtUpload->isi_artikel      = $request->isi_artikel;
         $dtUpload->role             = $role->role;
+        $dtUpload->penulis          = session('loginName');
 
         $nm->move('img/', $namaFile);
         $dtUpload->save();

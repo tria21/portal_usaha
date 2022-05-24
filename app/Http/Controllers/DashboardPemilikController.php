@@ -80,7 +80,9 @@ class DashboardPemilikController extends Controller
         $dtUpload->gambar           = $namaFile;
         $dtUpload->caption_gambar   = $request->caption_gambar;
         $dtUpload->isi_artikel      = $request->isi_artikel;
+        $dtUpload->kategori         = $request->kategori;
         $dtUpload->role             = $role->role;
+        $dtUpload->penulis          = session('loginName');
 
         $nm->move('img/', $namaFile);
         $dtUpload->save();
@@ -116,8 +118,8 @@ class DashboardPemilikController extends Controller
             'judul'             => $request['judul'],
             'gambar'            => $awal,
             'caption_gambar'    => $request['caption_gambar'],
-            // 'isi_artikel'       => $request[session('loginId')],
             'isi_artikel'       => $request['isi_artikel'],
+            'kategori'       => $request['kategori']
         ];
         
         if ($request->hasFile('gambar')) {

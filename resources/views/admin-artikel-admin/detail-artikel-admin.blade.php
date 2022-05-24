@@ -131,7 +131,7 @@
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
                     <div class="col-10">
-                      <h4 class="card-title">Detail Artikel Admin</h4>
+                      <h3>Detail Artikel Admin</h3><hr>
                     </div>
                   </div>
                   @foreach ($dtArtikelAdmin as $item)

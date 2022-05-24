@@ -142,6 +142,18 @@
                       <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" value="{{$dtArtikelPemilik->caption_gambar}}">
                     </div>
                     <div class="form-group">
+                      <label for="exampleSelectGender">Kategori</label>
+                        <select name="kategori" class="form-control" id="kategori">
+                          <option value="Produk" {{ $dtArtikelPemilik->kategori == 'Produk' ? 'selected' : '' }}>Produk</option>
+                          <option value="Teknologi" {{ $dtArtikelPemilik->kategori == 'Teknologi' ? 'selected' : '' }}>Teknologi</option>
+                          <option value="Pelatihan" {{ $dtArtikelPemilik->kategori == 'Pelatihan' ? 'selected' : '' }}>Pelatihan</option>
+                          <option value="Lomba" {{ $dtArtikelPemilik->kategori == 'Lomba' ? 'selected' : '' }}>Lomba</option>
+                          <option value="Bantuan" {{ $dtArtikelPemilik->kategori == 'Bantuan' ? 'selected' : '' }}>Bantuan</option>
+                          <option value="Tips" {{ $dtArtikelPemilik->kategori == 'Tips' ? 'selected' : '' }}>Tips</option>
+                          <option value="Lainnya" {{ $dtArtikelPemilik->kategori == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                       <label for="editor">Isi Artikel</label>
                       <textarea class="form-control" name="isi_artikel" id="editor">{!!$dtArtikelPemilik->isi_artikel!!}</textarea>
                     </div>

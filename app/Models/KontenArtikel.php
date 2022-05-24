@@ -11,6 +11,6 @@ class KontenArtikel extends Model
     protected $table = "konten_artikels";
     protected $primaryKey = "id";
     protected $fillable = [
-        'id', 'judul', 'gambar', 'caption_gambar', 'isi_artikel', 'kategori'
+        'id', 'judul', 'gambar', 'caption_gambar', 'isi_artikel', 'kategori', 'penulis'
     ];
 }

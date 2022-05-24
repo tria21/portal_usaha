@@ -149,6 +149,19 @@
                       <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" placeholder="Masukkan Caption Gambar">
                     </div>
                     <div class="form-group">
+                      <label for="exampleSelectGender">Kategori</label>
+                        <select name="kategori" class="form-control" id="kategori">
+                          <option value="">--Pilih Kategori--</option>
+                          <option value="Produk">Produk</option>
+                          <option value="Teknologi">Teknologi</option>
+                          <option value="Pelatihan">Pelatihan</option>
+                          <option value="Lomba">Lomba</option>
+                          <option value="Bantuan">Bantuan</option>
+                          <option value="Tips">Tips</option>
+                          <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                       <label for="editor">Isi Artikel</label>
                       <textarea class="form-control" name="isi_artikel" id="editor" placeholder="Tuliskan Isi Artikel" rows="4"></textarea>
                     </div>

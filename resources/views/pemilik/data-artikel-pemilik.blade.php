@@ -173,7 +173,7 @@
                           <th width="20%">
                             <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
                           </th>
-                          <th>-</th>
+                          <th>{{$item->kategori}}</th>
                           <th>
                             <a href="{{route('detail-artikel-pemilik',$item->id)}}" class="btn btn-success btn-sm">
                               <i class="ti-eye btn-icon-append"></i></a>

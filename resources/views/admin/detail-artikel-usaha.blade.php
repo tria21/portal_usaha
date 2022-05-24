@@ -131,7 +131,7 @@
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
                     <div class="col-10">
-                      <h4 class="card-title">Detail Artikel Pemilik Usaha</h4>
+                      <h3>Detail Artikel Pemilik Usaha</h3><hr>
                     </div>
                   </div>
                   @foreach ($dtArtikelPemilik as $item)
@@ -140,7 +140,7 @@
                     <img src="{{asset('img/'.$item->gambar)}}" height="450px" class="card-img-top" alt="...">
                     <center><p class="card-text">{{$item->caption_gambar}}</p></center>
                     <div class="card-body">
-                        <p class="card-text">Diunggah pada {{$item->created_at}} oleh {{session('loginName')}}</p>
+                        <p class="card-text">Diunggah pada {{$item->created_at}} oleh {{$item->penulis}}</p>
                         <p class="card-text">{!!$item->isi_artikel!!}</p>
                     </div>
                   </div>
