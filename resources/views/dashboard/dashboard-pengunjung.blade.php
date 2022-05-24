@@ -132,10 +132,10 @@
                   </a>
                 </div>
                 <div class="blog-meta">
-                  <span class="comments-type">
+                  {{-- <span class="comments-type">
                     <i class="fa fa-comment-o"></i>
                     <a href="#">13 comments</a>
-                  </span>
+                  </span> --}}
                   <span class="date-type">
                     <i class="fa fa-calendar"></i>{{$item->created_at}}
                   </span>
@@ -149,7 +149,7 @@
                   </p>
                 </div>
                 <span>
-                  <a href="blog.html" class="ready-btn">Read more</a>
+                  <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Read more</a>
                 </span>
               </div>
               <!-- Start single blog -->

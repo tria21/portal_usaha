@@ -83,3 +83,5 @@ Route::post('/update-password-pemilik/{id}', [App\Http\Controllers\CustomAuthCon
 
 //DashboardPengunjungController
 Route::get('/dashboard-pengunjung', [App\Http\Controllers\DashboardPengunjungController::class, 'index'])->name('dashboard-pengunjung');
+Route::get('/read-more-artikel-beranda/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'readMore'])->name('read-more-artikel-beranda');
+Route::get('/tampil-artikel-kategori/{kategori}', [App\Http\Controllers\DashboardPengunjungController::class, 'baseKategori'])->name('tampil-artikel-kategori');

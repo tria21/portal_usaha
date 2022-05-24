@@ -108,54 +108,44 @@
   </section><!-- End Hero Section -->
 
   <main id="main">
-
-    <!-- ======= Blog Section ======= -->
-    <div id="blog" class="blog-area">
-      <div class="blog-inner area-padding">
-        <div class="blog-overly"></div>
-        <div class="container ">
+    <!-- ======= About Section ======= -->
+    <div id="about" class="about-area area-padding">
+        @foreach ($dtArtikelKategori as $item)
+        <div class="container">
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="section-headline text-center">
-                <h2>Latest News</h2>
+                <h2>Artikel Kategori {{$item->kategori}}</h2>
               </div>
             </div>
           </div>
           <div class="row">
-            <!-- Start Left Blog -->
-            @foreach ($TampilArAdmin as $item)
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="single-blog">
-                <div class="single-blog-img">
-                  <a href="blog.html">
+            <!-- single-well start-->
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="well-left">
+                <div class="single-well">
+                  <a href="#">
                     <img src="{{asset('img/'.$item->gambar)}}" alt="">
                   </a>
                 </div>
-                <div class="blog-meta">
-                  <span class="comments-type">
-                    <i class="fa fa-comment-o"></i>
-                    <a href="#">13 comments</a>
-                  </span>
-                  <span class="date-type">
-                    <i class="fa fa-calendar"></i>{{$item->created_at}}
-                  </span>
-                </div>
-                <div class="blog-text">
-                  <h4>
-                    <a href="blog.html">{{$item->judul}}</a>
-                  </h4>
-                  <p>
-                    {!!$item->isi_artikel!!}
-                  </p>
-                </div>
-                <span>
-                  <a href="blog.html" class="ready-btn">Read more</a>
-                </span>
               </div>
-              <!-- Start single blog -->
             </div>
-            @endforeach
-
+            <!-- single-well end-->
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="well-middle">
+                <div class="single-well">
+                  <a href="#">
+                    <h4 class="sec-head">{{$item->judul}}</h4>
+                  </a>
+                  <p>{!!$item->isi_artikel!!}</p>
+                </div>
+              </div>
+            </div>
+            <!-- End col-->
+          </div>
+        </div>
+        @endforeach
+      </div><!-- End About Section -->
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

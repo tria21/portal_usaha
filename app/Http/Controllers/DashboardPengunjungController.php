@@ -20,4 +20,16 @@ class DashboardPengunjungController extends Controller
         // $TampilArAdmin = $dtArtikelAdmin = DB::select('select * from konten_artikels where role = ?', '3');
         return view('dashboard.dashboard-pengunjung', compact('TampilAkMasy', 'TampilArAdmin'));
     }
+
+    public function readMore($id){
+        $kategori = "";
+        $dtArtikelBeranda = KontenArtikel::all();
+        $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
+        return view('pengunjung.read-more-artikel-beranda', compact('dtArtikelBeranda', 'dtArtikelID', 'kategori'));
+    }
+
+    public function baseKategori($kategori){
+        $dtArtikelKategori = DB::select('select * from konten_artikels where kategori = ?', [$kategori]);
+        return view('pengunjung.tampil-artikel-kategori', compact('dtArtikelKategori'));
+    }
 }
