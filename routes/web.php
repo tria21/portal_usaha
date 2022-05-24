@@ -45,6 +45,8 @@ Route::get('/logout', ['as' => 'logout', function (){
     }
 }]);
 
+//tes
+
 //DashboardAdminController
 Route::get('/dashboard-admin', [App\Http\Controllers\DashboardAdminController::class, 'index'])->name('dashboard-admin');
 Route::get('/data-akun-pemilik-usaha-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_pemilik'])->name('data-akun-pemilik-usaha-admin');
