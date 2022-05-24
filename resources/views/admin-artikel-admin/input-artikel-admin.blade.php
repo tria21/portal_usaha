@@ -34,16 +34,6 @@
           <span class="icon-menu"></span>
         </button>
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
-          </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{{asset('../skydash/template/images/faces/admin.jpg')}}" alt="profile"/>
@@ -147,15 +137,15 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleSelectGender">Kategori</label>
-                        <select name="kategori" class="form-control">
+                        <select name="kategori" class="form-control" id="kategori">
                           <option value="">--Pilih Kategori--</option>
-                          <option @if(old('kategori')=='Produk') selected @endif value="Produk">Produk</option>
-                          <option @if(old('kategori')=='Teknologi') selected @endif value="Teknologi">Teknologi</option>
-                          <option @if(old('kategori')=='Pelatihan') selected @endif value="Pelatihan">Pelatihan</option>
-                          <option @if(old('kategori')=='Lomba') selected @endif value="Lomba">Lomba</option>
-                          <option @if(old('kategori')=='Bantuan') selected @endif value="Bantuan">Bantuan</option>
-                          <option @if(old('kategori')=='Tips') selected @endif value="Tips">Tips</option>
-                          <option @if(old('kategori')=='Lainnya') selected @endif value="Lainnya">Lainnya</option>
+                          <option value="Produk">Produk</option>
+                          <option value="Teknologi">Teknologi</option>
+                          <option value="Pelatihan">Pelatihan</option>
+                          <option value="Lomba">Lomba</option>
+                          <option value="Bantuan">Bantuan</option>
+                          <option value="Tips">Tips</option>
+                          <option value="Lainnya">Lainnya</option>
                         </select>
                     </div>
                     <div class="form-group">

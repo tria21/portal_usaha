@@ -18,7 +18,7 @@ class CreateKontenArtikelsTable extends Migration
             $table->string('judul');
             $table->string('gambar');
             $table->text('caption_gambar');
-            $table->text('kategori');
+            $table->string('kategori');
             $table->text('isi_artikel');
             $table->text('id_user');
             $table->text('role');
