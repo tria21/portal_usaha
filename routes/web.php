@@ -83,6 +83,11 @@ Route::get('/hapus-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelA
 Route::get('/data-profil-pemilik', [App\Http\Controllers\CustomAuthController::class, 'profil'])->name('data-profil-pemilik');
 Route::post('/update-profil-pemilik/{id}', [App\Http\Controllers\CustomAuthController::class, 'update'])->name('update-profil-pemilik');
 Route::post('/update-password-pemilik/{id}', [App\Http\Controllers\CustomAuthController::class, 'update_password'])->name('update-password-pemilik');
+Route::get('/input-sosmed', [App\Http\Controllers\CustomAuthController::class, 'create_sosmed'])->name('input-sosmed');
+Route::post('/input-proses-sosmed', [App\Http\Controllers\CustomAuthController::class, 'store_sosmed'])->name('input-proses-sosmed');
+Route::get('/edit-sosmed/{id}', [App\Http\Controllers\CustomAuthController::class, 'edit_sosmed'])->name('edit-sosmed');
+Route::post('/edit-proses-sosmed/{id}', [App\Http\Controllers\CustomAuthController::class, 'update_sosmed'])->name('edit-proses-sosmed');
+Route::get('/hapus-sosmed/{id}', [App\Http\Controllers\CustomAuthController::class, 'destroy'])->name('hapus-sosmed');
 
 //DashboardPengunjungController
 Route::get('/dashboard-pengunjung', [App\Http\Controllers\DashboardPengunjungController::class, 'index'])->name('dashboard-pengunjung');

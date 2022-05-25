@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Sosmed;
 use Hash;
 use Session;
 
@@ -71,13 +72,10 @@ class CustomAuthController extends Controller
                 $role = $user->role;
                 if($role){
                     if($role=='3'){
-                        // return view('dashboard.dashboard-admin');
                         return redirect()->route('dashboard-admin');
                     }else if($role=='1'){
-                        // return view('dashboard.dashboard-pemilik');
                         return redirect()->route('dashboard-pemilik-usaha');
                     }else{
-                        // return view('dashboard.dashboard-pengunjung');
                         return redirect()->route('dashboard-pengunjung');
                     }
                 }else{
@@ -93,7 +91,9 @@ class CustomAuthController extends Controller
 
     public function profil(){
         $user = DB::select('select * from users where id = ?', [session('loginId')]);
-        return view('pemilik.data-profil-pemilik', compact('user'));
+        $dtSosmed = DB::select('select * from sosmeds where id_user = ?', [session('loginId')]);
+
+        return view('pemilik.data-profil-pemilik', compact('user', 'dtSosmed'));
     }
 
     public function update(Request $request, $id)
@@ -104,11 +104,7 @@ class CustomAuthController extends Controller
             'nama_usaha'    => $request['nama_usaha'],
             'name'          => $request['name'],
             'jenis_usaha'   => $request['jenis_usaha'],
-            'alamat_usaha'  => $request['alamat_usaha'],
-            'facebook'      => $request['facebook'],
-            'instagram'     => $request['instagram'],
-            'shopee'        => $request['shopee'],
-            'tokopedia'     => $request['tokopedia']
+            'alamat_usaha'  => $request['alamat_usaha']
         ];
 
         $image = $request->file('image');
@@ -133,5 +129,56 @@ class CustomAuthController extends Controller
 
         $ubah->update($user);
         return redirect('data-profil-pemilik')->with('success', 'Password Berhasil Diubah!');
+    }
+
+    public function create_sosmed()
+    {
+        return view('pemilik.input-sosmed');
+    }
+
+    public function store_sosmed(Request $request)
+    {
+        $dtUpload = new Sosmed;
+        $dtUpload->id_user          = session('loginId');
+        $dtUpload->nama_sosmed      = $request->nama_sosmed;
+        $dtUpload->link_sosmed      = $request->link_sosmed;
+        $dtUpload->save();
+        
+        return redirect('data-profil-pemilik');
+    }
+
+    public function edit_sosmed($id)
+    {
+        $dtSosmed = Sosmed::findorfail($id);
+        return view('pemilik.edit-sosmed',compact('dtSosmed'));
+    }
+
+    public function update_sosmed(Request $request, $id)
+    {
+        $ubah = Sosmed::findorfail($id);
+
+        $dtSosmed = [
+            'nama_sosmed'   => $request['nama_sosmed'],
+            'link_sosmed'   => $request['link_sosmed']
+        ];
+
+        $ubah->update($dtSosmed);
+        return redirect('data-profil-pemilik');
+    }
+
+    public function destroy($id)
+    {
+        // dd($id);
+        $hapus = Sosmed::findorfail($id);
+
+        $file = ('img/').$hapus->gambar;
+        //cek jika ada gambar
+        if (file_exists($file)){
+            //maka hapus file dari folder img
+            @unlink($file);
+        }
+        //hapus data drai db
+        $hapus->delete();
+        return back();
     }
 }

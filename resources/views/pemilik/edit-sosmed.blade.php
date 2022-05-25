@@ -112,43 +112,20 @@
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Edit Artikel Pemilik Usaha</h4>
-                    <form class="forms-sample" action="{{route('edit-proses-artikel-pemilik', $dtArtikelPemilik->id)}}" method="POST" enctype="multipart/form-data">
+                  <h4 class="card-title">Edit Sosial Media</h4>
+                    <form class="forms-sample" action="{{route('edit-proses-sosmed', $dtSosmed->id)}}" method="POST">
 
                     {{ csrf_field() }}
                     <div class="form-group">
-                      <label>Judul</label>
-                      <input type="text" name="judul" class="form-control" id="judul" value="{{$dtArtikelPemilik->judul}}">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Unggah Gambar</label>
-                      <input class="form-control" type="file" id="gambar" name="gambar">
+                      <label>Nama Sosial Media</label>
+                      <input type="text" name="nama_sosmed" class="form-control" id="nama_sosmed" value="{{$dtSosmed->nama_sosmed}}">
                     </div>
                     <div class="form-group">
-                      <img src="{{asset('img/'.$dtArtikelPemilik->gambar)}}" height="10%" width="50%" alt="" srcset="">
-                    </div>
-                    <div class="form-group">
-                      <label>Caption Gambar</label>
-                      <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" value="{{$dtArtikelPemilik->caption_gambar}}">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleSelectGender">Kategori</label>
-                        <select name="kategori" class="form-control" id="kategori">
-                          <option value="Produk" {{ $dtArtikelPemilik->kategori == 'Produk' ? 'selected' : '' }}>Produk</option>
-                          <option value="Teknologi" {{ $dtArtikelPemilik->kategori == 'Teknologi' ? 'selected' : '' }}>Teknologi</option>
-                          <option value="Pelatihan" {{ $dtArtikelPemilik->kategori == 'Pelatihan' ? 'selected' : '' }}>Pelatihan</option>
-                          <option value="Lomba" {{ $dtArtikelPemilik->kategori == 'Lomba' ? 'selected' : '' }}>Lomba</option>
-                          <option value="Bantuan" {{ $dtArtikelPemilik->kategori == 'Bantuan' ? 'selected' : '' }}>Bantuan</option>
-                          <option value="Tips" {{ $dtArtikelPemilik->kategori == 'Tips' ? 'selected' : '' }}>Tips</option>
-                          <option value="Lainnya" {{ $dtArtikelPemilik->kategori == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="editor">Isi Artikel</label>
-                      <textarea class="form-control" name="isi_artikel" id="editor">{!!$dtArtikelPemilik->isi_artikel!!}</textarea>
+                      <label>Link Sosial Media</label>
+                      <input type="text" name="link_sosmed" class="form-control" id="link_sosmed" value="{{$dtSosmed->link_sosmed}}">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                    <a href="{{route('data-artikel-pemilik')}}" class="btn btn-light">Batal</a>
+                    <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Batal</a>
                   </form>
                 </div>
               </div>
@@ -156,19 +133,6 @@
           </div>
         </div>
         <!-- END CONTENT -->
-        
-        @section('ck-editor')
-        <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
-
-        <script>
-          ClassicEditor
-          .create( document.querySelector( '#editor' ) )
-          .catch( error => {
-            console.error( error );
-          } );
-        </script>
-      @endsection
-      @yield('ck-editor')
 
         <!-- footer -->
         <footer class="footer">
