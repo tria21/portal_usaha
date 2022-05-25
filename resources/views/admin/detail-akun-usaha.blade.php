@@ -175,28 +175,12 @@
                   <form class="forms-sample">
                     {{ csrf_field() }}
                     <div class="form-group row">
-                      <label for="facebook" class="col-sm-3 col-form-label">Link Facebook</label>
+                      @foreach ($dtSosmed as $item)
+                      <label for="facebook" class="col-sm-3 col-form-label">{{$item->nama_sosmed}}</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="facebook" name="facebook" value="{{$item->facebook}}">
+                        <input type="text" class="form-control" id="facebook" name="facebook" value="{{$item->link_sosmed}}">
                       </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="instagram" class="col-sm-3 col-form-label">Link Instagram</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" id="instagram" name="instagram" value="{{$item->instagram}}">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="shopee" class="col-sm-3 col-form-label">Link Shopee</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" id="shopee" name="shopee" value="{{$item->shopee}}">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="tokopedia" class="col-sm-3 col-form-label">Link Tokopedia</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" id="tokopedia" name="tokopedia" value="{{$item->tokopedia}}">
-                      </div>
+                      @endforeach
                     </div>
                     <a href="{{route('data-akun-pemilik-usaha-admin')}}" class="btn btn-danger">Kembali</a>
                   </form>

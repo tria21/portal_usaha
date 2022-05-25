@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Sosmed;
 use App\Models\KontenArtikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -66,7 +67,12 @@ class DashboardAdminController extends Controller
         $dtUsaha = User::select("*")    
                 ->where('role', 1)
                 ->get();
-        return view('admin.detail-akun-usaha', compact('dtUsaha'));
+        $dtSosmed = Sosmed::select("*")    
+                ->where('id_user', [session('loginId')])
+                ->get();
+        // = DB::select('select * from sosmeds where id_user = ?', [session('loginId')]);
+
+        return view('admin.detail-akun-usaha', compact('dtUsaha', 'dtSosmed'));
     }
 
     public function cetak_akun_pemilik()
