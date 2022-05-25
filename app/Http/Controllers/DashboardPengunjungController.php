@@ -22,10 +22,9 @@ class DashboardPengunjungController extends Controller
     }
 
     public function readMore($id){
-        $kategori = "";
         $dtArtikelBeranda = KontenArtikel::all();
         $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
-        return view('pengunjung.read-more-artikel-beranda', compact('dtArtikelBeranda', 'dtArtikelID', 'kategori'));
+        return view('pengunjung.read-more-artikel-beranda', compact('dtArtikelBeranda', 'dtArtikelID'));
     }
 
     public function baseKategori($kategori){

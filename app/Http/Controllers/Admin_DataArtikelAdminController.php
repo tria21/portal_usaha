@@ -25,13 +25,14 @@ class Admin_DataArtikelAdminController extends Controller
         return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
     }
 
-    public function detail()
+    public function detail($id)
     {
         $dtArtikelAdmin = KontenArtikel::select("*")    
                         ->where('role', 3)
                             // ->orderBy('created_at', 'desc')
                         ->get();
-       return view('admin-artikel-admin.detail-artikel-admin', compact('dtArtikelAdmin'));
+        $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
+       return view('admin-artikel-admin.detail-artikel-admin', compact('dtArtikelAdmin', 'dtArtikelID'));
     }
 
     /**

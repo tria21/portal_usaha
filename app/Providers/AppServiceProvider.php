@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Blade::extend(function($value) {
+            return preg_replace('/\@php(.+)/', '<?php ${1}; ?>', $value);
+        });
     }
 }

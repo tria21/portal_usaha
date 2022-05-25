@@ -49,7 +49,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
           <li><a class="nav-link scrollto" href="#services">Artikel</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Usaha Mikro</a></li>
@@ -75,7 +75,7 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/hero-carousel/1.jpg")}})">
+          <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkoprame.jpg")}})">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
@@ -84,7 +84,7 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/hero-carousel/2.jpg")}})">
+          <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkopworsop.jpg")}})">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
@@ -118,7 +118,7 @@
               <div class="single-blog-page">
                 <!-- recent start -->
                 <div class="left-blog">
-                  <h4>Postingan Terbaru</h4>
+                  <h4>Artikel Terbaru</h4>
                   <div class="recent-post">
                     <!-- start single post -->
                     @foreach ($dtArtikelBeranda as $item)
@@ -143,26 +143,32 @@
                   <h4>Kategori</h4>
                   <ul>
                     <li>
-                        {{-- $kategori = "Produk"; --}}
-                      <a href="#">Produk</a>
+                      @php $kategori = 'Produk' @endphp
+                      <a href="{{route('tampil-artikel-kategori', $kategori)}}">Produk</a>
                     </li>
                     <li>
-                      <a href="#">Teknologi</a>
+                      @php $kategori = 'Teknologi' @endphp
+                      <a href="{{route('tampil-artikel-kategori', $kategori)}}">Teknologi</a>
                     </li>
                     <li>
-                      <a href="#">Pelatihan</a>
+                      @php $kategori = 'Pelatihan' @endphp
+                      <a href="{{route('tampil-artikel-kategori', $kategori)}}">Pelatihan</a>
                     </li>
                     <li>
-                      <a href="#">Lomba</a>
+                      @php $kategori = 'Lomba' @endphp
+                      <a href="{{route('tampil-artikel-kategori', $kategori)}}">Lomba</a>
                     </li>
                     <li>
-                      <a href="#">Bantuan</a>
+                      @php $kategori = 'Bantuan' @endphp
+                      <a href="{{route('tampil-artikel-kategori', $kategori)}}">Bantuan</a>
                     </li>
                     <li>
-                      <a href="#">Tips</a>
+                      @php $kategori = 'Tips' @endphp
+                      <a href="{{route('tampil-artikel-kategori', $kategori)}}">Tips</a>
                     </li>
                     <li>
-                      <a href="#">Lainnya</a>
+                      @php $kategori = 'Lainnya' @endphp
+                      <a href="{{route('tampil-artikel-kategori', $kategori)}}">Lainnya</a>
                     </li>
                   </ul>
                 </div>

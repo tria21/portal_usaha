@@ -94,12 +94,13 @@ class DashboardAdminController extends Controller
         return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
     }
 
-    public function detail_artikel_usaha()
+    public function detail_artikel_usaha($id)
     {
         $dtArtikelPemilik = KontenArtikel::select("*")    
                             ->where('role', 1)
                             ->get();
-        return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik'));
+        $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
+        return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik', 'dtArtikelID'));
     }
 
     public function cetak_artikel_usaha()

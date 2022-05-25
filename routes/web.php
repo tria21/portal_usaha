@@ -55,13 +55,13 @@ Route::get('/cetak-akun-pemilik-usaha', [App\Http\Controllers\DashboardAdminCont
 Route::get('/data-akun-masyarakat-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_masyarakat'])->name('data-akun-masyarakat-admin');
 Route::get('/cetak-akun-masyarakat', [App\Http\Controllers\DashboardAdminController::class, 'cetak_akun_masyarakat'])->name('cetak-akun-masyarakat');
 Route::get('/data-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'index_artikel_usaha'])->name('data-artikel-usaha');
-Route::get('/detail-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'detail_artikel_usaha'])->name('detail-artikel-usaha');
+Route::get('/detail-artikel-usaha/{id}', [App\Http\Controllers\DashboardAdminController::class, 'detail_artikel_usaha'])->name('detail-artikel-usaha');
 Route::get('/cetak-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cetak_artikel_usaha'])->name('cetak-artikel-usaha');
 
 //DashboardPemilikController
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');
 Route::get('/data-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'index_data_artikel'])->name('data-artikel-pemilik');
-Route::get('/detail-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'detail'])->name('detail-artikel-pemilik');
+Route::get('/detail-artikel-pemilik/{id}', [App\Http\Controllers\DashboardPemilikController::class, 'detail'])->name('detail-artikel-pemilik');
 Route::get('/cetak-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'cetak_artikel_pemilik'])->name('cetak-artikel-pemilik');
 Route::get('/input-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'create'])->name('input-artikel-pemilik');
 Route::post('/input-proses-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'store'])->name('input-proses-artikel-pemilik');
@@ -71,7 +71,7 @@ Route::get('/hapus-artikel-pemilik/{id}', [App\Http\Controllers\DashboardPemilik
 
 //Admin_DataArtikelAdminController
 Route::get('/data-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'index'])->name('data-artikel-admin');
-Route::get('/detail-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'detail'])->name('detail-artikel-admin');
+Route::get('/detail-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'detail'])->name('detail-artikel-admin');
 Route::get('/cetak-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'cetak_artikel_admin'])->name('cetak-artikel-admin');
 Route::get('/input-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'create'])->name('input-artikel-admin');
 Route::post('/input-proses-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'store'])->name('input-proses-artikel-admin');

@@ -49,7 +49,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
+          <li><a class="nav-link scrollto active" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
           <li><a class="nav-link scrollto" href="#services">Artikel</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Usaha Mikro</a></li>
@@ -75,7 +75,7 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/hero-carousel/1.jpg")}})">
+          <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkoprame.jpg")}})">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
@@ -84,7 +84,7 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/hero-carousel/2.jpg")}})">
+          <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkopworsop.jpg")}})">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
@@ -117,7 +117,7 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="section-headline text-center">
-                <h2>Latest News</h2>
+                <h2>Artikel Terbaru</h2>
               </div>
             </div>
           </div>
@@ -144,12 +144,14 @@
                   <h4>
                     <a href="blog.html">{{$item->judul}}</a>
                   </h4>
-                  <p>
+                  {{-- <p>
+                    @php $isi = $item->isi_artikel
+                    {{Str::limit($isi, 100)}}
                     {!!$item->isi_artikel!!}
-                  </p>
+                  </p> --}}
                 </div>
                 <span>
-                  <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Read more</a>
+                  <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>
                 </span>
               </div>
               <!-- Start single blog -->

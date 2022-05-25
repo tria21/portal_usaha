@@ -42,13 +42,14 @@ class DashboardPemilikController extends Controller
         return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik'));
     }
 
-    public function detail()
+    public function detail($id)
     {
         $dtArtikelPemilik = KontenArtikel::select("*")    
                             ->where('id_user', session('loginId'))
                             // ->orderBy('created_at', 'desc')
                             ->get();
-        return view('pemilik.detail-artikel-pemilik', compact('dtArtikelPemilik'));
+        $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
+        return view('pemilik.detail-artikel-pemilik', compact('dtArtikelPemilik', 'dtArtikelID'));
     }
 
     public function cetak_artikel_pemilik()

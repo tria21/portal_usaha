@@ -127,7 +127,7 @@
                       <h3>Detail Artikel Pemilik Usaha</h3><hr>
                     </div>
                   </div>
-                  @foreach ($dtArtikelPemilik as $item)
+                  @foreach ($dtArtikelID as $item)
                   <div>
                     <center><h2>{{$item->judul}}</h2></center>
                     <center>
@@ -135,9 +135,9 @@
                         <img src="{{asset('img/'.$item->gambar)}}" class="card-img-top" alt="...">
                       </div>
                     </center>
-                    <center><p class="card-text">{{$item->caption_gambar}}</p></center>
+                    <center><p class="card-text"><b>{{$item->caption_gambar}}</b></p></center>
                     <div class="card-body">
-                      <p class="card-text">Diunggah pada {{$item->created_at}}</p>
+                      <p class="card-text"><b>Diunggah pada {{$item->created_at}}</b></p>
                       <p class="card-text">{!!$item->isi_artikel!!}</p>
                     </div>
                   </div>

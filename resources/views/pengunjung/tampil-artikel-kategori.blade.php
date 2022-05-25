@@ -49,7 +49,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
           <li><a class="nav-link scrollto" href="#services">Artikel</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Usaha Mikro</a></li>
@@ -75,7 +75,7 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/hero-carousel/1.jpg")}})">
+          <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkoprame.jpg")}})">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
@@ -84,7 +84,7 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/hero-carousel/2.jpg")}})">
+          <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkopworsop.jpg")}})">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
@@ -108,44 +108,59 @@
   </section><!-- End Hero Section -->
 
   <main id="main">
-    <!-- ======= About Section ======= -->
-    <div id="about" class="about-area area-padding">
-        @foreach ($dtArtikelKategori as $item)
-        <div class="container">
+
+    <!-- ======= Blog Section ======= -->
+    <div id="blog" class="blog-area">
+      <div class="blog-inner area-padding">
+        <div class="blog-overly"></div>
+        <div class="container ">
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="section-headline text-center">
-                <h2>Artikel Kategori {{$item->kategori}}</h2>
+                @foreach ($dtArtikelKategori as $kat)
+                @php $kategori = $kat->kategori @endphp
+                @endforeach
+                <h2>Artikel Kategori {{$kategori}}</h2>
               </div>
             </div>
           </div>
           <div class="row">
-            <!-- single-well start-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="well-left">
-                <div class="single-well">
-                  <a href="#">
+            <!-- Start Left Blog -->
+            @foreach ($dtArtikelKategori as $item)
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="single-blog">
+                <div class="single-blog-img">
+                  <a href="blog.html">
                     <img src="{{asset('img/'.$item->gambar)}}" alt="">
                   </a>
                 </div>
-              </div>
-            </div>
-            <!-- single-well end-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="well-middle">
-                <div class="single-well">
-                  <a href="#">
-                    <h4 class="sec-head">{{$item->judul}}</h4>
-                  </a>
-                  <p>{!!$item->isi_artikel!!}</p>
+                <div class="blog-meta">
+                  {{-- <span class="comments-type">
+                    <i class="fa fa-comment-o"></i>
+                    <a href="#">13 comments</a>
+                  </span> --}}
+                  <span class="date-type">
+                    <i class="fa fa-calendar"></i>{{$item->created_at}}
+                  </span>
                 </div>
+                <div class="blog-text">
+                  <h4>
+                    <a href="blog.html">{{$item->judul}}</a>
+                  </h4>
+                  {{-- <p>
+                    @php $isi = $item->isi_artikel
+                    {{Str::limit($isi, 100)}}
+                    {!!$item->isi_artikel!!}
+                  </p> --}}
+                </div>
+                <span>
+                  <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>
+                </span>
               </div>
+              <!-- Start single blog -->
             </div>
-            <!-- End col-->
-          </div>
-        </div>
-        @endforeach
-      </div><!-- End About Section -->
+            @endforeach
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
