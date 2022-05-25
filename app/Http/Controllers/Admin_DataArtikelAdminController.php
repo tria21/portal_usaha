@@ -147,4 +147,13 @@ class Admin_DataArtikelAdminController extends Controller
         $hapus->delete();
         return back();
     }
+
+    public function cetak_artikel_admin()
+    {
+        $cetakArAdmin = KontenArtikel::select("*")    
+                        ->where('role', 3)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+       return view('admin-artikel-admin.cetak-artikel-admin', compact('cetakArAdmin'));
+    }
 }

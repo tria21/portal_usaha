@@ -10,7 +10,7 @@
                 border: 1px solid #543535;
             }
         </style>
-        <title>Cetak Data Pemilik Resort</title>
+        <title>Cetak Data Akun Masyarakat</title>
     </head>
     <body>
         <div class="form-group">

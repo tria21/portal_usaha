@@ -144,10 +144,9 @@
                       </li>
                     </div>
                     <div class="col-2">
-                      <button type="button" class="btn btn-info btn-icon-text">
+                      <a href="{{route('cetak-artikel-pemilik')}}" target="_blank" class="btn btn-info btn-icon-text">
                         Print
-                        <i class="ti-printer btn-icon-append"></i>                                                                              
-                      </button>
+                      <i class="ti-printer btn-icon-append"></i></a>
                     </div>
                     <div class="col-2">
                       <a href="{{route('input-artikel-pemilik')}}" class="btn btn-primary btn-md">Tambah Data</a>

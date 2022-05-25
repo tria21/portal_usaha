@@ -51,6 +51,15 @@ class DashboardPemilikController extends Controller
         return view('pemilik.detail-artikel-pemilik', compact('dtArtikelPemilik'));
     }
 
+    public function cetak_artikel_pemilik()
+    {
+        $cetakArPemilik = KontenArtikel::select("*")    
+                        ->where('id_user', session('loginId'))
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        return view('pemilik.cetak-artikel-pemilik', compact('cetakArPemilik'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

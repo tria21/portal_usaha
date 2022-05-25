@@ -140,10 +140,9 @@
                       </li>
                     </div>
                     <div class="col-2">
-                      <button type="button" class="btn btn-info btn-icon-text">
+                      <a href="{{route('cetak-artikel-usaha')}}" target="_blank" class="btn btn-info btn-icon-text">
                         Print
-                        <i class="ti-printer btn-icon-append"></i>                                                                              
-                      </button>
+                      <i class="ti-printer btn-icon-append"></i></a>
                     </div>
                   </div>
                   <div class="table-responsive">
@@ -153,7 +152,7 @@
                           <th>No</th>
                           <th>Judul</th>
                           <th>Gambar</th>
-                          <th>Caption Gambar</th>
+                          <th>Kategori</th>
                           <th>Penulis</th>
                           <th>Aksi</th>
                         </tr>
@@ -167,7 +166,7 @@
                           <th width="20%">
                             <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
                           </th>
-                          <th>{{$item->caption_gambar}}</th>
+                          <th>{{$item->kategori}}</th>
                           <th>{{$item->penulis}}</th>
                           <th>
                             <a href="{{route('detail-artikel-usaha',$item->id)}}" class="btn btn-success btn-sm">
