@@ -31,4 +31,17 @@ class DashboardPengunjungController extends Controller
         $dtArtikelKategori = DB::select('select * from konten_artikels where kategori = ?', [$kategori]);
         return view('pengunjung.tampil-artikel-kategori', compact('dtArtikelKategori'));
     }
+
+    public function tampilArtikel(){
+        $dtArtikel = DB::select('select * from konten_artikels');
+        return view('pengunjung.tampil-all-artikel', compact('dtArtikel'));
+    }
+
+    public function tampilUsaha(){
+        $TampilUsaha = User::select("*")    
+                            ->where('role', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        return view('pengunjung.tampil-all-usaha', compact('TampilUsaha'));
+    }
 }

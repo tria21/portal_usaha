@@ -51,8 +51,8 @@
         <ul>
           <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
-          <li><a class="nav-link scrollto" href="#services">Artikel</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Usaha Mikro</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
           <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Pengaturan Akun</a></li>

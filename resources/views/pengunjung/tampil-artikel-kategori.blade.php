@@ -51,8 +51,8 @@
         <ul>
           <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
-          <li><a class="nav-link scrollto" href="#services">Artikel</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Usaha Mikro</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
           <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Pengaturan Akun</a></li>
@@ -122,6 +122,18 @@
                 @endforeach
                 <h2>Artikel Kategori {{$kategori}}</h2>
               </div>
+              <div class="single-blog-page">
+                <!-- search option start -->
+                <form action="#">
+                  <div class="search-option">
+                    <input type="text" placeholder="Search...">
+                    <button class="button" type="submit">
+                      <i class="bi bi-search"></i>
+                    </button>
+                  </div>
+                </form>
+                <!-- search option end -->
+              </div>
             </div>
           </div>
           <div class="row">
@@ -145,7 +157,7 @@
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">{{$item->judul}}</a>
+                    <a href="#">{{$item->judul}}</a>
                   </h4>
                   {{-- <p>
                     @php $isi = $item->isi_artikel
@@ -160,7 +172,10 @@
               <!-- Start single blog -->
             </div>
             @endforeach
-
+          </div>
+        </div>
+      </div>
+    </div>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
