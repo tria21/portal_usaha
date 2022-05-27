@@ -34,16 +34,6 @@
           <span class="icon-menu"></span>
         </button>
         <ul class="navbar-nav navbar-nav-right">
-          {{-- <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
-          </li> --}}
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{{asset('../skydash/template/images/faces/admin.jpg')}}" alt="profile"/>
@@ -133,10 +123,13 @@
                     <div class="col-10">
                       <h4 class="card-title">Akun Masyarakat</h4>
                     </div>
-                    <div class="col-2">
-                      <a href="{{route('cetak-akun-masyarakat')}}" target="_blank" class="btn btn-info btn-icon-text">
-                        Print
-                      <i class="ti-printer btn-icon-append"></i></a>
+                    <div class="col-1">
+                      <a href="{{route('cetak-akun-masyarakat')}}" target="_blank" class="btn btn-sm btn-outline-primary">
+                      PDF</a>
+                    </div>
+                    <div class="col-1">
+                      <a href="{{route('export-excel-akun-masyarakat')}}" target="_blank" class="btn btn-sm btn-outline-dark">
+                        Excel</a>
                     </div>
                   </div>
                   <div class="table-responsive">

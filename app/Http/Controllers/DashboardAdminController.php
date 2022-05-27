@@ -7,6 +7,11 @@ use App\Models\Sosmed;
 use App\Models\KontenArtikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\PemilikExport;
+use App\Exports\MasyarakatExport;
+use App\Exports\ArtikelPemilikExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class DashboardAdminController extends Controller
 {
@@ -53,6 +58,11 @@ class DashboardAdminController extends Controller
         return view('admin.cetak-akun-masyarakat', compact('cetakAkMasy'));
     }
 
+    public function export_excel_masyarakat()
+	{
+		return Excel::download(new MasyarakatExport, 'akun-masyarakat.xlsx');
+	}
+
     public function index_akun_pemilik()
     {
         $dtUsaha = User::select("*")    
@@ -83,6 +93,11 @@ class DashboardAdminController extends Controller
         return view('admin.cetak-akun-usaha', compact('cetakAkUsaha'));
     }
 
+    public function export_excel_pemilik()
+	{
+		return Excel::download(new PemilikExport, 'akun-pemilik-usaha.xlsx');
+	}
+
     public function index_artikel_usaha()
     {
         $dtArtikelPemilik = KontenArtikel::select("*")    
@@ -110,4 +125,9 @@ class DashboardAdminController extends Controller
                             ->get();
         return view('admin.cetak-artikel-usaha', compact('cetakArPemilik'));
     }
+
+    public function export_excel_artikel_usaha()
+	{
+		return Excel::download(new ArtikelPemilikExport, 'artikel-pemilik-usaha.xlsx');
+	}
 }

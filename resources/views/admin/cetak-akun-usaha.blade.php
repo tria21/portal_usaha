@@ -18,25 +18,35 @@
             <table class="static" align="center" rules="all" border="1px" style="width: 95%;">
                 <tr>
                     <th>No</th>
+                    <th>ID</th>
                     <th>Nama Pemilik</th>
-                    {{-- <th>Foto</th> --}}
                     <th>Email</th>
+                    <th>Password</th>
+                    <th>Role</th>
                     <th>Nama Usaha</th>
                     <th>Jenis Usaha</th>
                     <th>Alamat</th>
+                    <th>Foto</th>
+                    {{-- <th>Link Sosial Media</th> --}}
                   </tr>
                   <?php $no = 1 ?>
                   @foreach ($cetakAkUsaha as $item)
                   <tr>
                     <th>{{$no++}}</th>
+                    <th>{{$item->id}}</th>
                     <th>{{$item->name}}</th>
-                    {{-- <th width="20%">
-                        <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
-                    </th> --}}
                     <th>{{$item->email}}</th>
+                    <th>{{$item->passowrd}}</th>
+                    <th>{{$item->role}}</th>
                     <th>{{$item->nama_usaha}}</th>
                     <th>{{$item->jenis_usaha}}</th>
                     <th>{{$item->alamat_usaha}}</th>
+                    <th width="20%">
+                      <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
+                    </th>
+                    {{-- @foreach ($dtSosmed as $item2)
+                    <th>{{$item2->nama_sosmed}}</th>
+                    @endforeach --}}
                   </tr>
                 @endforeach
             </table>

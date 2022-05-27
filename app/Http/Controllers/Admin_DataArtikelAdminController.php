@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Exports\ArtikelAdminExport;
+use App\Exports\ArtikelPemilikExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class Admin_DataArtikelAdminController extends Controller
 {
@@ -157,4 +161,9 @@ class Admin_DataArtikelAdminController extends Controller
                         ->get();
        return view('admin-artikel-admin.cetak-artikel-admin', compact('cetakArAdmin'));
     }
+
+    public function export_excel_artikel_admin()
+	{
+		return Excel::download(new ArtikelAdminExport, 'artikel-admin.xlsx');
+	}
 }

@@ -133,30 +133,28 @@
                     <div class="col-4">
                       <h4 class="card-title">Artikel Admin</h4>
                     </div>
+                    <div class="col-1">
+                      <a href="{{route('cetak-artikel-admin')}}" target="_blank" class="btn btn-sm btn-outline-primary">
+                        PDF</a>
+                    </div>
+                    <div class="col-1">
+                      <a href="{{route('export-excel-artikel-admin')}}" target="_blank" class="btn btn-sm btn-outline-dark">
+                        Excel</a>
+                    </div>
                     <div class="col-4">
                       <li class="nav-item nav-search d-none d-lg-block">
                         <div class="input-group">
+                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
                           <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
                             <span class="input-group-text" id="search">
                               <i class="icon-search"></i>
                             </span>
                           </div>
-                          <div class="input-group-prepend hover-cursor" id="navbar-print-icon">
-                            <span class="input-group-text" id="print">
-                              <i class="ti-printer btn-icon-append"></i>
-                            </span>
-                          </div>
-                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
                         </div>
                       </li>
                     </div>
                     <div class="col-2">
-                      <a href="{{route('cetak-artikel-admin')}}" target="_blank" class="btn btn-info btn-icon-text">
-                        Print
-                      <i class="ti-printer btn-icon-append"></i></a>
-                    </div>
-                    <div class="col-2">
-                      <a href="{{route('input-artikel-admin')}}" class="btn btn-primary btn-md">Tambah Data</a>
+                      <a href="{{route('input-artikel-admin')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                     </div>
                   </div>
                   <div class="table-responsive">

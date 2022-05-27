@@ -127,7 +127,11 @@
                   @foreach ($dtArtikelID as $item)
                   <div>
                     <center><h2>{{$item->judul}}</h2></center>
-                    <img src="{{asset('img/'.$item->gambar)}}" class="card-img-top" alt="...">
+                    <center>
+                      <div class="col-8">
+                        <img src="{{asset('img/'.$item->gambar)}}" class="card-img-top" alt="...">
+                      </div>
+                    </center>
                     <center><p class="card-text"><b>{{$item->caption_gambar}}</b></p></center>
                     <div class="card-body">
                         <p class="card-text"><b>Diunggah pada {{$item->created_at}}</b></p>
