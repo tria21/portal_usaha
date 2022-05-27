@@ -113,7 +113,6 @@ class DashboardAdminController extends Controller
                         // ->paginate(5);
  
 		return view('admin.data-akun-usaha', compact('dtUsaha'));
- 
 	}
 
     public function index_artikel_usaha()
@@ -146,7 +145,7 @@ class DashboardAdminController extends Controller
 
     public function export_excel_artikel_usaha()
 	{
-		return Excel::download(new ArtikelPemilikExport, 'artikel-pemilik-usaha.xlsx');
+		return Excel::download(new ArtikelPemilikExport, 'artikel-pemilik-usaha-admin.xlsx');
 	}
 
     public function cari_artikel_usaha(Request $request)

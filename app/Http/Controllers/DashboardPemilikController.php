@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Exports\ArtikelPemilikUsahaExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class DashboardPemilikController extends Controller
 {
@@ -163,4 +166,26 @@ class DashboardPemilikController extends Controller
         $hapus->delete();
         return back();
     }
+
+    public function export_excel_artikel_pemilik()
+	{
+		return Excel::download(new ArtikelPemilikUsahaExport, 'artikel-pemilik-usaha.xlsx');
+	}
+
+    public function cari_artikel_pemilik(Request $request)
+	{
+		// menangkap data pencarian
+		$keyword = $request->cari;
+ 
+		$dtArtikelPemilik = KontenArtikel::select("*")
+                        // ->where('role', 3)
+                        ->where('judul', 'like', "%" . $keyword . "%")
+                        ->orWhere('kategori', 'like', "%" . $keyword . "%")
+                        ->orWhere('isi_artikel', 'like', "%" . $keyword . "%")
+                        ->get();
+                        // ->paginate(5);
+ 
+		return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik'));
+ 
+	}
 }

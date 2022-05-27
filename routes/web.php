@@ -68,6 +68,8 @@ Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikCon
 Route::get('/data-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'index_data_artikel'])->name('data-artikel-pemilik');
 Route::get('/detail-artikel-pemilik/{id}', [App\Http\Controllers\DashboardPemilikController::class, 'detail'])->name('detail-artikel-pemilik');
 Route::get('/cetak-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'cetak_artikel_pemilik'])->name('cetak-artikel-pemilik');
+Route::get('/export-excel-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'export_excel_artikel_pemilik'])->name('export-excel-artikel-pemilik');
+Route::get('/cari-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'cari_artikel_pemilik'])->name('cari-artikel-pemilik');
 Route::get('/input-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'create'])->name('input-artikel-pemilik');
 Route::post('/input-proses-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'store'])->name('input-proses-artikel-pemilik');
 Route::get('/edit-artikel-pemilik/{id}', [App\Http\Controllers\DashboardPemilikController::class, 'edit'])->name('edit-artikel-pemilik');

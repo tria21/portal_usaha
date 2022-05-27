@@ -116,25 +116,28 @@
                     <div class="col-4">
                       <h4 class="card-title">Artikel Pemilik Usaha</h4>
                     </div>
+                    <div class="col-1">
+                      <a href="{{route('cetak-artikel-pemilik')}}" target="_blank" class="btn btn-sm btn-outline-primary">
+                        PDF</a>
+                    </div>
+                    <div class="col-1">
+                      <a href="{{route('export-excel-artikel-pemilik')}}" target="_blank" class="btn btn-sm btn-outline-dark">
+                        Excel</a>
+                    </div>
                     <div class="col-4">
-                      <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                            <span class="input-group-text" id="search">
-                              <i class="icon-search"></i>
-                            </span>
+                      <div class="form-group">
+                        <form action="{{route('cari-artikel-pemilik')}}" method="GET">
+                          <div class="input-group">
+                            <input type="text" name="cari" id="cari" class="form-control" placeholder="Masukkan Kata Kunci" value="{{ old('keyword') }}">
+                            <div class="input-group-append">
+                              <button class="btn btn-sm btn-primary" type="submit">Search</button>
+                            </div>
                           </div>
-                        </div>
-                      </li>
+                        </form>
+                      </div>
                     </div>
                     <div class="col-2">
-                      <a href="{{route('cetak-artikel-pemilik')}}" target="_blank" class="btn btn-info btn-icon-text">
-                        Print
-                      <i class="ti-printer btn-icon-append"></i></a>
-                    </div>
-                    <div class="col-2">
-                      <a href="{{route('input-artikel-pemilik')}}" class="btn btn-primary btn-md">Tambah Data</a>
+                      <a href="{{route('input-artikel-pemilik')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                     </div>
                   </div>
                   <div class="table-responsive">
