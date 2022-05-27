@@ -98,6 +98,24 @@ class DashboardAdminController extends Controller
 		return Excel::download(new PemilikExport, 'akun-pemilik-usaha.xlsx');
 	}
 
+    public function cari_akun_pemilik(Request $request)
+	{
+		// menangkap data pencarian
+		$keyword = $request->cari;
+ 
+		$dtUsaha = User::select("*")
+                        // ->where('role', 3)
+                        ->where('name', 'like', "%" . $keyword . "%")
+                        ->orWhere('nama_usaha', 'like', "%" . $keyword . "%")
+                        ->orWhere('jenis_usaha', 'like', "%" . $keyword . "%")
+                        ->orWhere('alamat_usaha', 'like', "%" . $keyword . "%")
+                        ->get();
+                        // ->paginate(5);
+ 
+		return view('admin.data-akun-usaha', compact('dtUsaha'));
+ 
+	}
+
     public function index_artikel_usaha()
     {
         $dtArtikelPemilik = KontenArtikel::select("*")    
@@ -129,5 +147,22 @@ class DashboardAdminController extends Controller
     public function export_excel_artikel_usaha()
 	{
 		return Excel::download(new ArtikelPemilikExport, 'artikel-pemilik-usaha.xlsx');
+	}
+
+    public function cari_artikel_usaha(Request $request)
+	{
+		// menangkap data pencarian
+		$keyword = $request->cari;
+ 
+		$dtArtikelPemilik = KontenArtikel::select("*")
+                        // ->where('role', 3)
+                        ->where('judul', 'like', "%" . $keyword . "%")
+                        ->orWhere('kategori', 'like', "%" . $keyword . "%")
+                        ->orWhere('penulis', 'like', "%" . $keyword . "%")
+                        ->get();
+                        // ->paginate(5);
+ 
+		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
+ 
 	}
 }

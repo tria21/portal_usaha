@@ -51,6 +51,7 @@ Route::get('/data-akun-pemilik-usaha-admin', [App\Http\Controllers\DashboardAdmi
 Route::get('/detail-akun-pemilik-usaha/{id}', [App\Http\Controllers\DashboardAdminController::class, 'detail_akun_pemilik'])->name('detail-akun-pemilik-usaha');
 Route::get('/cetak-akun-pemilik-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cetak_akun_pemilik'])->name('cetak-akun-pemilik-usaha');
 Route::get('/export-excel-akun-pemilik-usaha', [App\Http\Controllers\DashboardAdminController::class, 'export_excel_pemilik'])->name('export-excel-akun-pemilik-usaha');
+Route::get('/cari-akun-pemilik-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cari_akun_pemilik'])->name('cari-akun-pemilik-usaha');
 
 Route::get('/data-akun-masyarakat-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_masyarakat'])->name('data-akun-masyarakat-admin');
 Route::get('/cetak-akun-masyarakat', [App\Http\Controllers\DashboardAdminController::class, 'cetak_akun_masyarakat'])->name('cetak-akun-masyarakat');
@@ -60,6 +61,7 @@ Route::get('/data-artikel-usaha', [App\Http\Controllers\DashboardAdminController
 Route::get('/detail-artikel-usaha/{id}', [App\Http\Controllers\DashboardAdminController::class, 'detail_artikel_usaha'])->name('detail-artikel-usaha');
 Route::get('/cetak-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cetak_artikel_usaha'])->name('cetak-artikel-usaha');
 Route::get('/export-excel-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'export_excel_artikel_usaha'])->name('export-excel-artikel-usaha');
+Route::get('/cari-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cari_artikel_usaha'])->name('cari-artikel-usaha');
 
 //DashboardPemilikController
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');
@@ -82,6 +84,7 @@ Route::post('/input-proses-artikel-admin', [App\Http\Controllers\Admin_DataArtik
 Route::get('/edit-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'edit'])->name('edit-artikel-admin');
 Route::post('/edit-proses-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'update'])->name('edit-proses-artikel-admin');
 Route::get('/hapus-artikel-admin/{id}', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'destroy'])->name('hapus-artikel-admin');
+Route::get('/cari-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'cari'])->name('cari-artikel-admin');
 
 //CustomAuthController
 Route::get('/data-profil-pemilik', [App\Http\Controllers\CustomAuthController::class, 'profil'])->name('data-profil-pemilik');

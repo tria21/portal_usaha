@@ -166,4 +166,20 @@ class Admin_DataArtikelAdminController extends Controller
 	{
 		return Excel::download(new ArtikelAdminExport, 'artikel-admin.xlsx');
 	}
+
+    public function cari(Request $request)
+	{
+		// menangkap data pencarian
+		$keyword = $request->cari;
+ 
+		$dtArtikelAdmin = KontenArtikel::select("*")
+                        // ->where('role', 3)
+                        ->where('judul', 'like', "%" . $keyword . "%")
+                        ->orWhere('kategori', 'like', "%" . $keyword . "%")
+                        ->get();
+                        // ->paginate(5);
+ 
+		return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
+ 
+	}
 }
