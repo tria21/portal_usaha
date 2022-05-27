@@ -62,17 +62,16 @@ class DashboardAdminController extends Controller
         return view('admin.data-akun-usaha', compact('dtUsaha'));
     }
 
-    public function detail_akun_pemilik()
+    public function detail_akun_pemilik($id)
     {
         $dtUsaha = User::select("*")    
                 ->where('role', 1)
                 ->get();
         $dtSosmed = Sosmed::select("*")    
-                ->where('id_user', [session('loginId')])
+                ->where('id_user', [$id])
                 ->get();
-        // = DB::select('select * from sosmeds where id_user = ?', [session('loginId')]);
-
-        return view('admin.detail-akun-usaha', compact('dtUsaha', 'dtSosmed'));
+        $dtAkunID = DB::select('select * from users where id = ?', [$id]);
+        return view('admin.detail-akun-usaha', compact('dtUsaha', 'dtSosmed', 'dtAkunID'));
     }
 
     public function cetak_akun_pemilik()

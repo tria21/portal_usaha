@@ -38,11 +38,9 @@ Route::get('/coba', function () {
     return view('auth.coba');
 });
 Route::get('/logout', ['as' => 'logout', function (){
-    if(session()->has('loginId')){
-        session()->pull('loginId');
-        session()->pull('loginName');
-        return redirect('login');
-    }
+    session()->pull('loginId');
+    session()->pull('loginName');
+    return redirect('login');
 }]);
 
 //tes
@@ -50,7 +48,7 @@ Route::get('/logout', ['as' => 'logout', function (){
 //DashboardAdminController
 Route::get('/dashboard-admin', [App\Http\Controllers\DashboardAdminController::class, 'index'])->name('dashboard-admin');
 Route::get('/data-akun-pemilik-usaha-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_pemilik'])->name('data-akun-pemilik-usaha-admin');
-Route::get('/detail-akun-pemilik-usaha', [App\Http\Controllers\DashboardAdminController::class, 'detail_akun_pemilik'])->name('detail-akun-pemilik-usaha');
+Route::get('/detail-akun-pemilik-usaha/{id}', [App\Http\Controllers\DashboardAdminController::class, 'detail_akun_pemilik'])->name('detail-akun-pemilik-usaha');
 Route::get('/cetak-akun-pemilik-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cetak_akun_pemilik'])->name('cetak-akun-pemilik-usaha');
 Route::get('/data-akun-masyarakat-admin', [App\Http\Controllers\DashboardAdminController::class, 'index_akun_masyarakat'])->name('data-akun-masyarakat-admin');
 Route::get('/cetak-akun-masyarakat', [App\Http\Controllers\DashboardAdminController::class, 'cetak_akun_masyarakat'])->name('cetak-akun-masyarakat');

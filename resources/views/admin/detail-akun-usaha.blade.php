@@ -129,7 +129,7 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   @csrf
-                  @foreach ($dtUsaha as $item)
+                  @foreach ($dtAkunID as $item)
                   <div class="card-body">
                     <h4 class="card-title">Informasi Akun Pemilik Usaha</h4>
                     <div class="text-center">
