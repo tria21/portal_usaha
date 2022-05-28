@@ -180,6 +180,6 @@ class Admin_DataArtikelAdminController extends Controller
                         // ->paginate(5);
  
 		return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
- 
 	}
+
 }

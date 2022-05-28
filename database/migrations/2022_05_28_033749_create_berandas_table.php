@@ -17,8 +17,6 @@ class CreateBerandasTable extends Migration
             $table->id();
             $table->text('isi_beranda')->nullable();
             $table->text('deskripsi_tambahan')->nullable();
-            $table->string('image')->nullable();
-            $table->text('caption_gambar')->nullable();
             $table->timestamps();
         });
     }

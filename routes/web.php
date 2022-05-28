@@ -68,6 +68,13 @@ Route::post('/update-beranda/{id}', [App\Http\Controllers\DashboardAdminControll
 Route::get('/edit-beranda/{id}', [App\Http\Controllers\DashboardAdminController::class, 'edit_data_beranda'])->name('edit-beranda');
 Route::post('/edit-proses-beranda/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_data_beranda'])->name('edit-proses-beranda');
 
+
+Route::get('/input-galeri', [App\Http\Controllers\DashboardAdminController::class, 'create_galeri'])->name('input-galeri');
+Route::post('/input-proses-galeri', [App\Http\Controllers\DashboardAdminController::class, 'store_galeri'])->name('input-proses-galeri');
+Route::get('/edit-galeri/{id}', [App\Http\Controllers\DashboardAdminController::class, 'edit_galeri'])->name('edit-galeri');
+Route::post('/edit-proses-galeri/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_galeri'])->name('edit-proses-galeri');
+Route::get('/hapus-galeri/{id}', [App\Http\Controllers\DashboardAdminController::class, 'destroy_galeri'])->name('hapus-galeri');
+
 //DashboardPemilikController
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');
 Route::get('/data-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'index_data_artikel'])->name('data-artikel-pemilik');

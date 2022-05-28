@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Sosmed;
 use App\Models\KontenArtikel;
 use App\Models\Beranda;
+use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Exports\PemilikExport;
@@ -168,7 +169,8 @@ class DashboardAdminController extends Controller
     public function index_data_beranda()
     {   
         $dtBeranda = Beranda::all();
-        return view('admin.data-beranda', compact('dtBeranda'));
+        $dtGaleri = Galeri::all();
+        return view('admin.data-beranda', compact('dtBeranda', 'dtGaleri'));
     }
 
     public function edit_data_beranda($id)
@@ -188,5 +190,67 @@ class DashboardAdminController extends Controller
 
         $ubah->update($dtBeranda);
         return redirect('data-beranda');
+    }
+
+    public function create_galeri()
+    {
+        return view('admin.input-galeri');
+    }
+
+    public function store_galeri(Request $request)
+    {
+        $nm = $request->image;
+        $namaFile = time().rand(100,999).".".$nm->getClientOriginalExtension(); //memberi nama file dengan nomor acak
+
+        $dtUpload = new Galeri;
+        $dtUpload->image           = $namaFile;
+        $dtUpload->caption_gambar  = $request->caption_gambar;
+
+        $nm->move('img/', $namaFile);
+        $dtUpload->save();
+        
+        return redirect('data-beranda');
+    }
+
+    public function edit_galeri($id)
+    {
+        $dtGaleri = Galeri::findorfail($id);
+        return view('admin.edit-galeri',compact('dtGaleri'));
+    }
+
+    public function update_galeri(Request $request, $id)
+    {
+        $ubah = Galeri::findorfail($id);
+        $awal = $ubah->image;
+
+        $dtGaleri = [
+            'image '            => $awal,
+            'caption_gambar'    => $request['caption_gambar'],
+        ];
+        
+        if ($request->hasFile('image')) {
+            // $ubah->delete_image();
+            $image = $request->file('image');
+            $request->image->move('img/', $awal);
+        }
+
+        $ubah->update($dtGaleri);
+        return redirect('data-beranda');
+    }
+
+    public function destroy_galeri($id)
+    {
+        // dd($id);
+        $hapus = Galeri::findorfail($id);
+
+        $file = ('img/').$hapus->image;
+        //cek jika ada gambar
+        if (file_exists($file)){
+            //maka hapus file dari folder img
+            @unlink($file);
+        }
+        //hapus data drai db
+        $hapus->delete();
+        return back();
     }
 }

@@ -151,7 +151,7 @@
                             </p>
                         </div>
                         <div class="col-2">
-                          <a href="" class="btn btn-primary btn-sm">Tambah Data</a>
+                          <a href="{{route('input-galeri')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                         </div>
                     </div>
                   <div class="table-responsive">
@@ -165,7 +165,22 @@
                         </tr>
                       </thead>
                       <tbody>
-
+                        <?php $no = 1 ?>
+                        @foreach ($dtGaleri as $item)
+                        <tr>
+                          <th>{{ $no++ }}</th>
+                          <th width="20%">
+                            <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
+                          </th>
+                          <th>{{$item->caption_gambar}}</th>
+                          <th>
+                            <a href="{{route('edit-galeri',$item->id)}}" class="btn btn-info btn-sm">
+                              <i class="ti-pencil btn-icon-append"></i></a>
+                            <a href="{{route('hapus-galeri',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">
+                              <i class="ti-trash btn-icon-append"></i></a>
+                          </th>
+                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
