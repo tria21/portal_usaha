@@ -63,6 +63,11 @@ Route::get('/cetak-artikel-usaha', [App\Http\Controllers\DashboardAdminControlle
 Route::get('/export-excel-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'export_excel_artikel_usaha'])->name('export-excel-artikel-usaha');
 Route::get('/cari-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cari_artikel_usaha'])->name('cari-artikel-usaha');
 
+Route::get('/data-beranda', [App\Http\Controllers\DashboardAdminController::class, 'index_data_beranda'])->name('data-beranda');
+Route::post('/update-beranda/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_data_beranda'])->name('update-beranda');
+Route::get('/edit-beranda/{id}', [App\Http\Controllers\DashboardAdminController::class, 'edit_data_beranda'])->name('edit-beranda');
+Route::post('/edit-proses-beranda/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_data_beranda'])->name('edit-proses-beranda');
+
 //DashboardPemilikController
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');
 Route::get('/data-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'index_data_artikel'])->name('data-artikel-pemilik');

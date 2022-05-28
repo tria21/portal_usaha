@@ -80,6 +80,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{route('data-beranda')}}" >
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Kelola Beranda</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">Data Akun</span>
@@ -101,9 +107,8 @@
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-admin')}}">Artikel Admin</a></li>
-              </ul>
-              <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-usaha')}}">Artikel Usaha</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Kelola Komentar</a></li>
               </ul>
             </div>
           </li>

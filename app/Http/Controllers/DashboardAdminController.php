@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Sosmed;
 use App\Models\KontenArtikel;
+use App\Models\Beranda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Exports\PemilikExport;
@@ -162,6 +163,30 @@ class DashboardAdminController extends Controller
                         // ->paginate(5);
  
 		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
- 
 	}
+
+    public function index_data_beranda()
+    {   
+        $dtBeranda = Beranda::all();
+        return view('admin.data-beranda', compact('dtBeranda'));
+    }
+
+    public function edit_data_beranda($id)
+    {
+        $dtBeranda = Beranda::findorfail($id);
+        return view('admin.edit-beranda',compact('dtBeranda'));
+    }
+
+    public function update_data_beranda(Request $request, $id)
+    {
+        $ubah = Beranda::findorfail($id);
+
+        $dtBeranda = [
+            'isi_beranda'           => $request['isi_beranda'],
+            'deskripsi_tambahan'    => $request['deskripsi_tambahan'],
+        ];
+
+        $ubah->update($dtBeranda);
+        return redirect('data-beranda');
+    }
 }

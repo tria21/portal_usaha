@@ -116,67 +116,34 @@
         </ul>
       </nav>
       <!-- end sidebar -->
-      
-      <!-- CONTENT -->
-      <div class="main-panel">
+      <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Edit Artikel Admin</h4>
-                    <form class="forms-sample" action="{{route('edit-proses-artikel-admin', $dtArtikelAdmin->id)}}" method="POST" enctype="multipart/form-data">
+                  <h4 class="card-title">Edit Data Beranda</h4>
+                  <form class="forms-sample" action="{{route('edit-proses-beranda', $dtBeranda->id)}}" method="POST" >
                     {{ csrf_field() }}
+                  <div>
                     <div class="form-group">
-                      <label>Judul</label>
-                      <input type="text" name="judul" class="form-control" id="judul" value="{{$dtArtikelAdmin->judul}}">
-                    </div>
-                    {{-- <div class="form-group">
-                      <label>Unggah Gambar</label>
-                      <input type="file" name="gambar" class="file-upload-default">
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah Gambar">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Pilih File</button>
-                        </span>
-                      </div>
-                    </div> --}}
-                    <div class="mb-3">
-                      <label class="form-label">Unggah Gambar</label>
-                      <input class="form-control" type="file" id="gambar" name="gambar">
+                        <label for="editor">Isi Beranda</label>
+                        <textarea class="form-control" name="isi_beranda" id="editor">{!!$dtBeranda->isi_beranda!!}</textarea>
                     </div>
                     <div class="form-group">
-                      <img src="{{asset('img/'.$dtArtikelAdmin->gambar)}}" height="10%" width="50%" alt="" srcset="">
+                        <label>Deskripsi Tambahan</label>
+                        <textarea class="form-control" name="deskripsi_tambahan">{{$dtBeranda->deskripsi_tambahan}}</textarea>
                     </div>
-                    <div class="form-group">
-                      <label>Caption Gambar</label>
-                      <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" value="{{$dtArtikelAdmin->caption_gambar}}">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleSelectGender">Kategori</label>
-                        <select name="kategori" class="form-control" id="kategori">
-                          <option value="Produk" {{ $dtArtikelAdmin->kategori == 'Produk' ? 'selected' : '' }}>Produk</option>
-                          <option value="Teknologi" {{ $dtArtikelAdmin->kategori == 'Teknologi' ? 'selected' : '' }}>Teknologi</option>
-                          <option value="Pelatihan" {{ $dtArtikelAdmin->kategori == 'Pelatihan' ? 'selected' : '' }}>Pelatihan</option>
-                          <option value="Lomba" {{ $dtArtikelAdmin->kategori == 'Lomba' ? 'selected' : '' }}>Lomba</option>
-                          <option value="Bantuan" {{ $dtArtikelAdmin->kategori == 'Bantuan' ? 'selected' : '' }}>Bantuan</option>
-                          <option value="Tips" {{ $dtArtikelAdmin->kategori == 'Tips' ? 'selected' : '' }}>Tips</option>
-                          <option value="Lainnya" {{ $dtArtikelAdmin->kategori == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="editor">Isi Artikel</label>
-                      <textarea class="form-control" name="isi_artikel" id="editor">{!!$dtArtikelAdmin->isi_artikel!!}</textarea>
-                    </div>
+                  </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                    <a href="{{route('data-artikel-admin')}}" class="btn btn-light">Batal</a>
+                    <a href="{{route('data-beranda')}}" class="btn btn-light btn-md">Batal</a>
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- END CONTENT -->
+        <!-- content-wrapper ends -->
 
         @section('ck-editor')
           <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
@@ -191,15 +158,17 @@
         @endsection
         @yield('ck-editor')
 
-        <!-- footer -->
+        <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"><a href="https://www.jombangkab.go.id/" target="_blank">DINAS KOPERASI DAN USAHA MIKRO KABUPATEN JOMBANG</a></span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Sistem Informasi Portal Usaha Mikro Kabupaten Jombang </span>
-          </div>
-        </footer>
-        <!-- end footer -->
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"><a href="https://www.jombangkab.go.id/" target="_blank">DINAS KOPERASI DAN USAHA MIKRO KABUPATEN JOMBANG</a></span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Sistem Informasi Portal Usaha Mikro Kabupaten Jombang </span>
+            </div>
+         </footer>
+        <!-- partial -->
       </div>
+      <!-- CONTENT -->
+      
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
