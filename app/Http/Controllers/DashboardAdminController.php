@@ -14,6 +14,7 @@ use App\Exports\MasyarakatExport;
 use App\Exports\ArtikelPemilikExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Image;
 
 class DashboardAdminController extends Controller
 {
@@ -201,12 +202,14 @@ class DashboardAdminController extends Controller
     {
         $nm = $request->image;
         $namaFile = time().rand(100,999).".".$nm->getClientOriginalExtension(); //memberi nama file dengan nomor acak
+        $image_resize = Image::make($nm->getRealPath());
+        $image_resize->resize(300, 300);
 
         $dtUpload = new Galeri;
         $dtUpload->image           = $namaFile;
         $dtUpload->caption_gambar  = $request->caption_gambar;
 
-        $nm->move('img/', $namaFile);
+        $image_resize->save('img/' .$namaFile , 80);
         $dtUpload->save();
         
         return redirect('data-beranda');
@@ -231,7 +234,9 @@ class DashboardAdminController extends Controller
         if ($request->hasFile('image')) {
             // $ubah->delete_image();
             $image = $request->file('image');
-            $request->image->move('img/', $awal);
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(300, 300);
+            $image_resize->save('img/' .$awal , 80);
         }
 
         $ubah->update($dtGaleri);

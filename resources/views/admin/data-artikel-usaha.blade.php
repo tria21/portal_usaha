@@ -80,10 +80,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('data-beranda')}}" >
-              <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Kelola Beranda</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Data Beranda</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Galeri</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Tentang</a></li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">

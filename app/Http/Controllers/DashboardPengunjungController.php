@@ -17,8 +17,9 @@ class DashboardPengunjungController extends Controller
                             ->get();
         // dd($TampilArAdmin);
         $TampilAkMasy = User::where('id_user', [session('loginId')]);
+        $dtGaleri = DB::select('select * from galeris');
         // $TampilArAdmin = $dtArtikelAdmin = DB::select('select * from konten_artikels where role = ?', '3');
-        return view('dashboard.dashboard-pengunjung', compact('TampilAkMasy', 'TampilArAdmin'));
+        return view('dashboard.dashboard-pengunjung', compact('TampilAkMasy', 'TampilArAdmin', 'dtGaleri'));
     }
 
     public function readMore($id){

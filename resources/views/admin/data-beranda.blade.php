@@ -81,10 +81,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('data-beranda')}}" >
-              <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Kelola Beranda</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Data Beranda</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Galeri</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Tentang</a></li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -116,44 +123,33 @@
         </ul>
       </nav>
       <!-- end sidebar -->
-      <div class="main-panel">        
+      <!-- CONTENT -->
+      <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-12 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Data Beranda</h4>
-                  <p class="card-description">
-                    Berisi informasi mengenai pengertian singkat dan kriteria usaha mikro.
-                  </p>
-                  @foreach ($dtBeranda as $item)
-                  <div>
-                    <div class="card-body">
-                        <p class="card-text">{!!$item->isi_beranda!!}</p>
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="col-4">
+                      <h4 class="card-title">Galeri</h4>
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">{{$item->deskripsi_tambahan}}</p>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <form action="{{route('cari-artikel-admin')}}" method="GET">
+                          <div class="input-group">
+                            <input type="text" name="cari" id="cari" class="form-control" placeholder="Masukkan Kata Kunci" value="{{ old('keyword') }}">
+                            <div class="input-group-append">
+                              <button class="btn btn-sm btn-primary" type="submit">Search</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <a href="{{route('input-galeri')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                     </div>
                   </div>
-                  @endforeach
-                    <a href="{{route('edit-beranda',$item->id)}}" class="btn btn-danger btn-md">Ubah Data</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                    <div class="col-lg-12 grid-margin stretch-card">
-                        <div class="col-10">
-                            <h4 class="card-title">Galeri Kegiatan</h4>
-                            <p class="card-description">
-                              Berisi foto-foto dokumentasi kegiatan Dinas Koperasi dan Usaha Mikro.
-                            </p>
-                        </div>
-                        <div class="col-2">
-                          <a href="{{route('input-galeri')}}" class="btn btn-primary btn-sm">Tambah Data</a>
-                        </div>
-                    </div>
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
@@ -169,11 +165,14 @@
                         @foreach ($dtGaleri as $item)
                         <tr>
                           <th>{{ $no++ }}</th>
+                          <th>{{$item->judul}}</th>
                           <th width="20%">
-                            <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
+                            <img src="{{asset('img/'.$item->image)}}" height="70%"  width="70%" alt="" srcset="">
                           </th>
                           <th>{{$item->caption_gambar}}</th>
                           <th>
+                            <a href="{{route('detail-artikel-admin',$item->id)}}" class="btn btn-success btn-sm">
+                              <i class="ti-eye btn-icon-append"></i></a>
                             <a href="{{route('edit-galeri',$item->id)}}" class="btn btn-info btn-sm">
                               <i class="ti-pencil btn-icon-append"></i></a>
                             <a href="{{route('hapus-galeri',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">
@@ -189,7 +188,6 @@
             </div>
           </div>
         </div>
-        <!-- content-wrapper ends -->
 
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
