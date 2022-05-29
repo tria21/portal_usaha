@@ -63,12 +63,14 @@ Route::get('/cetak-artikel-usaha', [App\Http\Controllers\DashboardAdminControlle
 Route::get('/export-excel-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'export_excel_artikel_usaha'])->name('export-excel-artikel-usaha');
 Route::get('/cari-artikel-usaha', [App\Http\Controllers\DashboardAdminController::class, 'cari_artikel_usaha'])->name('cari-artikel-usaha');
 
+Route::get('/data-tentang', [App\Http\Controllers\DashboardAdminController::class, 'index_data_tentang'])->name('data-tentang');
+Route::get('/input-tentang', [App\Http\Controllers\DashboardAdminController::class, 'create_tentang'])->name('input-tentang');
+Route::post('/input-proses-tentang', [App\Http\Controllers\DashboardAdminController::class, 'store_tentang'])->name('input-proses-tentang');
+Route::post('/update-tentang/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_data_beranda'])->name('update-tentang');
+Route::get('/edit-tentang/{id}', [App\Http\Controllers\DashboardAdminController::class, 'edit_data_beranda'])->name('edit-tentang');
+Route::post('/edit-proses-tentang/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_data_beranda'])->name('edit-proses-tentang');
+
 Route::get('/data-beranda', [App\Http\Controllers\DashboardAdminController::class, 'index_data_beranda'])->name('data-beranda');
-Route::post('/update-beranda/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_data_beranda'])->name('update-beranda');
-Route::get('/edit-beranda/{id}', [App\Http\Controllers\DashboardAdminController::class, 'edit_data_beranda'])->name('edit-beranda');
-Route::post('/edit-proses-beranda/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_data_beranda'])->name('edit-proses-beranda');
-
-
 Route::get('/input-galeri', [App\Http\Controllers\DashboardAdminController::class, 'create_galeri'])->name('input-galeri');
 Route::post('/input-proses-galeri', [App\Http\Controllers\DashboardAdminController::class, 'store_galeri'])->name('input-proses-galeri');
 Route::get('/edit-galeri/{id}', [App\Http\Controllers\DashboardAdminController::class, 'edit_galeri'])->name('edit-galeri');

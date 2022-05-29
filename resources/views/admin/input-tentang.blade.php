@@ -123,41 +123,34 @@
         </ul>
       </nav>
       <!-- end sidebar -->
-      
-    <!-- CONTENT -->
-    <div class="main-panel">
+      <!-- CONTENT -->
+      <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="col-10">
-                      <h3>Detail Artikel Pemilik Usaha</h3><hr>
+                  <h4 class="card-title">Tambah Tentang</h4>
+                    <form class="forms-sample" action="{{route('input-proses-tentang')}}" method="POST" enctype="multipart/form-data">
+
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <label for="editor">Isi Tentang</label>
+                      <textarea class="form-control" name="isi_beranda" id="editor" placeholder="Tuliskan Isi Tentang" rows="4"></textarea>
                     </div>
-                  </div>
-                  @foreach ($dtArtikelID as $item)
-                  <div>
-                    <center><h2>{{$item->judul}}</h2></center>
-                    <center>
-                      <div class="col-8">
-                        <img src="{{asset('img/'.$item->gambar)}}" class="card-img-top" alt="...">
-                      </div>
-                    </center>
-                    <center><p class="card-text"><b>{{$item->caption_gambar}}</b></p></center>
-                    <div class="card-body">
-                        <p class="card-text"><b>Diunggah pada {{$item->created_at}} oleh {{$item->penulis}}</b></p>
-                        <p class="card-text">{!!$item->isi_artikel!!}</p>
+                    <div class="form-group">
+                      <label>Keterangan Tambahan</label>
+                      <input type="text" name="keterangan_tambahan" class="form-control" id="deskripsi_tambahan" placeholder="Masukkan Keterangan">
                     </div>
-                  </div>
-                  @endforeach
-                  <a href="{{route('data-artikel-usaha')}}" class="btn btn-danger">Kembali</a>
-                  </div>
+                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    <a href="{{route('data-tentang')}}" class="btn btn-light">Batal</a>
+                  </form>
                 </div>
               </div>
             </div>
-        </div>  
-    <!-- END CONTENT -->
+          </div>
+        </div>
+        <!-- END CONTENT -->
 
         @section('ck-editor')
           <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
@@ -181,6 +174,8 @@
         </footer>
         <!-- end footer -->
       </div>
+      <!-- CONTENT -->
+      
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->

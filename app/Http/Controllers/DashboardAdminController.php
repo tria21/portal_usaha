@@ -169,9 +169,14 @@ class DashboardAdminController extends Controller
 
     public function index_data_beranda()
     {   
-        $dtBeranda = Beranda::all();
         $dtGaleri = Galeri::all();
-        return view('admin.data-beranda', compact('dtBeranda', 'dtGaleri'));
+        return view('admin.data-beranda', compact('dtGaleri'));
+    }
+
+    public function index_data_tentang()
+    {   
+        $dtBeranda = Beranda::all();
+        return view('admin.data-tentang', compact('dtBeranda'));
     }
 
     public function edit_data_beranda($id)
@@ -196,6 +201,22 @@ class DashboardAdminController extends Controller
     public function create_galeri()
     {
         return view('admin.input-galeri');
+    }
+
+    public function create_tentang()
+    {
+        return view('admin.input-tentang');
+    }
+    
+    public function store_tentang(Request $request)
+    {
+        $dtUpload = new Beranda;
+        $dtUpload->isi_beranda          = $request->isi_beranda;
+        $dtUpload->deskripsi_tambahan  = $request->deskripsi_tambahan;
+
+        $dtUpload->save();
+        
+        return redirect('data-tentang');
     }
 
     public function store_galeri(Request $request)

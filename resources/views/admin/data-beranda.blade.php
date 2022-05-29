@@ -89,7 +89,7 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Galeri</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Tentang</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('data-tentang')}}">Kelola Tentang</a></li>
               </ul>
             </div>
           </li>
@@ -165,14 +165,11 @@
                         @foreach ($dtGaleri as $item)
                         <tr>
                           <th>{{ $no++ }}</th>
-                          <th>{{$item->judul}}</th>
                           <th width="20%">
                             <img src="{{asset('img/'.$item->image)}}" height="70%"  width="70%" alt="" srcset="">
                           </th>
                           <th>{{$item->caption_gambar}}</th>
                           <th>
-                            <a href="{{route('detail-artikel-admin',$item->id)}}" class="btn btn-success btn-sm">
-                              <i class="ti-eye btn-icon-append"></i></a>
                             <a href="{{route('edit-galeri',$item->id)}}" class="btn btn-info btn-sm">
                               <i class="ti-pencil btn-icon-append"></i></a>
                             <a href="{{route('hapus-galeri',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">
@@ -188,6 +185,7 @@
             </div>
           </div>
         </div>
+        
 
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">

@@ -123,64 +123,73 @@
         </ul>
       </nav>
       <!-- end sidebar -->
-      
-    <!-- CONTENT -->
-    <div class="main-panel">
+      <!-- CONTENT -->
+      <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="col-10">
-                      <h3>Detail Artikel Pemilik Usaha</h3><hr>
-                    </div>
-                  </div>
-                  @foreach ($dtArtikelID as $item)
-                  <div>
-                    <center><h2>{{$item->judul}}</h2></center>
-                    <center>
-                      <div class="col-8">
-                        <img src="{{asset('img/'.$item->gambar)}}" class="card-img-top" alt="...">
-                      </div>
-                    </center>
-                    <center><p class="card-text"><b>{{$item->caption_gambar}}</b></p></center>
                     <div class="card-body">
-                        <p class="card-text"><b>Diunggah pada {{$item->created_at}} oleh {{$item->penulis}}</b></p>
-                        <p class="card-text">{!!$item->isi_artikel!!}</p>
+                      <div class="row">
+                        <div class="col-10">
+                          <h4 class="card-title">Tentang</h4>
+                          {{-- <p class="card-description">
+                            Data pada pada tabel tentang hanya satu. Jika sudah terdapat satu data dan ingin mengganti data tersebt, maka <code>tekan 'edit'</code> pada kolom aksi.
+                          </p> --}}
+                        </div>
+                        <div class="col-2">
+                          <a href="{{route('input-tentang')}}" class="btn btn-primary btn-sm">Tambah Data</a>
+                        </div>
+                      </div>
+                      <blockquote class="blockquote">
+                        <p class="mb-0">Data pada pada tabel tentang hanya satu. Jika sudah terdapat satu data dan ingin mengganti data tersebt, maka tekan 'edit' pada kolom aksi.</p>
+                      </blockquote>
                     </div>
                   </div>
-                  @endforeach
-                  <a href="{{route('data-artikel-usaha')}}" class="btn btn-danger">Kembali</a>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Isi</th>
+                          <th>Keterangan</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php $no = 1 ?>
+                        @foreach ($dtBeranda as $item)
+                        <tr>
+                          <th>{{ $no++ }}</th>
+                          <th>{{$item->isi_berabda}}</th>
+                          <th>{{$item->deskripsi_tambahan}}</th>
+                          <th>
+                            <a href="{{route('edit-tentang',$item->id)}}" class="btn btn-info btn-sm">
+                              <i class="ti-pencil btn-icon-append"></i></a>
+                          </th>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
-        </div>  
-    <!-- END CONTENT -->
-
-        @section('ck-editor')
-          <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
-
-          <script>
-            ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-              console.error( error );
-            } );
-          </script>
-        @endsection
-        @yield('ck-editor')
-
-        <!-- footer -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"><a href="https://www.jombangkab.go.id/" target="_blank">DINAS KOPERASI DAN USAHA MIKRO KABUPATEN JOMBANG</a></span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Sistem Informasi Portal Usaha Mikro Kabupaten Jombang </span>
           </div>
+        </div>
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"><a href="https://www.jombangkab.go.id/" target="_blank">DINAS KOPERASI DAN USAHA MIKRO KABUPATEN JOMBANG</a></span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Sistem Informasi Portal Usaha Mikro Kabupaten Jombang </span>
+            </div>
         </footer>
-        <!-- end footer -->
+        <!-- partial -->
       </div>
+      <!-- CONTENT -->
+      
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
