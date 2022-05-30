@@ -119,3 +119,4 @@ Route::get('/read-more-artikel-beranda/{id}', [App\Http\Controllers\DashboardPen
 Route::get('/tampil-artikel-kategori/{kategori}', [App\Http\Controllers\DashboardPengunjungController::class, 'baseKategori'])->name('tampil-artikel-kategori');
 Route::get('/tampil-artikel', [App\Http\Controllers\DashboardPengunjungController::class, 'tampilArtikel'])->name('tampil-artikel');
 Route::get('/tampil-usaha', [App\Http\Controllers\DashboardPengunjungController::class, 'tampilUsaha'])->name('tampil-usaha');
+Route::get('/profil-usaha/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'profilUsaha'])->name('profil-usaha');

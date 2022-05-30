@@ -182,10 +182,6 @@
                     </a>
                     </div>
                     <div class="blog-meta">
-                    {{-- <span class="comments-type">
-                        <i class="fa fa-comment-o"></i>
-                        <a href="#">13 comments</a>
-                    </span> --}}
                     <span class="date-type">
                         <i class="fa fa-calendar"></i>{{$item->created_at}}
                     </span>
@@ -194,11 +190,6 @@
                     <h4>
                         <a href="#">{{ Str::limit($item->judul, 25)}}</a>
                     </h4>
-                    {{-- <p>
-                        @php $isi = $item->isi_artikel
-                        {{Str::limit($isi, 100)}}
-                        {!!$item->isi_artikel!!}
-                    </p> --}}
                     </div>
                     <span>
                     <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>

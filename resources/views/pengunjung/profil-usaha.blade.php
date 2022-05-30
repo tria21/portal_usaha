@@ -49,10 +49,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
+          <li><a class="nav-link scrollto active" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
-          <li><a class="nav-link scrollto active" href="{{route('tampil-artikel')}}">Usaha Mikro</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
           <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Pengaturan Akun</a></li>
@@ -66,48 +66,28 @@
     </div>
   </header><!-- End Header -->
 
-  <!-- ======= hero Section ======= -->
-  <section id="hero">
-    <div class="hero-container">
-      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-
-        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
-
-        <div class="carousel-inner" role="listbox">
-
-          <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkoprame.jpg")}})">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
-                <p class="animate__animated animate__fadeInUp">Portal Usaha Mikro Kabupaten Jombang</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkopworsop.jpg")}})">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
-                <p class="animate__animated animate__fadeInUp">Portal Usaha Mikro Kabupaten Jombang</p>
-                {{-- <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a> --}}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-        </a>
-
-        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-        </a>
-
-      </div>
-    </div>
-  </section><!-- End Hero Section -->
-
   <main id="main">
+    
+    <!-- ======= Testimonials Section ======= -->
+    <div id="testimonials" class="testimonials">
+        <div class="container">
+  
+            <div class="testimonials-slider swiper">
+                <div class="swiper">
+    
+                    <div class="swiper">
+                        <div class="testimonial-item">
+                            @foreach ($dtUserID as $item)
+                            <img src="{{asset('img/'.$item->image)}}" class="testimonial-img" alt="">
+                            <h3>{{$item->nama_usaha}}</h3>
+                            <h4>{{$item->jenis_usaha}}</h4>
+                            @endforeach
+                        </div>
+                    </div><!-- End testimonial item -->
+                </div>
+            </div>
+        </div>
+    </div><!-- End Testimonials Section -->
 
     <!-- ======= Blog Page ======= -->
     <div class="blog-page area-padding">
@@ -117,78 +97,73 @@
             <div class="page-head-blog">
               <div class="single-blog-page">
                 <div class="left-blog">
-                  <h4>Kategori</h4>
-                  <ul>
-                    <li>
-                      @php $kategori = 'Kuliner' @endphp
-                      <a href="#">Kuliner</a>
-                    </li>
-                    <li>
-                      @php $kategori = 'Tekstil' @endphp
-                      <a href="#">Tekstil</a>
-                    </li>
-                    <li>
-                      @php $kategori = 'Daur Ulang' @endphp
-                      <a href="#">Daur Ulang</a>
-                    </li>
-                    <li>
-                      @php $kategori = 'Jasa' @endphp
-                      <a href="#">Jasa</a>
-                    </li>
-                    <li>
-                      @php $kategori = 'Lainnya' @endphp
-                      <a href="#">Lainnya</a>
-                    </li>
-                  </ul>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+              </div>
+              <div class="single-blog-page">
+                <div class="left-tags blog-tags">
+                  <div class="popular-tag left-side-tags left-blog">
+                    <h4>Sosial Media</h4>
+                    <ul>
+                      @foreach ($dtSosmedID as $item)
+                      <li>
+                        <a href="{{$item->link_sosmed}}">{{$item->nama_sosmed}}</a>
+                      </li>
+                      @endforeach
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- Start single blog -->
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="single-blog-page">
-                    <!-- search option start -->
-                    <form action="#">
-                    <div class="search-option">
-                        <input type="text" placeholder="Search...">
-                        <button class="button" type="submit">
-                        <i class="bi bi-search"></i>
-                        </button>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="single-blog-page">
+                            <!-- search option start -->
+                            <form action="#">
+                                <div class="search-option">
+                                    <input type="text" placeholder="Search...">
+                                    <button class="button" type="submit">
+                                    <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <!-- search option end -->
+                        </div>
                     </div>
-                    </form>
-                    <!-- search option end -->
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="single-blog">
+                          @foreach ($dtArtikelID as $item)
+                          <div class="single-blog-img">
+                            <a href="blog-details.html">
+                              <img src="{{asset('img/'.$item->gambar)}}" alt="">
+                            </a>
+                          </div>
+                          <div class="blog-meta">
+                            <span class="date-type">
+                              <i class="bi bi-calendar"></i>{{$item->created_at}}
+                            </span>
+                          </div>
+                          <div class="blog-text">
+                            <h4>
+                              <a href="#">{{$item->judul}}</a>
+                            </h4>
+                          </div>
+                          <span>
+                            <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>
+                          </span>
+                          <br><br><br>
+                          @endforeach
+                        </div>
+                    </div>
                 </div>
-                </div>
+
             </div>
-            <div class="row">
-                <!-- Start Left Blog -->
-                @foreach ($TampilUsaha as $item)
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="single-blog">
-                    <div class="testimonial-item">
-                        <img src="{{asset('img/'.$item->image)}}" class="testimonial-img" alt="">
-                    </div>
-                    <div class="blog-text">
-                    <h4>
-                        <a href="#">{{ Str::limit($item->nama_usaha, 25)}}</a>
-                    </h4>
-                    </div>
-                    <span>
-                        <a href="{{route('profil-usaha', $item->id)}}" class="ready-btn">Kunjungi</a>
-                    </span>
-                </div>
-                <!-- Start single blog -->
-                </div>
-                @endforeach
-            </div>
-          </div>
         </div>
       </div>
     </div><!-- End Blog Page -->
-
-  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer>

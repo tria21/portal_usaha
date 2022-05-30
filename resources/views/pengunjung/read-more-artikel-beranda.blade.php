@@ -195,14 +195,9 @@
                         <i class="bi bi-tags"></i>
                         <a href="#">{{$item->kategori}}</a>
                       </span>
-                      {{-- <span><i class="bi bi-chat"></i> <a href="#">6 comments</a></span> --}}
                     </div>
                     <div class="entry-content">
                       <p>{!!$item->isi_artikel!!}</p>
-                      {{-- <blockquote>
-                        <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur. In venenatis elit ac ultrices convallis. Duis est nisi, tincidunt ac urna sed, cursus blandit lectus. In ullamcorper sit amet ligula ut eleifend. Proin dictum
-                          tempor ligula, ac feugiat metus. Sed finibus tortor eu scelerisque scelerisque.</p>
-                      </blockquote> --}}
                     </div>
                   </div>
                   @endforeach

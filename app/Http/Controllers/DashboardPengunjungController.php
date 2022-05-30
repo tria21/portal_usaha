@@ -28,6 +28,13 @@ class DashboardPengunjungController extends Controller
         return view('pengunjung.read-more-artikel-beranda', compact('dtArtikelBeranda', 'dtArtikelID'));
     }
 
+    public function profilUsaha($id){
+        $dtUserID = DB::select('select * from users where id = ?', [$id]);
+        $dtArtikelID = DB::select('select * from konten_artikels where id_user = ?', [$id]);
+        $dtSosmedID = DB::select('select * from sosmeds where id_user = ?', [$id]);
+        return view('pengunjung.profil-usaha', compact('dtUserID', 'dtArtikelID', 'dtSosmedID'));
+    }
+
     public function baseKategori($kategori){
         $dtArtikelKategori = DB::select('select * from konten_artikels where kategori = ?', [$kategori]);
         return view('pengunjung.tampil-artikel-kategori', compact('dtArtikelKategori'));
