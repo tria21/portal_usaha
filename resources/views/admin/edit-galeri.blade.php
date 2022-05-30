@@ -81,12 +81,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-head menu-icon"></i>
+            <a class="nav-link" data-toggle="collapse" href="#ui" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Data Beranda</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="ui">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Galeri</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('data-tentang')}}">Kelola Tentang</a></li>
@@ -129,7 +129,7 @@
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Tambah Galeri</h4>
+                  <h4 class="card-title">Edit Galeri</h4>
                   <form class="forms-sample" action="{{route('edit-proses-galeri', $dtGaleri->id)}}" method="POST" enctype="multipart/form-data">
                     
                     {{ csrf_field() }}

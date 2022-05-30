@@ -81,12 +81,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-head menu-icon"></i>
+            <a class="nav-link" data-toggle="collapse" href="#ui" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Data Beranda</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="ui">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Galeri</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('data-tentang')}}">Kelola Tentang</a></li>
@@ -149,7 +149,7 @@
                             <p class="card-text">{!!$item->isi_beranda!!}</p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">{{$item->deskripsi_tambahan}}</p>
+                            <p class="card-text text-white bg-dark pl-1">{{$item->deskripsi_tambahan}}</p>
                         </div>
                       </div>
                       <a href="{{route('edit-tentang',$item->id)}}" class="btn btn-danger btn-md">Ubah Data</a>
