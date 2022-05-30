@@ -76,6 +76,7 @@ Route::post('/input-proses-galeri', [App\Http\Controllers\DashboardAdminControll
 Route::get('/edit-galeri/{id}', [App\Http\Controllers\DashboardAdminController::class, 'edit_galeri'])->name('edit-galeri');
 Route::post('/edit-proses-galeri/{id}', [App\Http\Controllers\DashboardAdminController::class, 'update_galeri'])->name('edit-proses-galeri');
 Route::get('/hapus-galeri/{id}', [App\Http\Controllers\DashboardAdminController::class, 'destroy_galeri'])->name('hapus-galeri');
+Route::get('/cari-galeri', [App\Http\Controllers\DashboardAdminController::class, 'cari_galeri'])->name('cari-galeri');
 
 //DashboardPemilikController
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');

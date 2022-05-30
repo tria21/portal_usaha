@@ -140,7 +140,7 @@
                     </div>
                     <div class="form-group">
                       <label>Keterangan Tambahan</label>
-                      <input type="text" name="keterangan_tambahan" class="form-control" id="deskripsi_tambahan" placeholder="Masukkan Keterangan">
+                      <input type="text" name="deskripsi_tambahan" class="form-control" id="deskripsi_tambahan" placeholder="Masukkan Keterangan">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                     <a href="{{route('data-tentang')}}" class="btn btn-light">Batal</a>

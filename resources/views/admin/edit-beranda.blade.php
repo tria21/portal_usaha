@@ -130,7 +130,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Edit Data Beranda</h4>
-                  <form class="forms-sample" action="{{route('edit-proses-beranda', $dtBeranda->id)}}" method="POST" >
+                  <form class="forms-sample" action="{{route('edit-proses-tentang', $dtBeranda->id)}}" method="POST" >
                     {{ csrf_field() }}
                   <div>
                     <div class="form-group">
@@ -143,7 +143,7 @@
                     </div>
                   </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                    <a href="{{route('data-beranda')}}" class="btn btn-light btn-md">Batal</a>
+                    <a href="{{route('data-tentang')}}" class="btn btn-light btn-md">Batal</a>
                   </form>
                 </div>
               </div>

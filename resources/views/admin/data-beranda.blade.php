@@ -131,12 +131,12 @@
               <div class="card">
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="col-4">
+                    <div class="col-6">
                       <h4 class="card-title">Galeri</h4>
                     </div>
                     <div class="col-4">
                       <div class="form-group">
-                        <form action="{{route('cari-artikel-admin')}}" method="GET">
+                        <form action="{{route('cari-galeri')}}" method="GET">
                           <div class="input-group">
                             <input type="text" name="cari" id="cari" class="form-control" placeholder="Masukkan Kata Kunci" value="{{ old('keyword') }}">
                             <div class="input-group-append">

@@ -167,6 +167,20 @@ class DashboardAdminController extends Controller
 		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
 	}
 
+    public function cari_galeri(Request $request)
+	{
+		// menangkap data pencarian
+		$keyword = $request->cari;
+ 
+		$dtGaleri = Galeri::select("*")
+                        // ->where('role', 3)
+                        ->where('caption_gambar', 'like', "%" . $keyword . "%")
+                        ->get();
+                        // ->paginate(5);
+ 
+		return view('admin.data-beranda', compact('dtGaleri'));
+	}
+
     public function index_data_beranda()
     {   
         $dtGaleri = Galeri::all();
@@ -176,7 +190,8 @@ class DashboardAdminController extends Controller
     public function index_data_tentang()
     {   
         $dtBeranda = Beranda::all();
-        return view('admin.data-tentang', compact('dtBeranda'));
+        $dtCekBeranda = Beranda::get();
+        return view('admin.data-tentang', compact('dtBeranda', 'dtCekBeranda'));
     }
 
     public function edit_data_beranda($id)
@@ -195,7 +210,7 @@ class DashboardAdminController extends Controller
         ];
 
         $ubah->update($dtBeranda);
-        return redirect('data-beranda');
+        return redirect('data-tentang');
     }
 
     public function create_galeri()
@@ -212,7 +227,7 @@ class DashboardAdminController extends Controller
     {
         $dtUpload = new Beranda;
         $dtUpload->isi_beranda          = $request->isi_beranda;
-        $dtUpload->deskripsi_tambahan  = $request->deskripsi_tambahan;
+        $dtUpload->deskripsi_tambahan   = $request->deskripsi_tambahan;
 
         $dtUpload->save();
         

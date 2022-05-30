@@ -135,44 +135,26 @@
                       <div class="row">
                         <div class="col-10">
                           <h4 class="card-title">Tentang</h4>
-                          {{-- <p class="card-description">
-                            Data pada pada tabel tentang hanya satu. Jika sudah terdapat satu data dan ingin mengganti data tersebt, maka <code>tekan 'edit'</code> pada kolom aksi.
-                          </p> --}}
                         </div>
+                        @forelse ($dtCekBeranda as $item)
+                        @empty
                         <div class="col-2">
                           <a href="{{route('input-tentang')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                         </div>
+                        @endforelse
                       </div>
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Data pada pada tabel tentang hanya satu. Jika sudah terdapat satu data dan ingin mengganti data tersebt, maka tekan 'edit' pada kolom aksi.</p>
-                      </blockquote>
+                      @foreach ($dtBeranda as $item)
+                      <div>
+                        <div class="card-body">
+                            <p class="card-text">{!!$item->isi_beranda!!}</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{$item->deskripsi_tambahan}}</p>
+                        </div>
+                      </div>
+                      <a href="{{route('edit-tentang',$item->id)}}" class="btn btn-danger btn-md">Ubah Data</a>
+                      @endforeach
                     </div>
-                  </div>
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Isi</th>
-                          <th>Keterangan</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $no = 1 ?>
-                        @foreach ($dtBeranda as $item)
-                        <tr>
-                          <th>{{ $no++ }}</th>
-                          <th>{{$item->isi_berabda}}</th>
-                          <th>{{$item->deskripsi_tambahan}}</th>
-                          <th>
-                            <a href="{{route('edit-tentang',$item->id)}}" class="btn btn-info btn-sm">
-                              <i class="ti-pencil btn-icon-append"></i></a>
-                          </th>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
                   </div>
                 </div>
               </div>
