@@ -204,11 +204,24 @@
                 </article>
                 <div class="clear"></div>
                 <div class="single-post-comments">
+                  <div class="comment-respond">
+                    <h3 class="comment-reply-title">Tulis Komentar </h3>
+                    <form action="" method="POST">
+                      @csrf
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
+                          <input type="hidden" name="id_komentar_utama" value="0">
+                          <textarea name="isi_komentar" id="message-box" cols="30" rows="10"></textarea>
+                          <input type="submit" value="Kirim"><br><br>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                   <div class="comments-area">
                     <div class="comments-list">
                       <ul>
                         <li>
-                          @forelse ($dtKomentar as $item)
+                          @foreach ($dtKomentar as $item)
                           <div class="comments-details">
                             <div class="comments-list-img">
                               <img src="{{asset("../newsroom/assets/img/blog/b02.jpg")}}" alt="post-author">
@@ -217,43 +230,39 @@
                               <span>
                                 <b><a href="#">{{$item->nama_user}}</a></b>
                                 <span class="post-time">{{$item->created_at}} </span>
-                                <a href="#">Reply</a>
                               </span>
-                              <p>{{$item->isi_komentar}}</p>
-                            </div>
-                          </div>
-                          @empty
-                          @endforelse
-                        </li>
-                        {{-- <li class="threaded-comments">
-                          <div class="comments-details">
-                            <div class="comments-list-img">
-                              <img src="{{asset("../newsroom/assets/img/blog/b02.jpg")}}" alt="post-author">
-                            </div>
-                            <div class="comments-content-wrap">
                               <span>
-                                <b><a href="#">demo</a></b>
-                                Post author
-                                <span class="post-time">October 6, 2014 at 7:25 pm</span>
+                                <p>{{$item->isi_komentar}}</p>
                               </span>
-                              <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur</p>
+                              <form action="" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="hidden" name="id_komentar_utama" value="{{$item->id}}">
+                                    <input type="text" name="isi_komentar">
+                                    <input type="submit" value="Kirim"><br><br>
+                                  </div>
+                                </div>
+                              </form>
+                              @foreach ($item->children as $children)
+                              <li class="threaded-comments">
+                                <div class="comments-details">
+                                  <div class="comments-content-wrap">
+                                    <span>
+                                      <b><a href="#">{{$children->nama_user}}</a></b>
+                                      <p>{{$children->isi_komentar}}</p>
+                                      <span class="post-time">{{$children->created_at}}</span>
+                                    </span>
+                                  </div>
+                                </div>
+                              </li>
+                              @endforeach
                             </div>
                           </div>
-                        </li> --}}
+                          @endforeach
+                        </li>
                       </ul>
                     </div>
-                  </div>
-                  <div class="comment-respond">
-                    <h3 class="comment-reply-title">Tulis Komentar </h3>
-                    <form action="" method="POST">
-                      @csrf
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
-                          <textarea name="isi_komentar" id="message-box" cols="30" rows="10"></textarea>
-                          <input type="submit" value="Kirim">
-                        </div>
-                      </div>
-                    </form>
                   </div>
                 </div>
                 <!-- single-blog end -->

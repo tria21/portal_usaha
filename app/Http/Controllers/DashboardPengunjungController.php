@@ -25,8 +25,12 @@ class DashboardPengunjungController extends Controller
 
     public function readMore($id){
         $dtArtikelBeranda = KontenArtikel::all();
-        $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
-        $dtKomentar =  DB::select('select * from komentars where id_artikel = ?', [$id]);
+        $dtArtikelID      = KontenArtikel::select("*")    
+                            ->where('id', $id)
+                            ->get();
+        $dtKomentar       = Komentar::select("*")    
+                            ->where('id_artikel', $id)
+                            ->get();
         return view('pengunjung.read-more-artikel-beranda', compact('dtArtikelBeranda', 'dtArtikelID', 'dtKomentar', 'id'));
     }
 
@@ -59,10 +63,11 @@ class DashboardPengunjungController extends Controller
     {
         $ArtikelKomentar = KontenArtikel::find($id);
         $dtUpload = new Komentar;
-        $dtUpload->id_user          = session('loginId');
-        $dtUpload->nama_user        = session('loginName');
-        $dtUpload->id_artikel       = $request->id;
-        $dtUpload->isi_komentar     = $request->isi_komentar;
+        $dtUpload->id_user               = session('loginId');
+        $dtUpload->nama_user             = session('loginName');
+        $dtUpload->id_artikel            = $request->id;
+        $dtUpload->id_komentar_utama     = $request->id_komentar_utama;
+        $dtUpload->isi_komentar          = $request->isi_komentar;
 
         $dtUpload->save();
         
