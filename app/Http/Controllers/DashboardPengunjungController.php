@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
 use App\Models\User;
+use App\Models\Komentar;
 use Illuminate\Support\Facades\DB;
 
 class DashboardPengunjungController extends Controller
@@ -25,7 +26,8 @@ class DashboardPengunjungController extends Controller
     public function readMore($id){
         $dtArtikelBeranda = KontenArtikel::all();
         $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
-        return view('pengunjung.read-more-artikel-beranda', compact('dtArtikelBeranda', 'dtArtikelID'));
+        $dtKomentar =  DB::select('select * from komentars where id_artikel = ?', [$id]);
+        return view('pengunjung.read-more-artikel-beranda', compact('dtArtikelBeranda', 'dtArtikelID', 'dtKomentar', 'id'));
     }
 
     public function profilUsaha($id){
@@ -51,5 +53,20 @@ class DashboardPengunjungController extends Controller
                             ->orderBy('created_at', 'desc')
                             ->get();
         return view('pengunjung.tampil-all-usaha', compact('TampilUsaha'));
+    }
+
+    public function store_komentar(Request $request, $id)
+    {
+        $ArtikelKomentar = KontenArtikel::find($id);
+        $dtUpload = new Komentar;
+        $dtUpload->id_user          = session('loginId');
+        $dtUpload->nama_user        = session('loginName');
+        $dtUpload->id_artikel       = $request->id;
+        $dtUpload->isi_komentar     = $request->isi_komentar;
+
+        $dtUpload->save();
+        
+        return $this->readMore($id);
+        // return redirect()->action('DashboardPengunjungController@readMore', ['id']);
     }
 }

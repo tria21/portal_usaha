@@ -23,10 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('jenis_usaha')->nullable();
             $table->text('alamat_usaha')->nullable();
             $table->string('image')->nullable();
-            $table->string('facebook')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('shopee')->nullable();
-            $table->string('tokopedia')->nullable();
             $table->timestamps();
         });
     }

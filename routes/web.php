@@ -120,3 +120,4 @@ Route::get('/tampil-artikel-kategori/{kategori}', [App\Http\Controllers\Dashboar
 Route::get('/tampil-artikel', [App\Http\Controllers\DashboardPengunjungController::class, 'tampilArtikel'])->name('tampil-artikel');
 Route::get('/tampil-usaha', [App\Http\Controllers\DashboardPengunjungController::class, 'tampilUsaha'])->name('tampil-usaha');
 Route::get('/profil-usaha/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'profilUsaha'])->name('profil-usaha');
+Route::post('/read-more-artikel-beranda/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'store_komentar'])->name('input-proses-komentar');
