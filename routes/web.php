@@ -78,6 +78,9 @@ Route::post('/edit-proses-galeri/{id}', [App\Http\Controllers\DashboardAdminCont
 Route::get('/hapus-galeri/{id}', [App\Http\Controllers\DashboardAdminController::class, 'destroy_galeri'])->name('hapus-galeri');
 Route::get('/cari-galeri', [App\Http\Controllers\DashboardAdminController::class, 'cari_galeri'])->name('cari-galeri');
 
+Route::get('/data-komentar', [App\Http\Controllers\DashboardAdminController::class, 'index_komentar'])->name('data-komentar');
+Route::get('/cari-komentar', [App\Http\Controllers\DashboardAdminController::class, 'cari_komentar'])->name('cari-komentar');
+
 //DashboardPemilikController
 Route::get('/dashboard-pemilik-usaha', [App\Http\Controllers\DashboardPemilikController::class, 'index'])->name('dashboard-pemilik-usaha');
 Route::get('/data-artikel-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'index_data_artikel'])->name('data-artikel-pemilik');
@@ -90,6 +93,7 @@ Route::post('/input-proses-artikel-pemilik', [App\Http\Controllers\DashboardPemi
 Route::get('/edit-artikel-pemilik/{id}', [App\Http\Controllers\DashboardPemilikController::class, 'edit'])->name('edit-artikel-pemilik');
 Route::post('/edit-proses-artikel-pemilik/{id}', [App\Http\Controllers\DashboardPemilikController::class, 'update'])->name('edit-proses-artikel-pemilik');
 Route::get('/hapus-artikel-pemilik/{id}', [App\Http\Controllers\DashboardPemilikController::class, 'destroy'])->name('hapus-artikel-pemilik');
+Route::get('/data-komentar-pemilik', [App\Http\Controllers\DashboardPemilikController::class, 'index_komentar'])->name('data-komentar-pemilik');
 
 //Admin_DataArtikelAdminController
 Route::get('/data-artikel-admin', [App\Http\Controllers\Admin_DataArtikelAdminController::class, 'index'])->name('data-artikel-admin');
@@ -121,3 +125,4 @@ Route::get('/tampil-artikel', [App\Http\Controllers\DashboardPengunjungControlle
 Route::get('/tampil-usaha', [App\Http\Controllers\DashboardPengunjungController::class, 'tampilUsaha'])->name('tampil-usaha');
 Route::get('/profil-usaha/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'profilUsaha'])->name('profil-usaha');
 Route::post('/read-more-artikel-beranda/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'store_komentar'])->name('input-proses-komentar');
+Route::get('/hapus-komen/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'destroy_komen'])->name('hapus-komen');

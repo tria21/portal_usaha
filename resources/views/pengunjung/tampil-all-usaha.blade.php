@@ -53,12 +53,18 @@
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
           <li><a class="nav-link scrollto active" href="{{route('tampil-artikel')}}">Usaha Mikro</a></li>
+          @if(session('loginRole') =='2') 
           <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Pengaturan Akun</a></li>
               <li><a href="{{route('logout')}}">Logout</a></li>
             </ul>
           </li>
+          @elseif(session('loginRole') =='3')
+          <li><a class="nav-link scrollto" href="{{route('dashboard-admin')}}">Dashboard Admin</a></li>
+          @elseif(session('loginRole') =='1')
+          <li><a class="nav-link scrollto" href="{{route('dashboard-pemilik-usaha')}}">Dashboard Usaha</a></li>
+          @endif
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

@@ -7,6 +7,7 @@ use App\Models\Sosmed;
 use App\Models\KontenArtikel;
 use App\Models\Beranda;
 use App\Models\Galeri;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Exports\PemilikExport;
@@ -294,4 +295,24 @@ class DashboardAdminController extends Controller
         $hapus->delete();
         return back();
     }
+
+    public function index_komentar()
+    {
+        $dtKomentar = Komentar::all();
+        return view('admin.data-komentar', compact('dtKomentar'));
+    }
+
+    public function cari_komentar(Request $request)
+	{
+		// menangkap data pencarian
+		$keyword = $request->cari;
+ 
+		$dtKomentar = Komentar::select("*")
+                        ->where('nama_user', 'like', "%" . $keyword . "%")
+                        ->orWhere('isi_komentar', 'like', "%" . $keyword . "%")
+                        ->get();
+                        // ->paginate(5);
+ 
+		return view('admin.data-komentar', compact('dtKomentar'));
+	}
 }

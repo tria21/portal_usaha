@@ -69,6 +69,7 @@ class CustomAuthController extends Controller
             if(Hash::check($request->password, $user->password)){
                 $request->session()->put('loginId',$user->id);
                 $request->session()->put('loginName',$user->name);
+                $request->session()->put('loginRole',$user->role);
                 $role = $user->role;
                 if($role){
                     if($role=='3'){

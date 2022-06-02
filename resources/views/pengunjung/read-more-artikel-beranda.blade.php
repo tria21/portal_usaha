@@ -53,12 +53,18 @@
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
+          @if(session('loginRole') =='2') 
           <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Pengaturan Akun</a></li>
               <li><a href="{{route('logout')}}">Logout</a></li>
             </ul>
           </li>
+          @elseif(session('loginRole') =='3')
+          <li><a class="nav-link scrollto" href="{{route('dashboard-admin')}}">Dashboard Admin</a></li>
+          @elseif(session('loginRole') =='1')
+          <li><a class="nav-link scrollto" href="{{route('dashboard-pemilik-usaha')}}">Dashboard Usaha</a></li>
+          @endif
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -222,6 +228,7 @@
                       <ul>
                         <li>
                           @foreach ($dtKomentar as $item)
+                          @if($item->id_komentar_utama == '0')
                           <div class="comments-details">
                             <div class="comments-list-img">
                               <img src="{{asset("../newsroom/assets/img/blog/b02.jpg")}}" alt="post-author">
@@ -230,6 +237,9 @@
                               <span>
                                 <b><a href="#">{{$item->nama_user}}</a></b>
                                 <span class="post-time">{{$item->created_at}} </span>
+                                @if(session('loginRole') =='3')  
+                                  <a href="{{route('hapus-komen',$item->id)}}" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>
+                                @endif
                               </span>
                               <span>
                                 <p>{{$item->isi_komentar}}</p>
@@ -250,8 +260,10 @@
                                   <div class="comments-content-wrap">
                                     <span>
                                       <b><a href="#">{{$children->nama_user}}</a></b>
-                                      <p>{{$children->isi_komentar}}</p>
                                       <span class="post-time">{{$children->created_at}}</span>
+                                    </span>
+                                    <span>
+                                      <p>{{$children->isi_komentar}}</p>
                                     </span>
                                   </div>
                                 </div>
@@ -259,6 +271,7 @@
                               @endforeach
                             </div>
                           </div>
+                          @endif
                           @endforeach
                         </li>
                       </ul>

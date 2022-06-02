@@ -13,4 +13,5 @@ class Komentar extends Model
     public function children(){
         return $this->hasMany(Komentar::class, 'id_komentar_utama');
     }
+
 }

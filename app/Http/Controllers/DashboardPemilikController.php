@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
 use App\Models\User;
+use App\Models\Komentar;
 use Illuminate\Support\Facades\DB;
 use App\Exports\ArtikelPemilikUsahaExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -188,4 +189,14 @@ class DashboardPemilikController extends Controller
 		return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik'));
  
 	}
+
+    public function index_komentar()
+    {
+        $dtKomentar = DB::table('komentars')
+                        ->join('konten_artikels', 'komentars.id_artikel', '=', 'konten_artikels.id')
+                        ->select('komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.id_user', 'konten_artikels.judul')
+                        ->where('konten_artikels.id', session('loginId'))
+                        ->get();
+        return view('pemilik.data-komentar', compact('dtKomentar'));
+    }
 }

@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Dashboard Admin</title>
+  <title>Dashboard Business Owner</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/vendors/feather/feather.css')}}">
   <link rel="stylesheet" href="{{asset('../skydash/template/vendors/ti-icons/css/themify-icons.css')}}">
@@ -34,16 +34,6 @@
           <span class="icon-menu"></span>
         </button>
         <ul class="navbar-nav navbar-nav-right">
-          {{-- <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
-          </li> --}}
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{{asset('../skydash/template/images/faces/admin.jpg')}}" alt="profile"/>
@@ -85,36 +75,16 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" href="{{route('dashboard-admin')}}">
+            <a class="nav-link active" href="{{route('dashboard-pemilik-usaha')}}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Data Beranda</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('data-beranda')}}">Kelola Galeri</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('data-tentang')}}">Kelola Tentang</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="{{route('data-profil-pemilik')}}" >
               <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Data Akun</span>
-              <i class="menu-arrow"></i>
+              <span class="menu-title">Profil</span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('data-akun-pemilik-usaha-admin')}}">Akun Pemilik Usaha</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('data-akun-masyarakat-admin')}}">Akun Masyarakat</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
@@ -124,16 +94,17 @@
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-admin')}}">Artikel Admin</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-usaha')}}">Artikel Usaha</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('data-komentar')}}">Kelola Komentar</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-pemilik')}}">Kelola Artikel</a></li>
+              </ul>
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="{{route('data-komentar-pemilik')}}">Kelola Komentar</a></li>
               </ul>
             </div>
           </li>
         </ul>
       </nav>
       <!-- end sidebar -->
-      
+
       <!-- CONTENT -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -142,20 +113,12 @@
               <div class="card">
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="col-4">
-                      <h4 class="card-title">Artikel Admin</h4>
+                    <div class="col-6">
+                      <h4 class="card-title">Data Komentar</h4>
                     </div>
-                    <div class="col-1">
-                      <a href="{{route('cetak-artikel-admin')}}" target="_blank" class="btn btn-sm btn-outline-primary">
-                        PDF</a>
-                    </div>
-                    <div class="col-1">
-                      <a href="{{route('export-excel-artikel-admin')}}" target="_blank" class="btn btn-sm btn-outline-dark">
-                        Excel</a>
-                    </div>
-                    <div class="col-4">
+                    <div class="col-6">
                       <div class="form-group">
-                        <form action="{{route('cari-artikel-admin')}}" method="GET">
+                        <form action="{{route('cari-komentar')}}" method="GET">
                           <div class="input-group">
                             <input type="text" name="cari" id="cari" class="form-control" placeholder="Masukkan Kata Kunci" value="{{ old('keyword') }}">
                             <div class="input-group-append">
@@ -165,38 +128,27 @@
                         </form>
                       </div>
                     </div>
-                    <div class="col-2">
-                      <a href="{{route('input-artikel-admin')}}" class="btn btn-primary btn-sm">Tambah Data</a>
-                    </div>
                   </div>
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Judul</th>
-                          <th>Gambar</th>
-                          <th>Kategori</th>
+                          <th>Nama Pengguna</th>
+                          <th>Isi Komentar</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php $no = 1 ?>
-                        @foreach ($dtArtikelAdmin as $item)
+                        @foreach ($dtKomentar as $item)
                         <tr>
                           <th>{{ $no++ }}</th>
-                          <th>{{$item->judul}}</th>
-                          <th width="20%">
-                            <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
-                          </th>
-                          <th>{{$item->kategori}}</th>
-                          <th>
-                            <a href="{{route('detail-artikel-admin',$item->id)}}" class="btn btn-success btn-sm">
-                              <i class="ti-eye btn-icon-append"></i></a>
-                            <a href="{{route('edit-artikel-admin',$item->id)}}" class="btn btn-info btn-sm">
-                              <i class="ti-pencil btn-icon-append"></i></a>
-                            <a href="{{route('hapus-artikel-admin',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">
-                              <i class="ti-trash btn-icon-append"></i></a>
+                          <th>{{$item->nama_user}}</th>
+                          <th>{{$item->isi_komentar}}</th>
+                          <th>  
+                            <a href="{{route('read-more-artikel-beranda', $item->id_artikel)}}" class="btn btn-success btn-sm">Kunjungi Artikel</a>
+                            <a href="{{route('hapus-komen', $item->id_artikel)}}" class="btn btn-success btn-sm">Hapus</a>
                           </th>
                         </tr>
                         @endforeach
@@ -209,7 +161,7 @@
           </div>
         </div>
         <!-- END CONTENT -->
-        
+
         <!-- footer -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">

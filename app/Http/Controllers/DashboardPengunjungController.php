@@ -12,12 +12,14 @@ class DashboardPengunjungController extends Controller
 {
     public function index()
     {
-        $TampilArAdmin = KontenArtikel::select("*")    
+        $TampilArAdmin  = KontenArtikel::select("*")    
                             ->where('role', 3)
                             ->orderBy('created_at', 'desc')
                             ->get();
         // dd($TampilArAdmin);
-        $TampilAkMasy = User::where('id_user', [session('loginId')]);
+        $TampilAkMasy    = User::select("*")    
+                            ->where('id', session('loginId'))
+                            ->get();
         $dtGaleri = DB::select('select * from galeris');
         // $TampilArAdmin = $dtArtikelAdmin = DB::select('select * from konten_artikels where role = ?', '3');
         return view('dashboard.dashboard-pengunjung', compact('TampilAkMasy', 'TampilArAdmin', 'dtGaleri'));
@@ -31,7 +33,10 @@ class DashboardPengunjungController extends Controller
         $dtKomentar       = Komentar::select("*")    
                             ->where('id_artikel', $id)
                             ->get();
-        return view('pengunjung.read-more-artikel-beranda', compact('dtArtikelBeranda', 'dtArtikelID', 'dtKomentar', 'id'));
+        $TampilAkun       = User::select("*")    
+                            ->where('id', session('loginId'))
+                            ->get();
+        return view('pengunjung.read-more-artikel-beranda', compact('TampilAkun', 'dtArtikelBeranda', 'dtArtikelID', 'dtKomentar', 'id'));
     }
 
     public function profilUsaha($id){
@@ -73,5 +78,14 @@ class DashboardPengunjungController extends Controller
         
         return $this->readMore($id);
         // return redirect()->action('DashboardPengunjungController@readMore', ['id']);
+    }
+
+    public function destroy_komen($id)
+    {
+        // dd($id);
+        $hapus = Komentar::findorfail($id);
+
+        $hapus->delete();
+        return back();
     }
 }

@@ -97,7 +97,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-pemilik')}}">Kelola Artikel</a></li>
               </ul>
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="#">Kelola Komentar</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('data-komentar-pemilik')}}">Kelola Komentar</a></li>
               </ul>
             </div>
           </li>
