@@ -15,14 +15,15 @@ class CreateKontenArtikelsTable extends Migration
     {
         Schema::create('konten_artikels', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user');
             $table->string('judul');
             $table->string('gambar');
             $table->text('caption_gambar');
             $table->string('kategori');
             $table->text('isi_artikel');
             $table->string('penulis');
-            $table->text('id_user');
             $table->text('role');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
         });
     }
