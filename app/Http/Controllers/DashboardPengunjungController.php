@@ -7,6 +7,7 @@ use App\Models\KontenArtikel;
 use App\Models\User;
 use App\Models\Komentar;
 use App\Models\Beranda;
+use Hash;
 use Illuminate\Support\Facades\DB;
 
 class DashboardPengunjungController extends Controller
@@ -93,5 +94,26 @@ class DashboardPengunjungController extends Controller
     public function tampilTentang(){
         $dtTentang = Beranda::all();
         return view('pengunjung.tampil-tentang', compact('dtTentang'));
+    }
+    
+    public function updateAkun(Request $request, $id)
+    {
+        $ubah = User::findorfail($id);
+
+        $dtAkun = [
+            'name'              => $request['name'],
+            'email'             => $request['email'],
+            'password'          => Hash::make($request['password']),
+        ];
+
+        $ubah->update($dtAkun);
+        return redirect('edit-akun-pengunjung')->with('success', 'Password berhasil diubah!');;
+    }
+
+    public function EditAkun(){
+        $dtAkun = User::select("*")    
+                    ->where('id', session('loginId'))
+                    ->get();
+        return view('pengunjung.edit-akun', compact('dtAkun'));
     }
 }
