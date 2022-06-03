@@ -49,7 +49,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-tentang')}}">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
@@ -114,94 +114,38 @@
   </section><!-- End Hero Section -->
 
   <main id="main">
-    <!-- ======= Portfolio Section ======= -->
-    <div id="portfolio" class="portfolio-area area-padding fix">
+
+    <!-- ======= Blog Page ======= -->
+    <div class="blog-page area-padding">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="section-headline text-center">
-              <h2>Galeri</h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="row awesome-project-content portfolio-container">
-
-          <!-- portfolio-item start -->
-          @foreach ($dtGaleri as $item)
-          <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-app portfolio-item">
-            <div class="single-awesome-project">
-              <div class="awesome-img">
-                <a href="#"><img src="{{asset('img/'.$item->image)}}" alt="" /></a>
-                <div class="add-actions text-center">
-                  <div class="project-dec">
-                    <a class="portfolio-lightbox" data-gallery="myGallery" href="assets/img/portfolio/1.jpg">
-                      <h4>{{ Str::limit($item->caption_gambar, 20)}}</h4>
-                    </a>
+          <!-- Start single blog -->
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <!-- single-blog start -->
+                <article class="blog-post-wrapper">
+                  @foreach ($dtTentang as $item)
+                  <div class="post-information">
+                    <div class="entry-content">
+                      <p>{!!$item->isi_beranda!!}</p>
+                    </div>
+                    <div class="clear"></div>
+                    <h6><b>*{{$item->deskripsi_tambahan}}<b></h6>
                   </div>
-                </div>
+                  @endforeach
+                </article>
+                <div class="clear"></div>
+                <!-- single-blog end -->
               </div>
             </div>
           </div>
-          @endforeach
-          <!-- portfolio-item end -->
         </div>
       </div>
-    </div><!-- End Portfolio Section -->
+    </div><!-- End Blog Page -->
 
-    <!-- ======= Blog Section ======= -->
-    <div id="blog" class="blog-area">
-      <div class="blog-inner area-padding">
-        <div class="blog-overly"></div>
-        <div class="container ">
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="section-headline text-center">
-                <h2>Artikel Terbaru</h2>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <!-- Start Left Blog -->
-            @foreach ($TampilArAdmin as $item)
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="single-blog">
-                <div class="single-blog-img">
-                  <a href="blog.html">
-                    <img src="{{asset('img/'.$item->gambar)}}" alt="">
-                  </a>
-                </div>
-                <div class="blog-meta">
-                  {{-- <span class="comments-type">
-                    <i class="fa fa-comment-o"></i>
-                    <a href="#">13 comments</a>
-                  </span> --}}
-                  <span class="date-type">
-                    <i class="fa fa-calendar"></i>{{$item->created_at}}
-                  </span>
-                </div>
-                <div class="blog-text">
-                  <h4>
-                    <a href="blog.html">{{$item->judul}}</a>
-                  </h4>
-                  {{-- <p>
-                    @php $isi = $item->isi_artikel
-                    {{Str::limit($isi, 100)}}
-                    {!!$item->isi_artikel!!}
-                  </p> --}}
-                </div>
-                <span>
-                  <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>
-                </span>
-              </div>
-              <!-- Start single blog -->
-            </div>
-            @endforeach
-          </div>
-        </div>>
-      </div>
-    </div>
   </main><!-- End #main -->
+
 
   <!-- ======= Footer ======= -->
   <footer>
@@ -217,8 +161,8 @@
 
                 <p>Jl. Presiden KH. Abdurrahman Wahid No.132, Candi Mulyo, Kec. Jombang, Kabupaten Jombang, Jawa Timur 61419</p>
                 <div class="footer-contacts">
-                  <p><span>Telepon:</span> (0321) 861494</p>
-                  <p><span>Jam Kerja:</span> 07.00 - 15.00</p>
+                  <p><span>Telepon: </span> (0321) 861494</p>
+                  <p><span>Jam Kerja: </span> 07.00 - 15.00</p>
                 </div>
               </div>
             </div>

@@ -126,3 +126,4 @@ Route::get('/tampil-usaha', [App\Http\Controllers\DashboardPengunjungController:
 Route::get('/profil-usaha/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'profilUsaha'])->name('profil-usaha');
 Route::post('/read-more-artikel-beranda/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'store_komentar'])->name('input-proses-komentar');
 Route::get('/hapus-komen/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'destroy_komen'])->name('hapus-komen');
+Route::get('/tampil-tentang', [App\Http\Controllers\DashboardPengunjungController::class, 'tampilTentang'])->name('tampil-tentang');

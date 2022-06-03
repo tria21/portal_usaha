@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
 use App\Models\User;
 use App\Models\Komentar;
+use App\Models\Beranda;
 use Illuminate\Support\Facades\DB;
 
 class DashboardPengunjungController extends Controller
@@ -87,5 +88,10 @@ class DashboardPengunjungController extends Controller
 
         $hapus->delete();
         return back();
+    }
+
+    public function tampilTentang(){
+        $dtTentang = Beranda::all();
+        return view('pengunjung.tampil-tentang', compact('dtTentang'));
     }
 }

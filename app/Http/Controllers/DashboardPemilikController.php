@@ -193,7 +193,8 @@ class DashboardPemilikController extends Controller
     public function index_komentar()
     {
         $dtKomentar = DB::table('komentars')
-                        ->join('konten_artikels', 'komentars.id_artikel', '=', 'konten_artikels.id')
+                        ->leftjoin('konten_artikels', 'komentars.id_artikel', '=', 'konten_artikels.id')
+                        ->leftjoin('users', 'konten_artikels.id_user', '=', 'users.id')
                         ->select('komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.id_user', 'konten_artikels.judul')
                         ->where('konten_artikels.id', session('loginId'))
                         ->get();
