@@ -190,6 +190,10 @@
                       </tbody>
                     </table>
                   </div>
+                  {{ $dtUsaha->links() }}<br>
+                  Halaman Saat Ini: {{ $dtUsaha->currentPage() }}<br>
+                  Jumlah Data: {{ $dtUsaha->total() }}<br>
+                  Data perhalaman: {{ $dtUsaha->perPage() }}<br>
                 </div>
               </div>
             </div>

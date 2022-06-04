@@ -130,16 +130,16 @@ class DashboardPengunjungController extends Controller
         return view('pengunjung.tampil-all-artikel', compact('dtArtikel'));
     }
 
-    // public function cari_usaha(Request $request)
-	// {
-	// 	// menangkap data pencarian
-	// 	$keyword = $request->cari;
+    public function cari_usaha(Request $request)
+	{
+		// menangkap data pencarian
+		$keyword = $request->cari;
  
-	// 	$TampilUsaha = KontenArtikel::select("*")
-    //                 ->where('judul', 'like', "%" . $keyword . "%")
-    //                 ->get();
-    //                     // ->paginate(5);
+		$TampilUsaha = User::select("*")
+                    ->where('nama_usaha', 'like', "%" . $keyword . "%")
+                    ->get();
+                        // ->paginate(5);
         
-    //     return view('pengunjung.tampil-all-usaha', compact('TampilUsaha'));
-    // }
+        return view('pengunjung.tampil-all-usaha', compact('TampilUsaha'));
+    }
 }

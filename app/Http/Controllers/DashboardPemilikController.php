@@ -40,7 +40,7 @@ class DashboardPemilikController extends Controller
         $dtArtikelPemilik = KontenArtikel::select("*")    
                             ->where('id_user', session('loginId'))
                             ->orderBy('created_at', 'desc')
-                            ->get();
+                            ->paginate(10);
         // $dtArtikelPemilik = KontenArtikel::where('id_user', [session('loginId')])->orderBy('created_at', 'asc');
         // $dtArtikelPemilik = DB::select('select * from konten_artikels where id_user = ?', [session('loginId')])->orderBy('created_at', 'asc');
         return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik'));
@@ -183,8 +183,7 @@ class DashboardPemilikController extends Controller
                         ->where('judul', 'like', "%" . $keyword . "%")
                         ->orWhere('kategori', 'like', "%" . $keyword . "%")
                         ->orWhere('isi_artikel', 'like', "%" . $keyword . "%")
-                        ->get();
-                        // ->paginate(5);
+                        ->paginate(10);
  
 		return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik'));
  

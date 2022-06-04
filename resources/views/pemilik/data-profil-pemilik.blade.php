@@ -213,7 +213,7 @@
                 <div class="card-body">
                   <div class="col-lg-12 grid-margin stretch-card">
                     <div class="col-10">
-                      <h4 class="card-title">Data Sosial Media</h4>
+                      <h4 class="card-title">Data Sosial Media dan Google Maps</h4>
                     </div>
                     <div class="col-2">
                       <a href="{{route('input-sosmed')}}" class="btn btn-primary btn-sm">Tambah Data</a>

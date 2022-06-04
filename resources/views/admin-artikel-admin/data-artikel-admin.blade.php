@@ -193,6 +193,10 @@
                       </tbody>
                     </table>
                   </div>
+                  {{ $dtArtikelAdmin->links() }}<br>
+                  Halaman Saat Ini: {{ $dtArtikelAdmin->currentPage() }}<br>
+                  Jumlah Data: {{ $dtArtikelAdmin->total() }}<br>
+                  Data perhalaman: {{ $dtArtikelAdmin->perPage() }}<br>
                 </div>
               </div>
             </div>

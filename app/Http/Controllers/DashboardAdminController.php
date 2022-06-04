@@ -48,7 +48,7 @@ class DashboardAdminController extends Controller
         $dtMas = User::select("*")    
                 ->where('role', 2)
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(10);
         // $dtMas = User::where('id', ['2'])->orderBy('created_at', 'asc');
         return view('admin.data-akun-masyarakat', compact('dtMas'));
     }
@@ -72,7 +72,7 @@ class DashboardAdminController extends Controller
         $dtUsaha = User::select("*")    
                 ->where('role', 1)
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(10);
         return view('admin.data-akun-usaha', compact('dtUsaha'));
     }
 
@@ -113,8 +113,7 @@ class DashboardAdminController extends Controller
                         ->orWhere('nama_usaha', 'like', "%" . $keyword . "%")
                         ->orWhere('jenis_usaha', 'like', "%" . $keyword . "%")
                         ->orWhere('alamat_usaha', 'like', "%" . $keyword . "%")
-                        ->get();
-                        // ->paginate(5);
+                        ->paginate(10);
  
 		return view('admin.data-akun-usaha', compact('dtUsaha'));
 	}
@@ -124,7 +123,7 @@ class DashboardAdminController extends Controller
         $dtArtikelPemilik = KontenArtikel::select("*")    
                             ->where('role', 1)
                             ->orderBy('created_at', 'desc')
-                            ->get();
+                            ->paginate(10);
         // $dtArtikelPemilik = KontenArtikel::where('id', ['1'])->orderBy('created_at', 'asc');
         return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
     }
@@ -158,12 +157,10 @@ class DashboardAdminController extends Controller
 		$keyword = $request->cari;
  
 		$dtArtikelPemilik = KontenArtikel::select("*")
-                        // ->where('role', 3)
                         ->where('judul', 'like', "%" . $keyword . "%")
                         ->orWhere('kategori', 'like', "%" . $keyword . "%")
                         ->orWhere('penulis', 'like', "%" . $keyword . "%")
-                        ->get();
-                        // ->paginate(5);
+                        ->paginate(10);
  
 		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
 	}
@@ -176,15 +173,14 @@ class DashboardAdminController extends Controller
 		$dtGaleri = Galeri::select("*")
                         // ->where('role', 3)
                         ->where('caption_gambar', 'like', "%" . $keyword . "%")
-                        ->get();
-                        // ->paginate(5);
+                        ->paginate(10);
  
 		return view('admin.data-beranda', compact('dtGaleri'));
 	}
 
     public function index_data_beranda()
     {   
-        $dtGaleri = Galeri::all();
+        $dtGaleri = Galeri::paginate(10);;
         return view('admin.data-beranda', compact('dtGaleri'));
     }
 
@@ -310,8 +306,7 @@ class DashboardAdminController extends Controller
 		$dtKomentar = Komentar::select("*")
                         ->where('nama_user', 'like', "%" . $keyword . "%")
                         ->orWhere('isi_komentar', 'like', "%" . $keyword . "%")
-                        ->get();
-                        // ->paginate(5);
+                        ->paginate(10);
  
 		return view('admin.data-komentar', compact('dtKomentar'));
 	}

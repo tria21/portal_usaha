@@ -165,6 +165,10 @@
                       </tbody>
                     </table>
                   </div>
+                  {{ $dtMas->links() }}<br>
+                  Halaman Saat Ini: {{ $dtMas->currentPage() }}<br>
+                  Jumlah Data: {{ $dtMas->total() }}<br>
+                  Data perhalaman: {{ $dtMas->perPage() }}<br>
                 </div>
               </div>
             </div>

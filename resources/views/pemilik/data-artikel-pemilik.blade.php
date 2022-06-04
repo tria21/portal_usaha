@@ -174,6 +174,10 @@
                       </tbody>
                     </table>
                   </div>
+                  {{ $dtArtikelPemilik->links() }}<br>
+                  Halaman Saat Ini: {{ $dtArtikelPemilik->currentPage() }}<br>
+                  Jumlah Data: {{ $dtArtikelPemilik->total() }}<br>
+                  Data perhalaman: {{ $dtArtikelPemilik->perPage() }}<br>
                 </div>
               </div>
             </div>

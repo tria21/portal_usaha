@@ -25,7 +25,7 @@ class Admin_DataArtikelAdminController extends Controller
         $dtArtikelAdmin = KontenArtikel::select("*")    
                         ->where('role', 3)
                         ->orderBy('created_at', 'desc')
-                        ->get();
+                        ->paginate(10);
         return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
     }
 
@@ -176,8 +176,7 @@ class Admin_DataArtikelAdminController extends Controller
                         // ->where('role', 3)
                         ->where('judul', 'like', "%" . $keyword . "%")
                         ->orWhere('kategori', 'like', "%" . $keyword . "%")
-                        ->get();
-                        // ->paginate(5);
+                        ->paginate(10);
  
 		return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
 	}

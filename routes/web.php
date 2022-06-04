@@ -130,4 +130,4 @@ Route::get('/tampil-tentang', [App\Http\Controllers\DashboardPengunjungControlle
 Route::post('/edit-proses-akun-pengunjung/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'updateAkun'])->name('edit-proses-akun-pengunjung');
 Route::get('/edit-akun-pengunjung', [App\Http\Controllers\DashboardPengunjungController::class, 'editAkun'])->name('edit-akun-pengunjung');
 Route::get('/cari-artikel', [App\Http\Controllers\DashboardPengunjungController::class, 'cari_artikel'])->name('cari-artikel');
-// Route::get('/cari-usaha', [App\Http\Controllers\DashboardPengunjungController::class, 'cari_usaha'])->name('cari-usaha');
+Route::get('/cari-usaha', [App\Http\Controllers\DashboardPengunjungController::class, 'cari_usaha'])->name('cari-usaha');

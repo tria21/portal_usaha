@@ -49,10 +49,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-tentang')}}">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
-          <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
+          <li><a class="nav-link scrollto active" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
           @if(session('loginRole') =='2') 
           <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -125,20 +125,6 @@
           <!-- Start single blog -->
           <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="single-blog-page">
-                            <!-- search option start -->
-                            <form action="#">
-                                <div class="search-option">
-                                    <input type="text" placeholder="Search...">
-                                    <button class="button" type="submit">
-                                    <i class="bi bi-search"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <!-- search option end -->
-                        </div>
-                    </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="single-blog">
                           @foreach ($dtArtikelID as $item)

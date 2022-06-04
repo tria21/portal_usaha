@@ -160,10 +160,10 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="single-blog-page">
                     <!-- search option start -->
-                    <form action="#">
+                    <form action="{{route('cari-usaha')}}" method="GET">
                     <div class="search-option">
-                        <input type="text" placeholder="Search...">
-                        <button class="button" type="submit">
+                      <input type="text" name="cari" id="cari" placeholder="Masukkan Kata Kunci" value="{{ old('keyword') }}">
+                      <button class="button" type="submit">
                         <i class="bi bi-search"></i>
                         </button>
                     </div>

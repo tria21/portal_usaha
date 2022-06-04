@@ -180,6 +180,10 @@
                       </tbody>
                     </table>
                   </div>
+                  {{ $dtGaleri->links() }}<br>
+                  Halaman Saat Ini: {{ $dtGaleri->currentPage() }}<br>
+                  Jumlah Data: {{ $dtGaleri->total() }}<br>
+                  Data perhalaman: {{ $dtGaleri->perPage() }}<br>
                 </div>
               </div>
             </div>
