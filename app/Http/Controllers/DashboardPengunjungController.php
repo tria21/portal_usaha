@@ -17,7 +17,7 @@ class DashboardPengunjungController extends Controller
         $TampilArAdmin  = KontenArtikel::select("*")    
                             ->where('role', 3)
                             ->orderBy('created_at', 'desc')
-                            ->get();
+                            ->paginate(9);
         // dd($TampilArAdmin);
         $TampilAkMasy    = User::select("*")    
                             ->where('id', session('loginId'))
@@ -54,7 +54,8 @@ class DashboardPengunjungController extends Controller
     }
 
     public function tampilArtikel(){
-        $dtArtikel = DB::select('select * from konten_artikels');
+        // $dtArtikel = DB::select('select * from konten_artikels');
+        $dtArtikel = KontenArtikel::paginate(9);
         return view('pengunjung.tampil-all-artikel', compact('dtArtikel'));
     }
 
@@ -62,7 +63,7 @@ class DashboardPengunjungController extends Controller
         $TampilUsaha = User::select("*")    
                             ->where('role', 1)
                             ->orderBy('created_at', 'desc')
-                            ->get();
+                            ->paginate(9);
         return view('pengunjung.tampil-all-usaha', compact('TampilUsaha'));
     }
 
@@ -124,8 +125,7 @@ class DashboardPengunjungController extends Controller
  
 		$dtArtikel = KontenArtikel::select("*")
                     ->where('judul', 'like', "%" . $keyword . "%")
-                    ->get();
-                        // ->paginate(5);
+                    ->paginate(9);
         
         return view('pengunjung.tampil-all-artikel', compact('dtArtikel'));
     }
@@ -137,8 +137,7 @@ class DashboardPengunjungController extends Controller
  
 		$TampilUsaha = User::select("*")
                     ->where('nama_usaha', 'like', "%" . $keyword . "%")
-                    ->get();
-                        // ->paginate(5);
+                    ->paginate(9);
         
         return view('pengunjung.tampil-all-usaha', compact('TampilUsaha'));
     }

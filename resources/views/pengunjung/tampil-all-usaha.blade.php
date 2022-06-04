@@ -193,6 +193,9 @@
                 </div>
                 @endforeach
             </div>
+            <center>
+            {{ $TampilUsaha->links() }}<br>
+            </center>
           </div>
         </div>
       </div>

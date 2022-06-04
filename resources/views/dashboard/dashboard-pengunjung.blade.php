@@ -198,6 +198,9 @@
             </div>
             @endforeach
           </div>
+          <center>
+          {{ $TampilArAdmin->links() }}<br>
+          </center>
         </div>>
       </div>
     </div>

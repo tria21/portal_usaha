@@ -205,6 +205,9 @@
                 </div>
                 @endforeach
             </div>
+            <center>
+            {{ $dtArtikel->links() }}<br>
+            </center>
           </div>
         </div>
       </div>
