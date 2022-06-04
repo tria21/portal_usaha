@@ -50,7 +50,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
-          <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-tentang')}}">Tentang</a></li>
           <li><a class="nav-link scrollto active" href="{{route('tampil-artikel')}}">Artikel</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
           @if(session('loginRole') =='2') 
@@ -165,9 +165,9 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="single-blog-page">
                     <!-- search option start -->
-                    <form action="#">
+                    <form action="{{route('cari-artikel')}}" method="GET">
                     <div class="search-option">
-                        <input type="text" placeholder="Search...">
+                        <input type="text" name="cari" id="cari" placeholder="Masukkan Kata Kunci" value="{{ old('keyword') }}">
                         <button class="button" type="submit">
                         <i class="bi bi-search"></i>
                         </button>

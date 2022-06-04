@@ -116,4 +116,30 @@ class DashboardPengunjungController extends Controller
                     ->get();
         return view('pengunjung.edit-akun', compact('dtAkun'));
     }
+
+    public function cari_artikel(Request $request)
+	{
+		// menangkap data pencarian
+		$keyword = $request->cari;
+ 
+		$dtArtikel = KontenArtikel::select("*")
+                    ->where('judul', 'like', "%" . $keyword . "%")
+                    ->get();
+                        // ->paginate(5);
+        
+        return view('pengunjung.tampil-all-artikel', compact('dtArtikel'));
+    }
+
+    // public function cari_usaha(Request $request)
+	// {
+	// 	// menangkap data pencarian
+	// 	$keyword = $request->cari;
+ 
+	// 	$TampilUsaha = KontenArtikel::select("*")
+    //                 ->where('judul', 'like', "%" . $keyword . "%")
+    //                 ->get();
+    //                     // ->paginate(5);
+        
+    //     return view('pengunjung.tampil-all-usaha', compact('TampilUsaha'));
+    // }
 }

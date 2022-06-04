@@ -50,7 +50,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
-          <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-tentang')}}">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
           @if(session('loginRole') =='2') 
@@ -192,6 +192,7 @@
                   <div class="post-thumbnail">
                     <img src="{{asset('img/'.$item->gambar)}}" alt="" />
                   </div>
+                  <center><p>{{$item->caption_gambar}}</p></center>
                   <div class="post-information">
                     <h2>{{$item->judul}}</h2>
                     <div class="entry-meta">

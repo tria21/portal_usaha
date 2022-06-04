@@ -153,9 +153,29 @@
                     <div class="form-group row">
                       <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="jenis_usaha" name="jenis_usaha" value="{{$item->jenis_usaha}}">
+                        <select name="jenis_usaha" class="form-control" id="jenis_usaha">
+                          <option value="">--Pilih Kategori--</option>
+                          <option value="Perdagangan" {{ $item->jenis_usaha == 'Perdagangan' ? 'selected' : '' }}>Perdagangan</option>
+                          <option value="Industri Pengolaha" {{ $item->jenis_usaha == 'Industri Pengolahan' ? 'selected' : '' }}>Industri Pengolahan</option>
+                          <option value="Informasi dan Komunikasi" {{ $item->jenis_usaha == 'Informasi dan Komunikasi' ? 'selected' : '' }}>Informasi dan Komunikasi</option>
+                          <option value="Makanan dan Minuman" {{ $item->jenis_usaha == 'Makanan dan Minuman' ? 'selected' : '' }}>Makanan dan Minuman</option>
+                          <option value="Aktivitas Jasa" {{ $item->jenis_usaha == 'Aktivitas Jasa' ? 'selected' : '' }}>Aktivitas Jasa</option>
+                          <option value="Lainnya" {{ $item->jenis_usaha == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                        </select>
                       </div>
                     </div>
+                    {{-- <div class="form-group row">
+                      <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
+                        <select name="jenis_usaha" class="form-control" id="jenis_usaha">
+                          <option value="">--Pilih Kategori--</option>
+                          <option value="Perdagangan" {{ $item->jenis_usaha == 'Perdagangan' ? 'selected' : '' }}>Perdagangan</option>
+                          <option value="Industri Pengolaha" {{ $item->jenis_usaha == 'Industri Pengolahan' ? 'selected' : '' }}>Industri Pengolahan</option>
+                          <option value="Informasi dan Komunikasi" {{ $item->jenis_usaha == 'Informasi dan Komunikasi' ? 'selected' : '' }}>Informasi dan Komunikasi</option>
+                          <option value="Makanan dan Minuman" {{ $item->jenis_usaha == 'Makanan dan Minuman' ? 'selected' : '' }}>Makanan dan Minuman</option>
+                          <option value="Aktivitas Jasa" {{ $item->jenis_usaha == 'Aktivitas Jasa' ? 'selected' : '' }}>Aktivitas Jasa</option>
+                          <option value="Lainnya" {{ $item->jenis_usaha == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                        </select>
+                    </div> --}}
                     <div class="form-group row">
                       <label for="alamat_usaha" class="col-sm-3 col-form-label">Alamat</label>
                       <div class="col-sm-9">

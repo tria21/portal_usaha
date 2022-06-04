@@ -50,7 +50,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
-          <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-tentang')}}">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
           @if(session('loginRole') =='2') 

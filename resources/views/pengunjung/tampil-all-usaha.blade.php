@@ -50,7 +50,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
-          <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-tentang')}}">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
           <li><a class="nav-link scrollto active" href="{{route('tampil-artikel')}}">Usaha Mikro</a></li>
           @if(session('loginRole') =='2') 
@@ -126,20 +126,24 @@
                   <h4>Kategori</h4>
                   <ul>
                     <li>
-                      @php $kategori = 'Kuliner' @endphp
-                      <a href="#">Kuliner</a>
+                      @php $kategori = 'Perdagangan' @endphp
+                      <a href="#">Perdagangan</a>
                     </li>
                     <li>
-                      @php $kategori = 'Tekstil' @endphp
-                      <a href="#">Tekstil</a>
+                      @php $kategori = 'Industri Pengolahan' @endphp
+                      <a href="#">Industri Pengolahan</a>
                     </li>
                     <li>
-                      @php $kategori = 'Daur Ulang' @endphp
-                      <a href="#">Daur Ulang</a>
+                      @php $kategori = 'Informasi dan Komunikasi' @endphp
+                      <a href="#">Informasi dan Komunikasi</a>
                     </li>
                     <li>
-                      @php $kategori = 'Jasa' @endphp
-                      <a href="#">Jasa</a>
+                      @php $kategori = 'Makanan dan Minuman' @endphp
+                      <a href="#">Makanan dan Minuman</a>
+                    </li>
+                    <li>
+                      @php $kategori = 'Aktivitas Jasa' @endphp
+                      <a href="#">Aktivitas Jasa</a>
                     </li>
                     <li>
                       @php $kategori = 'Lainnya' @endphp
