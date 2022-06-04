@@ -8,6 +8,7 @@ use App\Models\KontenArtikel;
 use App\Models\Beranda;
 use App\Models\Galeri;
 use App\Models\Komentar;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Exports\PemilikExport;
@@ -40,7 +41,10 @@ class DashboardAdminController extends Controller
         $CountAkMasy = User::where('role', 2)->count();
         $CountArAdmin = KontenArtikel::where('role', 3)->count();
         $CountArPemilik = KontenArtikel::where('role', 1)->count();
-        return view('dashboard.dashboard-admin', compact('CountAkPemilik', 'CountAkMasy', 'CountArAdmin', 'CountArPemilik'));
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('dashboard.dashboard-admin', compact('CountAkPemilik', 'CountAkMasy', 'CountArAdmin', 'CountArPemilik', 'dtNotif'));
     }
 
     public function index_akun_masyarakat()

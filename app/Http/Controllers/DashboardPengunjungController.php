@@ -39,6 +39,15 @@ class DashboardPengunjungController extends Controller
         $TampilAkun       = User::select("*")    
                             ->where('id', session('loginId'))
                             ->get();
+        if(session('loginRole') =='3'){
+            $ubah = Notifikasi::where('id_artikel', $id);
+                    
+            $dtRead = [
+                'is_read'              => 1,
+            ];
+
+            $ubah->update($dtRead);
+        }
         return view('pengunjung.read-more-artikel-beranda', compact('TampilAkun', 'dtArtikelBeranda', 'dtArtikelID', 'dtKomentar', 'id'));
     }
 
