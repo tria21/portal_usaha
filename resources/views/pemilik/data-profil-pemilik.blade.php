@@ -113,6 +113,7 @@
                 @csrf
                 @foreach ($user as $item)
                 <div class="card-body">
+                  <h4 class="card-title">Informasi Akun</h4>
                   <div class="text-center">
                     <img class="profile-user-img img-fluid img-square" src="{{asset('img/'.$item->image)}}" alt="User profile picture" height="10%" width="50%">
                   </div>
@@ -147,9 +148,9 @@
                         <input type="file" class="form-control" id="image" name="image">
                       </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                       <img src="{{asset('img/'.$item->image)}}" height="10%" width="50%" alt="" srcset="">
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                       <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
                       <div class="col-sm-9">
@@ -164,26 +165,14 @@
                         </select>
                       </div>
                     </div>
-                    {{-- <div class="form-group row">
-                      <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
-                        <select name="jenis_usaha" class="form-control" id="jenis_usaha">
-                          <option value="">--Pilih Kategori--</option>
-                          <option value="Perdagangan" {{ $item->jenis_usaha == 'Perdagangan' ? 'selected' : '' }}>Perdagangan</option>
-                          <option value="Industri Pengolaha" {{ $item->jenis_usaha == 'Industri Pengolahan' ? 'selected' : '' }}>Industri Pengolahan</option>
-                          <option value="Informasi dan Komunikasi" {{ $item->jenis_usaha == 'Informasi dan Komunikasi' ? 'selected' : '' }}>Informasi dan Komunikasi</option>
-                          <option value="Makanan dan Minuman" {{ $item->jenis_usaha == 'Makanan dan Minuman' ? 'selected' : '' }}>Makanan dan Minuman</option>
-                          <option value="Aktivitas Jasa" {{ $item->jenis_usaha == 'Aktivitas Jasa' ? 'selected' : '' }}>Aktivitas Jasa</option>
-                          <option value="Lainnya" {{ $item->jenis_usaha == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
-                        </select>
-                    </div> --}}
                     <div class="form-group row">
                       <label for="alamat_usaha" class="col-sm-3 col-form-label">Alamat</label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="alamat_usaha" name="alamat_usaha" value="{{$item->alamat_usaha}}">
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Cancel</a>
+                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Batal</a>
                   </form>
                 </div>
               </div>
@@ -198,21 +187,21 @@
                   <form class="forms-sample" action="{{route('update-password-pemilik', $item->id)}}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group row">
-                      <label for="password" class="col-sm-3 col-form-label">New Password</label>
+                      <label for="password" class="col-sm-3 col-form-label">Password Baru</label>
                       <div class="col-sm-9">
                         <input type="password" class="form-control" id="password" name="password">
                         <span class="text-danger">@error('password') {{$message}} @enderror</span>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="password" class="col-sm-3 col-form-label">Confirm New Password</label>
+                      <label for="password" class="col-sm-3 col-form-label">Konfrimasi Password Baru</label>
                       <div class="col-sm-9">
                         <input type="password" class="form-control" id="password" name="password">
                         <span class="text-danger">@error('password') {{$message}} @enderror</span>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Cancel</a>
+                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Batal</a>
                   </form>
                 </div>
               </div>
@@ -236,7 +225,7 @@
                         <tr>
                           <th>No</th>
                           <th>Nama Sosial Media</th>
-                          <th>Link Sosial Media</th>
+                          <th>Tautan Sosial Media</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>

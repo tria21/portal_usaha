@@ -56,7 +56,7 @@
           @if(session('loginRole') =='2') 
           <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Pengaturan Akun</a></li>
+              <li><a href="{{route('edit-akun-pengunjung')}}">Pengaturan Akun</a></li>
               <li><a href="{{route('logout')}}">Logout</a></li>
             </ul>
           </li>

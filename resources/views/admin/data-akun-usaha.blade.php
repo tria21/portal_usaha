@@ -149,7 +149,7 @@
                           <div class="input-group">
                             <input type="text" name="cari" id="cari" class="form-control" placeholder="Masukkan Kata Kunci" value="{{ old('keyword') }}">
                             <div class="input-group-append">
-                              <button class="btn btn-sm btn-primary" type="submit">Search</button>
+                              <button class="btn btn-sm btn-primary" type="submit">Cari</button>
                             </div>
                           </div>
                         </form>
