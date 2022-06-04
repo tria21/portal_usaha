@@ -15,10 +15,10 @@ class CreateNotifikasisTable extends Migration
     {
         Schema::create('notifikasis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_komentar');
             $table->unsignedBigInteger('id_artikel');
             $table->boolean('is_read');
-            $table->foreign('id_user')->references('id_user')->on('konten_artikels')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('id_komentar')->references('id')->on('komentars')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('id_artikel')->references('id')->on('konten_artikels')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
         });

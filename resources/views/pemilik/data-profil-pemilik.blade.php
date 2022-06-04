@@ -157,7 +157,7 @@
                         <select name="jenis_usaha" class="form-control" id="jenis_usaha">
                           <option value="">--Pilih Kategori--</option>
                           <option value="Perdagangan" {{ $item->jenis_usaha == 'Perdagangan' ? 'selected' : '' }}>Perdagangan</option>
-                          <option value="Industri Pengolaha" {{ $item->jenis_usaha == 'Industri Pengolahan' ? 'selected' : '' }}>Industri Pengolahan</option>
+                          <option value="Industri Pengolahan" {{ $item->jenis_usaha == 'Industri Pengolahan' ? 'selected' : '' }}>Industri Pengolahan</option>
                           <option value="Informasi dan Komunikasi" {{ $item->jenis_usaha == 'Informasi dan Komunikasi' ? 'selected' : '' }}>Informasi dan Komunikasi</option>
                           <option value="Makanan dan Minuman" {{ $item->jenis_usaha == 'Makanan dan Minuman' ? 'selected' : '' }}>Makanan dan Minuman</option>
                           <option value="Aktivitas Jasa" {{ $item->jenis_usaha == 'Aktivitas Jasa' ? 'selected' : '' }}>Aktivitas Jasa</option>
@@ -235,7 +235,7 @@
                         <tr>
                           <th>{{ $no++ }}</th>
                           <th>{{$item->nama_sosmed}}</th>
-                          <th>{{$item->link_sosmed}}</th>
+                          <th>{{ Str::limit($item->link_sosmed, 30)}}</th>
                           <th>
                             <a href="{{route('edit-sosmed',$item->id)}}" class="btn btn-info btn-sm">
                               <i class="ti-pencil btn-icon-append"></i></a>

@@ -7,6 +7,7 @@ use App\Models\KontenArtikel;
 use App\Models\User;
 use App\Models\Komentar;
 use App\Models\Beranda;
+use App\Models\Notifikasi;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,7 @@ class DashboardPengunjungController extends Controller
         $TampilArAdmin  = KontenArtikel::select("*")    
                             ->where('role', 3)
                             ->orderBy('created_at', 'desc')
-                            ->paginate(9);
+                            ->get();
         // dd($TampilArAdmin);
         $TampilAkMasy    = User::select("*")    
                             ->where('id', session('loginId'))
@@ -78,6 +79,13 @@ class DashboardPengunjungController extends Controller
         $dtUpload->isi_komentar          = $request->isi_komentar;
 
         $dtUpload->save();
+
+        $dtUpload2 = new Notifikasi;
+        $dtUpload2->id_artikel            = $request->id;
+        $dtUpload2->id_komentar           = $dtUpload->id;
+        $dtUpload2->is_read               = $request->is_read;
+
+        $dtUpload2->save();
         
         return $this->readMore($id);
         // return redirect()->action('DashboardPengunjungController@readMore', ['id']);

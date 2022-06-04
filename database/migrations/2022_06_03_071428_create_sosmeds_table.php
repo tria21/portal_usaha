@@ -17,7 +17,7 @@ class CreateSosmedsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->text('nama_sosmed');
-            $table->string('link_sosmed');
+            $table->text('link_sosmed');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
         });
