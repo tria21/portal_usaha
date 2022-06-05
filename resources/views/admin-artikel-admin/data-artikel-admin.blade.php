@@ -18,10 +18,13 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/css/vertical-layout-light/style.css')}}">
+  <!-- sweetalert2:css -->
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
   <!-- endinject -->
   {{-- <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" /> --}}
 </head>
 <body>
+  @include('sweetalert::alert')
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -213,7 +216,7 @@
                               <i class="ti-eye btn-icon-append"></i></a>
                             <a href="{{route('edit-artikel-admin',$item->id)}}" class="btn btn-info btn-sm">
                               <i class="ti-pencil btn-icon-append"></i></a>
-                            <a href="{{route('hapus-artikel-admin',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">
+                            <a href="{{route('hapus-artikel-admin',$item->id)}}" class="btn btn-danger btn-sm">
                               <i class="ti-trash btn-icon-append"></i></a>
                           </th>
                         </tr>

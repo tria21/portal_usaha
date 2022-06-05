@@ -145,7 +145,6 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-admin')}}">Artikel Admin</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-usaha')}}">Artikel Usaha</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('data-komentar')}}">Kelola Komentar</a></li>
               </ul>
             </div>
           </li>

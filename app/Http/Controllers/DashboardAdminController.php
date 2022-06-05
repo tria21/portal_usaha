@@ -9,6 +9,7 @@ use App\Models\Beranda;
 use App\Models\Galeri;
 use App\Models\Komentar;
 use App\Models\Notifikasi;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Exports\PemilikExport;
@@ -293,6 +294,7 @@ class DashboardAdminController extends Controller
         ];
 
         $ubah->update($dtBeranda);
+        Alert::success('Data berhasil diubah');
         return redirect('data-tentang');
     }
 
@@ -325,6 +327,8 @@ class DashboardAdminController extends Controller
         $dtUpload->deskripsi_tambahan   = $request->deskripsi_tambahan;
 
         $dtUpload->save();
+
+        Alert::success('Data berhasil ditambahkan');
         
         return redirect('data-tentang');
     }
@@ -342,6 +346,8 @@ class DashboardAdminController extends Controller
 
         $image_resize->save('img/' .$namaFile , 80);
         $dtUpload->save();
+
+        Alert::success('Data berhasil ditambahkan');
         
         return redirect('data-beranda');
     }
@@ -377,6 +383,7 @@ class DashboardAdminController extends Controller
         }
 
         $ubah->update($dtGaleri);
+        Alert::success('Data berhasil diubah');
         return redirect('data-beranda');
     }
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
 use App\Models\User;
+use App\Models\Notifikasi;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Exports\ArtikelAdminExport;
 use App\Exports\ArtikelPemilikExport;
@@ -30,7 +32,7 @@ class Admin_DataArtikelAdminController extends Controller
         $dtNotif = Notifikasi::select("*")    
                         ->where('is_read', 0)
                         ->get();
-        return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
+        return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin', 'dtNotif', 'CountNotif'));
     }
 
     public function detail($id)
@@ -55,7 +57,13 @@ class Admin_DataArtikelAdminController extends Controller
      */
     public function create()
     {
-        return view('admin-artikel-admin.input-artikel-admin');
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+        return view('admin-artikel-admin.input-artikel-admin', compact('dtNotif', 'CountNotif'));
     }
 
     /**
@@ -83,6 +91,8 @@ class Admin_DataArtikelAdminController extends Controller
 
         $nm->move('img/', $namaFile);
         $dtUpload->save();
+
+        Alert::success('Data berhasil ditambahkan');
         
         return redirect('data-artikel-admin');
     }
@@ -143,6 +153,7 @@ class Admin_DataArtikelAdminController extends Controller
         }
 
         $ubah->update($dtArtikelAdmin);
+        Alert::success('Data berhasil diubah');
         return redirect('data-artikel-admin');
     }
 
@@ -165,6 +176,7 @@ class Admin_DataArtikelAdminController extends Controller
         }
         //hapus data drai db
         $hapus->delete();
+        // Alert::question('Apakah Anda Yakin Ingin Menghapus Data Ini?');
         return back();
     }
 

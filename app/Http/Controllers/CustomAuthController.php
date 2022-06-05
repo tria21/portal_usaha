@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Sosmed;
@@ -131,6 +132,7 @@ class CustomAuthController extends Controller
         }
 
         $ubah->update($user);
+        Alert::success('Data berhasil diubah');
         return redirect('data-profil-pemilik');
     }
 
@@ -143,6 +145,7 @@ class CustomAuthController extends Controller
         ];
 
         $ubah->update($user);
+        Alert::success('Data berhasil diubah');
         return redirect('data-profil-pemilik')->with('success', 'Password Berhasil Diubah!');
     }
 
@@ -173,6 +176,7 @@ class CustomAuthController extends Controller
         $dtUpload->link_sosmed      = $request->link_sosmed;
         $dtUpload->save();
         
+        Alert::success('Data berhasil ditambahkan');
         return redirect('data-profil-pemilik');
     }
 
@@ -206,6 +210,7 @@ class CustomAuthController extends Controller
         ];
 
         $ubah->update($dtSosmed);
+        Alert::success('Data berhasil diubah');
         return redirect('data-profil-pemilik');
     }
 

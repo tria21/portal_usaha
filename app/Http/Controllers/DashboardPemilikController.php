@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\KontenArtikel;
 use App\Models\User;
 use App\Models\Komentar;
+use App\Models\Notifikasi;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Exports\ArtikelPemilikUsahaExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -176,6 +178,7 @@ class DashboardPemilikController extends Controller
 
         $nm->move('img/', $namaFile);
         $dtUpload->save();
+        Alert::success('Data berhasil ditambahkan');
         
         return redirect('data-artikel-pemilik');
     }
@@ -235,6 +238,7 @@ class DashboardPemilikController extends Controller
         }
 
         $ubah->update($dtArtikelPemilik);
+        Alert::success('Data berhasil diubah');
         return redirect('data-artikel-pemilik');
     }
 
