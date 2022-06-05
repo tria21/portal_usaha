@@ -192,7 +192,7 @@
                   <div class="post-thumbnail">
                     <img src="{{asset('img/'.$item->gambar)}}" alt="" />
                   </div>
-                  <center><p>{{$item->caption_gambar}}</p></center>
+                  <p>{{$item->caption_gambar}}</p>
                   <div class="post-information">
                     <h2>{{$item->judul}}</h2>
                     <div class="entry-meta">

@@ -93,8 +93,22 @@ class CustomAuthController extends Controller
     public function profil(){
         $user = DB::select('select * from users where id = ?', [session('loginId')]);
         $dtSosmed = DB::select('select * from sosmeds where id_user = ?', [session('loginId')]);
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*')
+                    ->where('konten_artikels.id_user', session('loginId'))
+                    ->where('is_read', 0)
+                    ->get();
+        $CountNotif = DB::table('notifikasis')
+                            ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                            ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                            ->select('notifikasis.*')
+                            ->where('konten_artikels.id_user', session('loginId'))
+                            ->where('is_read', 0)
+                            ->count();
 
-        return view('pemilik.data-profil-pemilik', compact('user', 'dtSosmed'));
+        return view('pemilik.data-profil-pemilik', compact('user', 'dtSosmed', 'dtNotif', 'CountNotif'));
     }
 
     public function update(Request $request, $id)
@@ -134,7 +148,21 @@ class CustomAuthController extends Controller
 
     public function create_sosmed()
     {
-        return view('pemilik.input-sosmed');
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*')
+                    ->where('konten_artikels.id_user', session('loginId'))
+                    ->where('is_read', 0)
+                    ->get();
+        $CountNotif = DB::table('notifikasis')
+                            ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                            ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                            ->select('notifikasis.*')
+                            ->where('konten_artikels.id_user', session('loginId'))
+                            ->where('is_read', 0)
+                            ->count();
+        return view('pemilik.input-sosmed', compact('dtNotif', 'CountNotif'));
     }
 
     public function store_sosmed(Request $request)
@@ -151,7 +179,21 @@ class CustomAuthController extends Controller
     public function edit_sosmed($id)
     {
         $dtSosmed = Sosmed::findorfail($id);
-        return view('pemilik.edit-sosmed',compact('dtSosmed'));
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*')
+                    ->where('konten_artikels.id_user', session('loginId'))
+                    ->where('is_read', 0)
+                    ->get();
+        $CountNotif = DB::table('notifikasis')
+                            ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                            ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                            ->select('notifikasis.*')
+                            ->where('konten_artikels.id_user', session('loginId'))
+                            ->where('is_read', 0)
+                            ->count();
+        return view('pemilik.edit-sosmed',compact('dtSosmed', 'dtNotif', 'CountNotif'));
     }
 
     public function update_sosmed(Request $request, $id)

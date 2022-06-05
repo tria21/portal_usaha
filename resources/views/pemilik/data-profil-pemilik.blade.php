@@ -18,6 +18,8 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/css/vertical-layout-light/style.css')}}">
+  
+  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
   <!-- endinject -->
   {{-- <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" /> --}}
 </head>
@@ -35,9 +37,9 @@
         </button>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
               <i class="icon-bell mx-0"></i>
-              <span class="count"></span>
+              <span class="badge badge-danger badge-counter">{{$CountNotif}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
               @forelse ($dtNotif as $item)
@@ -225,6 +227,9 @@
                         <input type="password" class="form-control" id="password" name="password">
                         <span class="text-danger">@error('password') {{$message}} @enderror</span>
                       </div>
+                      {{-- <div>
+                        <input type="checkbox" class="form-checkbox"> Show password
+                        </div> --}}
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                     <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Batal</a>
@@ -320,5 +325,16 @@
   <script src="{{asset('../skydash/template/js/Chart.roundedBarCharts.js')}}"></script>
   <!-- End custom js for this page-->
 </body>
+{{-- <script type="text/javascript">
+  $(document).ready(function(){		
+      $('.form-checkbox').click(function(){
+          if($(this).is(':checked')){
+              $('.form-control').attr('type','text');
+          }else{
+              $('.form-control').attr('type','password');
+          }
+      });
+  });
+</script> --}}
 
 </html>

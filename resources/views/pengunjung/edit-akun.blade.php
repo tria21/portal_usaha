@@ -26,6 +26,8 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset("../newsroom/assets/css/style.css")}}" rel="stylesheet">
+  
+  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
 
   <!-- =======================================================
   * Template Name: eBusiness - v4.7.0
@@ -150,6 +152,9 @@
                             <input type="password" name="password" id="password" class="form-control">
                             <span class="text-danger">@error('password') {{$message}} @enderror</span>
                         </div>
+                        {{-- <div>
+                          <input type="checkbox" class="form-checkbox"> Show password
+                          </div> --}}
                         <div class="button-group-area">
                             <input type="submit" class="genric-btn success"></button>
                         </div>
@@ -210,5 +215,16 @@
   <script src="{{asset("../newsroom/assets/js/main.js")}}"></script>
 
 </body>
+{{-- <script type="text/javascript">
+  $(document).ready(function(){		
+      $('.form-checkbox').click(function(){
+          if($(this).is(':checked')){
+              $('.form-control').attr('type','text');
+          }else{
+              $('.form-control').attr('type','password');
+          }
+      });
+  });
+</script> --}}
 
 </html>

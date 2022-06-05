@@ -20,12 +20,16 @@ class Admin_DataArtikelAdminController extends Controller
      */
     public function index()
     {
-        // $dtArtikelAdmin = KontenArtikel::where('role', 3)->orderBy('created_at', 'asc');
-        // $dtArtikelAdmin = DB::select('select * from konten_artikels where id_user = ?', [session('loginId')]);
         $dtArtikelAdmin = KontenArtikel::select("*")    
                         ->where('role', 3)
                         ->orderBy('created_at', 'desc')
                         ->paginate(10);
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
         return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
     }
 
@@ -33,10 +37,15 @@ class Admin_DataArtikelAdminController extends Controller
     {
         $dtArtikelAdmin = KontenArtikel::select("*")    
                         ->where('role', 3)
-                            // ->orderBy('created_at', 'desc')
                         ->get();
         $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
-       return view('admin-artikel-admin.detail-artikel-admin', compact('dtArtikelAdmin', 'dtArtikelID'));
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+       return view('admin-artikel-admin.detail-artikel-admin', compact('dtArtikelAdmin', 'dtArtikelID', 'dtNotif', 'CountNotif'));
     }
 
     /**
@@ -98,7 +107,13 @@ class Admin_DataArtikelAdminController extends Controller
     public function edit($id)
     {
         $dtArtikelAdmin = KontenArtikel::findorfail($id);
-        return view('admin-artikel-admin.edit-artikel-admin',compact('dtArtikelAdmin'));
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+        return view('admin-artikel-admin.edit-artikel-admin',compact('dtArtikelAdmin', 'dtNotif', 'CountNotif'));
     }
 
     /**
@@ -159,7 +174,13 @@ class Admin_DataArtikelAdminController extends Controller
                         ->where('role', 3)
                         ->orderBy('created_at', 'desc')
                         ->get();
-       return view('admin-artikel-admin.cetak-artikel-admin', compact('cetakArAdmin'));
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+       return view('admin-artikel-admin.cetak-artikel-admin', compact('cetakArAdmin', 'dtNotif', 'CountNotif'));
     }
 
     public function export_excel_artikel_admin()
@@ -177,8 +198,13 @@ class Admin_DataArtikelAdminController extends Controller
                         ->where('judul', 'like', "%" . $keyword . "%")
                         ->orWhere('kategori', 'like', "%" . $keyword . "%")
                         ->paginate(10);
- 
-		return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin'));
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+		return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin', 'dtNotif', 'CountNotif'));
 	}
 
 }

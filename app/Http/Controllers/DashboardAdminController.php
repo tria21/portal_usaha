@@ -41,10 +41,13 @@ class DashboardAdminController extends Controller
         $CountAkMasy = User::where('role', 2)->count();
         $CountArAdmin = KontenArtikel::where('role', 3)->count();
         $CountArPemilik = KontenArtikel::where('role', 1)->count();
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
         $dtNotif = Notifikasi::select("*")    
                     ->where('is_read', 0)
                     ->get();
-        return view('dashboard.dashboard-admin', compact('CountAkPemilik', 'CountAkMasy', 'CountArAdmin', 'CountArPemilik', 'dtNotif'));
+        return view('dashboard.dashboard-admin', compact('CountAkPemilik', 'CountAkMasy', 'CountArAdmin', 'CountArPemilik', 'dtNotif', 'CountNotif'));
     }
 
     public function index_akun_masyarakat()
@@ -53,8 +56,13 @@ class DashboardAdminController extends Controller
                 ->where('role', 2)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-        // $dtMas = User::where('id', ['2'])->orderBy('created_at', 'asc');
-        return view('admin.data-akun-masyarakat', compact('dtMas'));
+        $CountNotif = Notifikasi::select("*")    
+                ->where('is_read', 0)
+                ->count();
+        $dtNotif = Notifikasi::select("*")    
+                ->where('is_read', 0)
+                ->get();
+        return view('admin.data-akun-masyarakat', compact('dtMas', 'dtNotif', 'CountNotif'));
     }
 
     public function cetak_akun_masyarakat()
@@ -63,7 +71,13 @@ class DashboardAdminController extends Controller
                         ->where('role', 2)
                         ->orderBy('created_at', 'desc')
                         ->get();
-        return view('admin.cetak-akun-masyarakat', compact('cetakAkMasy'));
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+        return view('admin.cetak-akun-masyarakat', compact('cetakAkMasy', 'dtNotif', 'CountNotif'));
     }
 
     public function export_excel_masyarakat()
@@ -77,7 +91,13 @@ class DashboardAdminController extends Controller
                 ->where('role', 1)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-        return view('admin.data-akun-usaha', compact('dtUsaha'));
+        $CountNotif = Notifikasi::select("*")    
+                ->where('is_read', 0)
+                ->count();
+        $dtNotif = Notifikasi::select("*")    
+                ->where('is_read', 0)
+                ->get();
+        return view('admin.data-akun-usaha', compact('dtUsaha', 'dtNotif', 'CountNotif'));
     }
 
     public function detail_akun_pemilik($id)
@@ -89,7 +109,13 @@ class DashboardAdminController extends Controller
                 ->where('id_user', [$id])
                 ->get();
         $dtAkunID = DB::select('select * from users where id = ?', [$id]);
-        return view('admin.detail-akun-usaha', compact('dtUsaha', 'dtSosmed', 'dtAkunID'));
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.detail-akun-usaha', compact('dtUsaha', 'dtSosmed', 'dtAkunID', 'dtNotif', 'CountNotif'));
     }
 
     public function cetak_akun_pemilik()
@@ -98,7 +124,13 @@ class DashboardAdminController extends Controller
                 ->where('role', 1)
                 ->orderBy('created_at', 'desc')
                 ->get();
-        return view('admin.cetak-akun-usaha', compact('cetakAkUsaha'));
+        $CountNotif = Notifikasi::select("*")    
+                ->where('is_read', 0)
+                ->count();
+        $dtNotif = Notifikasi::select("*")    
+                ->where('is_read', 0)
+                ->get();
+        return view('admin.cetak-akun-usaha', compact('cetakAkUsaha', 'dtNotif', 'CountNotif'));
     }
 
     public function export_excel_pemilik()
@@ -112,14 +144,19 @@ class DashboardAdminController extends Controller
 		$keyword = $request->cari;
  
 		$dtUsaha = User::select("*")
-                        // ->where('role', 3)
                         ->where('name', 'like', "%" . $keyword . "%")
                         ->orWhere('nama_usaha', 'like', "%" . $keyword . "%")
                         ->orWhere('jenis_usaha', 'like', "%" . $keyword . "%")
                         ->orWhere('alamat_usaha', 'like', "%" . $keyword . "%")
                         ->paginate(10);
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
  
-		return view('admin.data-akun-usaha', compact('dtUsaha'));
+		return view('admin.data-akun-usaha', compact('dtUsaha', 'dtNotif', 'CountNotif'));
 	}
 
     public function index_artikel_usaha()
@@ -128,8 +165,13 @@ class DashboardAdminController extends Controller
                             ->where('role', 1)
                             ->orderBy('created_at', 'desc')
                             ->paginate(10);
-        // $dtArtikelPemilik = KontenArtikel::where('id', ['1'])->orderBy('created_at', 'asc');
-        return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
     }
 
     public function detail_artikel_usaha($id)
@@ -138,7 +180,13 @@ class DashboardAdminController extends Controller
                             ->where('role', 1)
                             ->get();
         $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
-        return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik', 'dtArtikelID'));
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik', 'dtArtikelID', 'dtNotif', 'CountNotif'));
     }
 
     public function cetak_artikel_usaha()
@@ -147,7 +195,13 @@ class DashboardAdminController extends Controller
                             ->where('role', 1)
                             ->orderBy('created_at', 'desc')
                             ->get();
-        return view('admin.cetak-artikel-usaha', compact('cetakArPemilik'));
+        $CountNotif = Notifikasi::select("*")    
+                            ->where('is_read', 0)
+                            ->count();
+        $dtNotif = Notifikasi::select("*")    
+                            ->where('is_read', 0)
+                            ->get();
+        return view('admin.cetak-artikel-usaha', compact('cetakArPemilik', 'dtNotif', 'CountNotif'));
     }
 
     public function export_excel_artikel_usaha()
@@ -165,8 +219,13 @@ class DashboardAdminController extends Controller
                         ->orWhere('kategori', 'like', "%" . $keyword . "%")
                         ->orWhere('penulis', 'like', "%" . $keyword . "%")
                         ->paginate(10);
- 
-		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik'));
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
 	}
 
     public function cari_galeri(Request $request)
@@ -178,27 +237,50 @@ class DashboardAdminController extends Controller
                         // ->where('role', 3)
                         ->where('caption_gambar', 'like', "%" . $keyword . "%")
                         ->paginate(10);
- 
-		return view('admin.data-beranda', compact('dtGaleri'));
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+		return view('admin.data-beranda', compact('dtGaleri', 'dtNotif', 'CountNotif'));
 	}
 
     public function index_data_beranda()
     {   
-        $dtGaleri = Galeri::paginate(10);;
-        return view('admin.data-beranda', compact('dtGaleri'));
+        $dtGaleri = Galeri::paginate(10);
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.data-beranda', compact('dtGaleri', 'dtNotif', 'CountNotif'));
     }
 
     public function index_data_tentang()
     {   
         $dtBeranda = Beranda::all();
         $dtCekBeranda = Beranda::get();
-        return view('admin.data-tentang', compact('dtBeranda', 'dtCekBeranda'));
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.data-tentang', compact('dtBeranda', 'dtCekBeranda', 'dtNotif', 'CountNotif'));
     }
 
     public function edit_data_beranda($id)
     {
         $dtBeranda = Beranda::findorfail($id);
-        return view('admin.edit-beranda',compact('dtBeranda'));
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.edit-beranda',compact('dtBeranda', 'dtNotif', 'CountNotif'));
     }
 
     public function update_data_beranda(Request $request, $id)
@@ -216,12 +298,24 @@ class DashboardAdminController extends Controller
 
     public function create_galeri()
     {
-        return view('admin.input-galeri');
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.input-galeri', compact('dtNotif', 'CountNotif'));
     }
 
     public function create_tentang()
     {
-        return view('admin.input-tentang');
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.input-tentang', compact('dtNotif', 'CountNotif'));
     }
     
     public function store_tentang(Request $request)
@@ -255,7 +349,13 @@ class DashboardAdminController extends Controller
     public function edit_galeri($id)
     {
         $dtGaleri = Galeri::findorfail($id);
-        return view('admin.edit-galeri',compact('dtGaleri'));
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.edit-galeri',compact('dtGaleri', 'dtNotif', 'CountNotif'));
     }
 
     public function update_galeri(Request $request, $id)
@@ -299,7 +399,13 @@ class DashboardAdminController extends Controller
     public function index_komentar()
     {
         $dtKomentar = Komentar::all();
-        return view('admin.data-komentar', compact('dtKomentar'));
+        $CountNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->count();
+        $dtNotif = Notifikasi::select("*")    
+                    ->where('is_read', 0)
+                    ->get();
+        return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
     }
 
     public function cari_komentar(Request $request)
@@ -311,7 +417,12 @@ class DashboardAdminController extends Controller
                         ->where('nama_user', 'like', "%" . $keyword . "%")
                         ->orWhere('isi_komentar', 'like', "%" . $keyword . "%")
                         ->paginate(10);
- 
-		return view('admin.data-komentar', compact('dtKomentar'));
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->count();
+        $dtNotif = Notifikasi::select("*")    
+                        ->where('is_read', 0)
+                        ->get();
+		return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
 	}
 }

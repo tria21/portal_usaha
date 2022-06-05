@@ -15,6 +15,8 @@
     
     <!-- Style -->
     <link rel="stylesheet" href="{{asset('templete/css/style.css')}}">
+    
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
 
     <title>Guest Registration</title>
   </head>
@@ -57,6 +59,9 @@
                                         <input type="password" name="password" value="{{old('password')}}" id="password" class="form-control">
                                         <span class="text-danger">@error('password') {{$message}} @enderror</span>
                                     </div>
+                                    {{-- <div>
+                                        <input type="checkbox" class="form-checkbox"> Show password
+                                        </div> --}}
                                     
                                     <div class="d-flex mb-5 align-items-center">
                                         <span class="ml-auto"><a href="login" class="forgot-pass">Login Here!</a></span> 
@@ -71,6 +76,17 @@
             </div>
         </div>
     </body>
+    {{-- <script type="text/javascript">
+        $(document).ready(function(){		
+            $('.form-checkbox').click(function(){
+                if($(this).is(':checked')){
+                    $('.form-control').attr('type','text');
+                }else{
+                    $('.form-control').attr('type','password');
+                }
+            });
+        });
+    </script> --}}
     <script src="{{asset('templete/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('templete/js/popper.min.js')}}"></script>
     <script src="{{asset('templete/js/bootstrap.min.js')}}"></script>
