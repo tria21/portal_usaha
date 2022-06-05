@@ -125,9 +125,6 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href="{{route('data-artikel-pemilik')}}">Kelola Artikel</a></li>
               </ul>
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{route('data-komentar-pemilik')}}">Kelola Komentar</a></li>
-              </ul>
             </div>
           </li>
         </ul>
@@ -152,7 +149,7 @@
           <div class="row">
             <div class="col-md-12 grid-margin transparent">
               <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent">
+                <div class="col-md-12 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">Data Artikel</p>
