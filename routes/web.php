@@ -121,6 +121,7 @@ Route::get('/hapus-sosmed/{id}', [App\Http\Controllers\CustomAuthController::cla
 Route::get('/dashboard-pengunjung', [App\Http\Controllers\DashboardPengunjungController::class, 'index'])->name('dashboard-pengunjung');
 Route::get('/read-more-artikel-beranda/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'readMore'])->name('read-more-artikel-beranda');
 Route::get('/tampil-artikel-kategori/{kategori}', [App\Http\Controllers\DashboardPengunjungController::class, 'baseKategori'])->name('tampil-artikel-kategori');
+Route::get('/tampil-usaha-kategori/{kategori}', [App\Http\Controllers\DashboardPengunjungController::class, 'baseKategoriUsaha'])->name('tampil-usaha-kategori');
 Route::get('/tampil-artikel', [App\Http\Controllers\DashboardPengunjungController::class, 'tampilArtikel'])->name('tampil-artikel');
 Route::get('/tampil-usaha', [App\Http\Controllers\DashboardPengunjungController::class, 'tampilUsaha'])->name('tampil-usaha');
 Route::get('/profil-usaha/{id}', [App\Http\Controllers\DashboardPengunjungController::class, 'profilUsaha'])->name('profil-usaha');

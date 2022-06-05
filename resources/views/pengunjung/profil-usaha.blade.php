@@ -86,7 +86,7 @@
                             @foreach ($dtUserID as $item)
                             <img src="{{asset('img/'.$item->image)}}" class="testimonial-img" alt="">
                             <h3>{{$item->nama_usaha}}</h3>
-                            <h4>{{$item->jenis_usaha}}</h4>
+                            <h4>{{$item->alamat_usaha}}</h4>
                             @endforeach
                         </div>
                     </div><!-- End testimonial item -->

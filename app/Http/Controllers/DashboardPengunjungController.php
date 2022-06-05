@@ -66,6 +66,14 @@ class DashboardPengunjungController extends Controller
         return view('pengunjung.tampil-artikel-kategori', compact('dtArtikelKategori'));
     }
 
+    public function baseKategoriUsaha($kategori){
+        $dtUsahaKategori = User::select("*")    
+                            ->where('jenis_usaha', [$kategori])
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(9);
+        return view('pengunjung.tampil-usaha-kategori', compact('dtUsahaKategori'));
+    }
+
     public function tampilArtikel(){
         // $dtArtikel = DB::select('select * from konten_artikels');
         $dtArtikel = KontenArtikel::paginate(9);

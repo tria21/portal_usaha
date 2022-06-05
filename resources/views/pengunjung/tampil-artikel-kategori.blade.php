@@ -121,12 +121,52 @@
         <div class="blog-overly"></div>
         <div class="container ">
           <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-4 col-md-4">
+              <div class="page-head-blog">
+                <div class="single-blog-page">
+                  <div class="left-blog">
+                    <h4>Kategori</h4>
+                    <ul>
+                      <li>
+                        @php $kategori = 'Produk' @endphp
+                        <a href="{{route('tampil-artikel-kategori', $kategori)}}">Produk</a>
+                      </li>
+                      <li>
+                        @php $kategori = 'Teknologi' @endphp
+                        <a href="{{route('tampil-artikel-kategori', $kategori)}}">Teknologi</a>
+                      </li>
+                      <li>
+                        @php $kategori = 'Pelatihan' @endphp
+                        <a href="{{route('tampil-artikel-kategori', $kategori)}}">Pelatihan</a>
+                      </li>
+                      <li>
+                        @php $kategori = 'Lomba' @endphp
+                        <a href="{{route('tampil-artikel-kategori', $kategori)}}">Lomba</a>
+                      </li>
+                      <li>
+                        @php $kategori = 'Bantuan' @endphp
+                        <a href="{{route('tampil-artikel-kategori', $kategori)}}">Bantuan</a>
+                      </li>
+                      <li>
+                        @php $kategori = 'Tips' @endphp
+                        <a href="{{route('tampil-artikel-kategori', $kategori)}}">Tips</a>
+                      </li>
+                      <li>
+                        @php $kategori = 'Lainnya' @endphp
+                        <a href="{{route('tampil-artikel-kategori', $kategori)}}">Lainnya</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
               <div class="section-headline text-center">
-                @foreach ($dtArtikelKategori as $kat)
+                @forelse ($dtArtikelKategori as $kat)
                 @php $kategori = $kat->kategori @endphp
-                @endforeach
                 <h2>Artikel Kategori {{$kategori}}</h2>
+                @empty
+                @endforelse
               </div>
               <div class="single-blog-page">
                 <!-- search option start -->
@@ -140,44 +180,52 @@
                 </form>
                 <!-- search option end -->
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <!-- Start Left Blog -->
-            @foreach ($dtArtikelKategori as $item)
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="single-blog">
-                <div class="single-blog-img">
-                  <a href="blog.html">
-                    <img src="{{asset('img/'.$item->gambar)}}" alt="">
-                  </a>
+              <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                  <!-- Start Left Blog -->
+                  @forelse ($dtArtikelKategori as $item)
+                  @foreach ($dtArtikelKategori as $item)
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="single-blog">
+                      <div class="single-blog-img">
+                        <a href="blog.html">
+                          <img src="{{asset('img/'.$item->gambar)}}" alt="">
+                        </a>
+                      </div>
+                      <div class="blog-meta">
+                        {{-- <span class="comments-type">
+                          <i class="fa fa-comment-o"></i>
+                          <a href="#">13 comments</a>
+                        </span> --}}
+                        <span class="date-type">
+                          <i class="fa fa-calendar"></i>{{$item->created_at}}
+                        </span>
+                      </div>
+                      <div class="blog-text">
+                        <h4>
+                          <a href="#">{{$item->judul}}</a>
+                        </h4>
+                        {{-- <p>
+                          @php $isi = $item->isi_artikel
+                          {{Str::limit($isi, 100)}}
+                          {!!$item->isi_artikel!!}
+                        </p> --}}
+                      </div>
+                      <span>
+                        <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>
+                      </span>
+                    </div>
+                    <!-- Start single blog -->
+                  </div>
+                  @endforeach
+                  @empty
+                  <div class="col-md-8 col-sm-8 col-xs-12">
+                    <p>Tidak ada data yang cocok</p>
+                  </div>
+                  @endforelse
                 </div>
-                <div class="blog-meta">
-                  {{-- <span class="comments-type">
-                    <i class="fa fa-comment-o"></i>
-                    <a href="#">13 comments</a>
-                  </span> --}}
-                  <span class="date-type">
-                    <i class="fa fa-calendar"></i>{{$item->created_at}}
-                  </span>
-                </div>
-                <div class="blog-text">
-                  <h4>
-                    <a href="#">{{$item->judul}}</a>
-                  </h4>
-                  {{-- <p>
-                    @php $isi = $item->isi_artikel
-                    {{Str::limit($isi, 100)}}
-                    {!!$item->isi_artikel!!}
-                  </p> --}}
-                </div>
-                <span>
-                  <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>
-                </span>
               </div>
-              <!-- Start single blog -->
             </div>
-            @endforeach
           </div>
         </div>
       </div>

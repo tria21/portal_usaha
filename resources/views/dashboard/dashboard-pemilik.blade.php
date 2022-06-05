@@ -160,14 +160,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-dark-blue">
-                    <div class="card-body">
-                      <p class="mb-4">Komentar</p>
-                      <p class="fs-30 mb-2">10</p>
-                    </div>
-                  </div>
-                </div>
               </div>
               </div>
             </div>

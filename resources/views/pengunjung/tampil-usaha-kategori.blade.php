@@ -52,7 +52,7 @@
           <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-tentang')}}">Tentang</a></li>
           <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
-          <li><a class="nav-link scrollto active" href="{{route('tampil-artikel')}}">Usaha Mikro</a></li>
+          <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
           @if(session('loginRole') =='2') 
           <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -156,6 +156,13 @@
           </div>
           <!-- Start single blog -->
           <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="section-headline text-center">
+              @forelse ($dtUsahaKategori as $kat)
+              @php $kategori = $kat->jenis_usaha @endphp
+              <h2>Jenis Usaha {{$kategori}}</h2>
+              @empty
+              @endforelse
+            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="single-blog-page">
@@ -174,7 +181,8 @@
             </div>
             <div class="row">
                 <!-- Start Left Blog -->
-                @foreach ($TampilUsaha as $item)
+                @forelse ($dtUsahaKategori as $item)
+                @foreach ($dtUsahaKategori as $item)
                 <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-blog">
                     <div class="testimonial-item">
@@ -192,9 +200,14 @@
                 <!-- Start single blog -->
                 </div>
                 @endforeach
+                @empty
+                  <div class="col-md-8 col-sm-8 col-xs-12">
+                    <p>Tidak ada data yang cocok</p>
+                  </div>
+                @endforelse
             </div>
             <center>
-            {{ $TampilUsaha->links() }}<br>
+            {{ $dtUsahaKategori->links() }}<br>
             </center>
           </div>
         </div>
