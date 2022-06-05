@@ -241,6 +241,10 @@
                                 <span class="post-time">{{$item->created_at}} </span>
                                 @if(session('loginRole') =='3')  
                                   <a href="{{route('hapus-komen',$item->id)}}" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>
+                                @elseif(session('loginRole') =='1')
+                                  @if($dtArtikelIDU->id_user == session('loginId'))
+                                    <a href="{{route('hapus-komen',$item->id)}}" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">Hapus</a>
+                                  @endif
                                 @endif
                               </span>
                               <span>

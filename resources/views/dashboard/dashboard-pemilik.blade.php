@@ -34,6 +34,35 @@
           <span class="icon-menu"></span>
         </button>
         <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="icon-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              @forelse ($dtNotif as $item)
+              <a href="{{route('read-more-artikel-beranda', $item->id_artikel)}}" class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-primary">
+                    <i class="ti-comment-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">1 Komentar Baru</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    {{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}
+                  </p>
+                </div>
+              </a>
+              @empty
+              <a href="" class="dropdown-item preview-item">
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Tidak Ada Notifikasi</h6>
+                </div>
+              </a>
+              @endforelse
+            </div>
+          </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{{asset('../skydash/template/images/faces/admin.jpg')}}" alt="profile"/>

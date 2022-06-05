@@ -33,13 +33,16 @@ class DashboardPengunjungController extends Controller
         $dtArtikelID      = KontenArtikel::select("*")    
                             ->where('id', $id)
                             ->get();
+        $dtArtikelIDU      = KontenArtikel::select("id_user")    
+                            ->where('id', $id)
+                            ->firstOrFail();
         $dtKomentar       = Komentar::select("*")    
                             ->where('id_artikel', $id)
                             ->get();
         $TampilAkun       = User::select("*")    
                             ->where('id', session('loginId'))
                             ->get();
-        if(session('loginRole') =='3'){
+        if(session('loginRole') =='3' || session('loginRole') =='1'){
             $ubah = Notifikasi::where('id_artikel', $id);
                     
             $dtRead = [
@@ -48,7 +51,7 @@ class DashboardPengunjungController extends Controller
 
             $ubah->update($dtRead);
         }
-        return view('pengunjung.read-more-artikel-beranda', compact('TampilAkun', 'dtArtikelBeranda', 'dtArtikelID', 'dtKomentar', 'id'));
+        return view('pengunjung.read-more-artikel-beranda', compact('TampilAkun', 'dtArtikelBeranda', 'dtArtikelID', 'dtArtikelIDU', 'dtKomentar', 'id'));
     }
 
     public function profilUsaha($id){

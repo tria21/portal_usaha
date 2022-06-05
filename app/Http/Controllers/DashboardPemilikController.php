@@ -32,7 +32,14 @@ class DashboardPemilikController extends Controller
     {
         $CountArtikel = KontenArtikel::where('id_user', [session('loginId')])->count();
         // $CountKomentar = KontenArtikel::where('role', 1)->count();
-        return view('dashboard.dashboard-pemilik', compact('CountArtikel'));
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*')
+                    ->where('konten_artikels.id_user', session('loginId'))
+                    ->where('is_read', 0)
+                    ->get();
+        return view('dashboard.dashboard-pemilik', compact('CountArtikel', 'dtNotif'));
     }
 
     public function index_data_artikel()
