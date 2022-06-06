@@ -7,6 +7,7 @@ use App\Models\KontenArtikel;
 use App\Models\User;
 use App\Models\Notifikasi;
 use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\SweetAlertServiceProvider ;
 use Illuminate\Support\Facades\DB;
 use App\Exports\ArtikelAdminExport;
 use App\Exports\ArtikelPemilikExport;
@@ -188,7 +189,6 @@ class Admin_DataArtikelAdminController extends Controller
         }
         //hapus data drai db
         $hapus->delete();
-        // Alert::question('Apakah Anda Yakin Ingin Menghapus Data Ini?');
         return back();
     }
 

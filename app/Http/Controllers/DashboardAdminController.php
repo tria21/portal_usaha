@@ -285,7 +285,9 @@ class DashboardAdminController extends Controller
 
     public function index_data_beranda()
     {   
-        $dtGaleri = Galeri::paginate(10);
+        $dtGaleri = Galeri::select("*")
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
                     ->where('is_read_admin', 0)
                     ->count();
@@ -446,7 +448,7 @@ class DashboardAdminController extends Controller
         // dd($id);
         $hapus = Galeri::findorfail($id);
 
-        $file = ('img/').$hapus->image;
+        $file = ('img/').$hapus->gambar;
         //cek jika ada gambar
         if (file_exists($file)){
             //maka hapus file dari folder img
@@ -454,7 +456,8 @@ class DashboardAdminController extends Controller
         }
         //hapus data drai db
         $hapus->delete();
-        return back();
+        // return back();
+        return redirect('data-beranda');
     }
 
     public function index_komentar()

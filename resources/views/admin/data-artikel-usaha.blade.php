@@ -209,7 +209,7 @@
                           <th>
                             <a href="{{route('detail-artikel-usaha',$item->id)}}" class="btn btn-success btn-sm">
                               <i class="ti-eye btn-icon-append"></i></a>
-                            <a href="{{route('hapus-artikel-pemilik',$item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin Akan Menghapus Data?')">
+                            <a href="{{route('hapus-artikel-pemilik',$item->id)}}" class="btn btn-danger btn-smdelete" data-id="{{$item->id}}">
                               <i class="ti-trash btn-icon-append"></i></a>
                           </th>
                         </tr>
@@ -263,7 +263,31 @@
   <!-- Custom js for this page-->
   <script src="{{asset('../skydash/template/js/dashboard.js')}}"></script>
   <script src="{{asset('../skydash/template/js/Chart.roundedBarCharts.js')}}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- End custom js for this page-->
 </body>
-
+<script>
+  $('.delete').click( function() {
+    var idhapus = $(this).attr('data-id');
+    swal({
+      title: "Apakah Anda Yakin?",
+      text: "Anda akan menghapus data ini, data yang sudah dihapus tidak dapat dipulihkan!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        window.location = "hapus-artikel-usaha/"+idhapus+""
+        swal("Data berhasil dihapus!", {
+          icon: "success",
+        });
+      } else {
+        swal("Data batal dihapus!", {
+          icon: "error",
+        });
+      }
+    });
+  });
+</script>
 </html>
