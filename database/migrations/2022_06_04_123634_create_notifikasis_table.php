@@ -17,7 +17,8 @@ class CreateNotifikasisTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_komentar');
             $table->unsignedBigInteger('id_artikel');
-            $table->boolean('is_read');
+            $table->boolean('is_read_admin');
+            $table->boolean('is_read_pemilik');
             $table->foreign('id_komentar')->references('id')->on('komentars')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('id_artikel')->references('id')->on('konten_artikels')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();

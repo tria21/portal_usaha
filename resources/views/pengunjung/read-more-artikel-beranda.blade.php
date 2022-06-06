@@ -218,7 +218,8 @@
                       <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
                           <input type="hidden" name="id_komentar_utama" value="0">
-                          <input type="hidden" name="is_read" value="0">
+                          <input type="hidden" name="is_read_admin" value="0">
+                          <input type="hidden" name="is_read_pemilik" value="0">
                           <textarea name="isi_komentar" id="message-box" cols="30" rows="10"></textarea>
                           <input type="submit" value="Kirim"><br><br>
                         </div>
@@ -255,7 +256,8 @@
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                     <input type="hidden" name="id_komentar_utama" value="{{$item->id}}">
-                                    <input type="hidden" name="is_read" value="0">
+                                    <input type="hidden" name="is_read_admin" value="0">
+                                    <input type="hidden" name="is_read_pemilik" value="0">
                                     <input type="text" name="isi_komentar">
                                     <input type="submit" value="Kirim"><br><br>
                                   </div>

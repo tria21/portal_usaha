@@ -42,11 +42,19 @@ class DashboardPengunjungController extends Controller
         $TampilAkun       = User::select("*")    
                             ->where('id', session('loginId'))
                             ->get();
-        if(session('loginRole') =='3' || session('loginRole') =='1'){
+        if(session('loginRole') =='3'){
             $ubah = Notifikasi::where('id_artikel', $id);
                     
             $dtRead = [
-                'is_read'              => 1,
+                'is_read_admin'     => 1,
+            ];
+
+            $ubah->update($dtRead);
+        }elseif(session('loginRole') =='1'){
+            $ubah = Notifikasi::where('id_artikel', $id);
+                    
+            $dtRead = [
+                'is_read_pemilik'   => 1,
             ];
 
             $ubah->update($dtRead);
@@ -103,7 +111,8 @@ class DashboardPengunjungController extends Controller
         $dtUpload2 = new Notifikasi;
         $dtUpload2->id_artikel            = $request->id;
         $dtUpload2->id_komentar           = $dtUpload->id;
-        $dtUpload2->is_read               = $request->is_read;
+        $dtUpload2->is_read_admin         = $request->is_read_admin;
+        $dtUpload2->is_read_pemilik       = $request->is_read_pemilik;
 
         $dtUpload2->save();
         

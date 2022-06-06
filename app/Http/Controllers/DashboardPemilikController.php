@@ -37,17 +37,17 @@ class DashboardPemilikController extends Controller
         $CountNotif = DB::table('notifikasis')
                         ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*')
+                        ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('konten_artikels.id_user', session('loginId'))
-                        ->where('is_read', 0)
+                        ->where('is_read_pemilik', 0)
                         ->count();
                         
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*')
+                    ->select('notifikasis.*', 'komentars.nama_user')
                     ->where('konten_artikels.id_user', session('loginId'))
-                    ->where('is_read', 0)
+                    ->where('is_read_pemilik', 0)
                     ->get();
         return view('dashboard.dashboard-pemilik', compact('CountArtikel', 'dtNotif', 'CountNotif'));
     }
@@ -62,17 +62,17 @@ class DashboardPemilikController extends Controller
         $CountNotif = DB::table('notifikasis')
                             ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                             ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                            ->select('notifikasis.*')
+                            ->select('notifikasis.*', 'komentars.nama_user')
                             ->where('konten_artikels.id_user', session('loginId'))
-                            ->where('is_read', 0)
+                            ->where('is_read_pemilik', 0)
                             ->count();
 
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*')
+                    ->select('notifikasis.*', 'komentars.nama_user')
                     ->where('konten_artikels.id_user', session('loginId'))
-                    ->where('is_read', 0)
+                    ->where('is_read_pemilik', 0)
                     ->get();
         return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
     }
@@ -86,17 +86,17 @@ class DashboardPemilikController extends Controller
         $CountNotif = DB::table('notifikasis')
                             ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                             ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                            ->select('notifikasis.*')
+                            ->select('notifikasis.*', 'komentars.nama_user')
                             ->where('konten_artikels.id_user', session('loginId'))
-                            ->where('is_read', 0)
+                            ->where('is_read_pemilik', 0)
                             ->count();
 
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*')
+                    ->select('notifikasis.*', 'komentars.nama_user')
                     ->where('konten_artikels.id_user', session('loginId'))
-                    ->where('is_read', 0)
+                    ->where('is_read_pemilik', 0)
                     ->get();
 
         $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
@@ -113,17 +113,17 @@ class DashboardPemilikController extends Controller
         $CountNotif = DB::table('notifikasis')
                         ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*')
+                        ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('konten_artikels.id_user', session('loginId'))
-                        ->where('is_read', 0)
+                        ->where('is_read_pemilik', 0)
                         ->count();
 
         $dtNotif = DB::table('notifikasis')
                 ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                 ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                ->select('notifikasis.*')
+                ->select('notifikasis.*', 'komentars.nama_user')
                 ->where('konten_artikels.id_user', session('loginId'))
-                ->where('is_read', 0)
+                ->where('is_read_pemilik', 0)
                 ->get();
         return view('pemilik.cetak-artikel-pemilik', compact('cetakArPemilik', 'dtNotif', 'CountNotif'));
     }
@@ -138,17 +138,17 @@ class DashboardPemilikController extends Controller
         $CountNotif = DB::table('notifikasis')
                             ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                             ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                            ->select('notifikasis.*')
+                            ->select('notifikasis.*', 'komentars.nama_user')
                             ->where('konten_artikels.id_user', session('loginId'))
-                            ->where('is_read', 0)
+                            ->where('is_read_pemilik', 0)
                             ->count();
 
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*')
+                    ->select('notifikasis.*', 'komentars.nama_user')
                     ->where('konten_artikels.id_user', session('loginId'))
-                    ->where('is_read', 0)
+                    ->where('is_read_pemilik', 0)
                     ->get();
         return view('pemilik.input-artikel-pemilik', compact('CountNotif', 'dtNotif'));
     }
@@ -196,17 +196,17 @@ class DashboardPemilikController extends Controller
         $CountNotif = DB::table('notifikasis')
                             ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                             ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                            ->select('notifikasis.*')
+                            ->select('notifikasis.*', 'komentars.nama_user')
                             ->where('konten_artikels.id_user', session('loginId'))
-                            ->where('is_read', 0)
+                            ->where('is_read_pemilik', 0)
                             ->count();
 
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*')
+                    ->select('notifikasis.*', 'komentars.nama_user')
                     ->where('konten_artikels.id_user', session('loginId'))
-                    ->where('is_read', 0)
+                    ->where('is_read_pemilik', 0)
                     ->get();
         return view('pemilik.edit-artikel-pemilik',compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
     }
@@ -284,17 +284,17 @@ class DashboardPemilikController extends Controller
         $CountNotif = DB::table('notifikasis')
                         ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*')
+                        ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('konten_artikels.id_user', session('loginId'))
-                        ->where('is_read', 0)
+                        ->where('is_read_pemilik', 0)
                         ->count();
 
     $dtNotif = DB::table('notifikasis')
                 ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                 ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                ->select('notifikasis.*')
+                ->select('notifikasis.*', 'komentars.nama_user')
                 ->where('konten_artikels.id_user', session('loginId'))
-                ->where('is_read', 0)
+                ->where('is_read_pemilik', 0)
                 ->get();
  
 		return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));

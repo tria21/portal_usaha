@@ -43,10 +43,13 @@ class DashboardAdminController extends Controller
         $CountArAdmin = KontenArtikel::where('role', 3)->count();
         $CountArPemilik = KontenArtikel::where('role', 1)->count();
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('dashboard.dashboard-admin', compact('CountAkPemilik', 'CountAkMasy', 'CountArAdmin', 'CountArPemilik', 'dtNotif', 'CountNotif'));
     }
@@ -58,10 +61,13 @@ class DashboardAdminController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
-                ->where('is_read', 0)
+                ->where('is_read_admin', 0)
                 ->count();
-        $dtNotif = Notifikasi::select("*")    
-                ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                ->select('notifikasis.*', 'komentars.nama_user')
+                ->where('is_read_admin', 0)
                 ->get();
         return view('admin.data-akun-masyarakat', compact('dtMas', 'dtNotif', 'CountNotif'));
     }
@@ -73,10 +79,13 @@ class DashboardAdminController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->get();
         $CountNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+                        ->where('is_read_admin', 0)
                         ->count();
-        $dtNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->where('is_read_admin', 0)
                         ->get();
         return view('admin.cetak-akun-masyarakat', compact('cetakAkMasy', 'dtNotif', 'CountNotif'));
     }
@@ -93,10 +102,13 @@ class DashboardAdminController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
-                ->where('is_read', 0)
+                ->where('is_read_admin', 0)
                 ->count();
-        $dtNotif = Notifikasi::select("*")    
-                ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                ->select('notifikasis.*', 'komentars.nama_user')
+                ->where('is_read_admin', 0)
                 ->get();
         return view('admin.data-akun-usaha', compact('dtUsaha', 'dtNotif', 'CountNotif'));
     }
@@ -111,10 +123,13 @@ class DashboardAdminController extends Controller
                 ->get();
         $dtAkunID = DB::select('select * from users where id = ?', [$id]);
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.detail-akun-usaha', compact('dtUsaha', 'dtSosmed', 'dtAkunID', 'dtNotif', 'CountNotif'));
     }
@@ -126,10 +141,13 @@ class DashboardAdminController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
         $CountNotif = Notifikasi::select("*")    
-                ->where('is_read', 0)
+                ->where('is_read_admin', 0)
                 ->count();
-        $dtNotif = Notifikasi::select("*")    
-                ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                ->select('notifikasis.*', 'komentars.nama_user')
+                ->where('is_read_admin', 0)
                 ->get();
         return view('admin.cetak-akun-usaha', compact('cetakAkUsaha', 'dtNotif', 'CountNotif'));
     }
@@ -151,10 +169,13 @@ class DashboardAdminController extends Controller
                         ->orWhere('alamat_usaha', 'like', "%" . $keyword . "%")
                         ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+                        ->where('is_read_admin', 0)
                         ->count();
-        $dtNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->where('is_read_admin', 0)
                         ->get();
  
 		return view('admin.data-akun-usaha', compact('dtUsaha', 'dtNotif', 'CountNotif'));
@@ -167,10 +188,13 @@ class DashboardAdminController extends Controller
                             ->orderBy('created_at', 'desc')
                             ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
     }
@@ -182,10 +206,13 @@ class DashboardAdminController extends Controller
                             ->get();
         $dtArtikelID = DB::select('select * from konten_artikels where id = ?', [$id]);
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik', 'dtArtikelID', 'dtNotif', 'CountNotif'));
     }
@@ -197,10 +224,13 @@ class DashboardAdminController extends Controller
                             ->orderBy('created_at', 'desc')
                             ->get();
         $CountNotif = Notifikasi::select("*")    
-                            ->where('is_read', 0)
+                            ->where('is_read_admin', 0)
                             ->count();
-        $dtNotif = Notifikasi::select("*")    
-                            ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                            ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                            ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                            ->select('notifikasis.*', 'komentars.nama_user')
+                            ->where('is_read_admin', 0)
                             ->get();
         return view('admin.cetak-artikel-usaha', compact('cetakArPemilik', 'dtNotif', 'CountNotif'));
     }
@@ -221,10 +251,13 @@ class DashboardAdminController extends Controller
                         ->orWhere('penulis', 'like', "%" . $keyword . "%")
                         ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+                        ->where('is_read_admin', 0)
                         ->count();
-        $dtNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->where('is_read_admin', 0)
                         ->get();
 		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
 	}
@@ -239,10 +272,13 @@ class DashboardAdminController extends Controller
                         ->where('caption_gambar', 'like', "%" . $keyword . "%")
                         ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+                        ->where('is_read_admin', 0)
                         ->count();
-        $dtNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->where('is_read_admin', 0)
                         ->get();
 		return view('admin.data-beranda', compact('dtGaleri', 'dtNotif', 'CountNotif'));
 	}
@@ -251,10 +287,13 @@ class DashboardAdminController extends Controller
     {   
         $dtGaleri = Galeri::paginate(10);
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.data-beranda', compact('dtGaleri', 'dtNotif', 'CountNotif'));
     }
@@ -264,10 +303,13 @@ class DashboardAdminController extends Controller
         $dtBeranda = Beranda::all();
         $dtCekBeranda = Beranda::get();
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.data-tentang', compact('dtBeranda', 'dtCekBeranda', 'dtNotif', 'CountNotif'));
     }
@@ -276,10 +318,13 @@ class DashboardAdminController extends Controller
     {
         $dtBeranda = Beranda::findorfail($id);
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.edit-beranda',compact('dtBeranda', 'dtNotif', 'CountNotif'));
     }
@@ -301,10 +346,13 @@ class DashboardAdminController extends Controller
     public function create_galeri()
     {
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.input-galeri', compact('dtNotif', 'CountNotif'));
     }
@@ -312,10 +360,13 @@ class DashboardAdminController extends Controller
     public function create_tentang()
     {
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.input-tentang', compact('dtNotif', 'CountNotif'));
     }
@@ -356,10 +407,13 @@ class DashboardAdminController extends Controller
     {
         $dtGaleri = Galeri::findorfail($id);
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.edit-galeri',compact('dtGaleri', 'dtNotif', 'CountNotif'));
     }
@@ -407,10 +461,13 @@ class DashboardAdminController extends Controller
     {
         $dtKomentar = Komentar::all();
         $CountNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+                    ->where('is_read_admin', 0)
                     ->count();
-        $dtNotif = Notifikasi::select("*")    
-                    ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->where('is_read_admin', 0)
                     ->get();
         return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
     }
@@ -425,10 +482,13 @@ class DashboardAdminController extends Controller
                         ->orWhere('isi_komentar', 'like', "%" . $keyword . "%")
                         ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+                        ->where('is_read_admin', 0)
                         ->count();
-        $dtNotif = Notifikasi::select("*")    
-                        ->where('is_read', 0)
+        $dtNotif = DB::table('notifikasis')
+                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->where('is_read_admin', 0)
                         ->get();
 		return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
 	}
