@@ -164,22 +164,6 @@
               @endforelse
             </div>
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="single-blog-page">
-                    <!-- search option start -->
-                    <form action="{{route('cari-usaha')}}" method="GET">
-                    <div class="search-option">
-                      <input type="text" name="cari" id="cari" placeholder="Masukkan Kata Kunci" value="{{ old('keyword') }}">
-                      <button class="button" type="submit">
-                        <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                    </form>
-                    <!-- search option end -->
-                </div>
-                </div>
-            </div>
-            <div class="row">
                 <!-- Start Left Blog -->
                 @forelse ($dtUsahaKategori as $item)
                 @foreach ($dtUsahaKategori as $item)

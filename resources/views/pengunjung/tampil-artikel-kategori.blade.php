@@ -168,18 +168,6 @@
                 @empty
                 @endforelse
               </div>
-              <div class="single-blog-page">
-                <!-- search option start -->
-                <form action="#">
-                  <div class="search-option">
-                    <input type="text" placeholder="Search...">
-                    <button class="button" type="submit">
-                      <i class="bi bi-search"></i>
-                    </button>
-                  </div>
-                </form>
-                <!-- search option end -->
-              </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="row">
                   <!-- Start Left Blog -->

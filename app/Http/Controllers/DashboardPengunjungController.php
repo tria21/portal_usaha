@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Komentar;
 use App\Models\Beranda;
 use App\Models\Notifikasi;
+use App\Models\Sosmed;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -63,10 +64,17 @@ class DashboardPengunjungController extends Controller
     }
 
     public function profilUsaha($id){
-        $dtUserID = DB::select('select * from users where id = ?', [$id]);
+        $dtUserID    = DB::select('select * from users where id = ?', [$id]);
         $dtArtikelID = DB::select('select * from konten_artikels where id_user = ?', [$id]);
-        $dtSosmedID = DB::select('select * from sosmeds where id_user = ?', [$id]);
-        return view('pengunjung.profil-usaha', compact('dtUserID', 'dtArtikelID', 'dtSosmedID'));
+        $dtSosmedID  = Sosmed::select("*")    
+                        ->where('id_user', [$id])
+                        ->whereNotIn('nama_sosmed', ['google maps', 'Google maps', 'Google Maps'])
+                        ->get();
+        $dtSosmedMaps = Sosmed::select("*")    
+                        ->where('id_user', [$id])
+                        ->where('nama_sosmed', ['google maps', 'Google maps', 'Google Maps'])
+                        ->get();
+        return view('pengunjung.profil-usaha', compact('dtUserID', 'dtArtikelID', 'dtSosmedID', 'dtSosmedMaps'));
     }
 
     public function baseKategori($kategori){
