@@ -391,7 +391,7 @@ class DashboardAdminController extends Controller
         $nm = $request->image;
         $namaFile = time().rand(100,999).".".$nm->getClientOriginalExtension(); //memberi nama file dengan nomor acak
         $image_resize = Image::make($nm->getRealPath());
-        $image_resize->resize(300, 300);
+        $image_resize->resize(400, 300);
 
         $dtUpload = new Galeri;
         $dtUpload->image           = $namaFile;
@@ -434,7 +434,7 @@ class DashboardAdminController extends Controller
             // $ubah->delete_image();
             $image = $request->file('image');
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->resize(300, 300);
+            $image_resize->resize(400, 300);
             $image_resize->save('img/' .$awal , 80);
         }
 

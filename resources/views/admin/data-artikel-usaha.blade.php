@@ -209,7 +209,7 @@
                           <th>
                             <a href="{{route('detail-artikel-usaha',$item->id)}}" class="btn btn-success btn-sm">
                               <i class="ti-eye btn-icon-append"></i></a>
-                            <a href="{{route('hapus-artikel-pemilik',$item->id)}}" class="btn btn-danger btn-smdelete" data-id="{{$item->id}}">
+                            <a href="{{route('hapus-artikel-pemilik',$item->id)}}" class="btn btn-danger btn-sm delete" data-id="{{$item->id}}">
                               <i class="ti-trash btn-icon-append"></i></a>
                           </th>
                         </tr>

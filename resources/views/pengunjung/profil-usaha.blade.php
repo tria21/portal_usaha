@@ -126,35 +126,34 @@
           </div>
           <!-- Start single blog -->
           <div class="col-md-8 col-sm-8 col-xs-12">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="single-blog">
-                          @foreach ($dtArtikelID as $item)
-                          <div class="single-blog-img">
-                            <a href="blog-details.html">
-                              <img src="{{asset('img/'.$item->gambar)}}" alt="">
-                            </a>
-                          </div>
-                          <div class="blog-meta">
-                            <span class="date-type">
-                              <i class="bi bi-calendar"></i>{{$item->created_at}}
-                            </span>
-                          </div>
-                          <div class="blog-text">
-                            <h4>
-                              <a href="#">{{$item->judul}}</a>
-                            </h4>
-                          </div>
-                          <span>
-                            <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>
-                          </span>
-                          <br><br><br>
-                          @endforeach
+              <div class="row">
+                @foreach ($dtArtikelID as $item)
+                  <div class="col-md-8 col-sm-8 col-xs-12">
+                      <div class="single-blog">
+                        <div class="single-blog-img">
+                          <a href="blog-details.html">
+                            <img src="{{asset('img/'.$item->gambar)}}" alt="">
+                          </a>
                         </div>
-                    </div>
-                </div>
-
-            </div>
+                        <div class="blog-meta">
+                          <span class="date-type">
+                            <i class="bi bi-calendar"></i>{{$item->created_at}}
+                          </span>
+                        </div>
+                        <div class="blog-text">
+                          <h4>
+                            <a href="#">{{ Str::limit($item->judul, 38)}}</a>
+                          </h4>
+                        </div>
+                        <span>
+                          <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>
+                        </span>
+                        <br><br><br>
+                      </div>
+                  </div>
+                @endforeach
+              </div>
+          </div>
         </div>
       </div>
     </div><!-- End Blog Page -->

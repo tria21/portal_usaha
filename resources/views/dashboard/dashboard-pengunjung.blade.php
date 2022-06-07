@@ -95,7 +95,6 @@
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
                 <p class="animate__animated animate__fadeInUp">Portal Usaha Mikro Kabupaten Jombang</p>
-                {{-- <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a> --}}
               </div>
             </div>
           </div>
@@ -119,12 +118,11 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            @forelse ($dtGaleri as $item)
+            @if($dtGaleri)
             <div class="section-headline text-center">
               <h2>Galeri</h2>
             </div>
-            @empty
-            @endforelse
+            @endif
           </div>
         </div>
 
@@ -170,7 +168,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
                 <div class="single-blog-img">
-                  <a href="blog.html">
+                  <a href="#">
                     <img src="{{asset('img/'.$item->gambar)}}" alt="">
                   </a>
                 </div>
