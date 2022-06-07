@@ -56,7 +56,7 @@
                                     </div> --}}
                                     
                                     <div class="d-flex mb-5 align-items-center">
-                                        <span class="ml-auto"><a href="registration" class="forgot-pass">Registration Here!</a></span> 
+                                        <span class="ml-auto"><a href="registration" class="forgot-pass">Belum punya akun? Registrasi disini!</a></span> 
                                     </div>
                                     
                                     <button class="btn btn-block btn-primary" type="submit">Login</button>

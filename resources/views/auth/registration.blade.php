@@ -18,7 +18,7 @@
     
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
 
-    <title>Guest Registration</title>
+    <title>Registrasi Pengunjung</title>
   </head>
   <body>
         <div class="content">
@@ -31,10 +31,10 @@
                         <div class="row justify-content-center">
                             <div class="col-md-8">
                                 <div class="mb-4">
-                                    <h1>Guest Registration</h1>
+                                    <h1>Registrasi Pengunjung</h1>
                                 </div>
                                 <div class="mb-4">
-                                    <span class="ml-auto"><a href="registration-owner-form" class="forgot-pass">Business Owner Registration Here!</a></span>
+                                    <span class="ml-auto"><a href="registration-owner-form" class="forgot-pass">Pemilik usaha mikro registrasi disini!</a></span>
                                 </div>
                                 <form action="{{route('register-user')}}" method="POST">
                                     @if(Session::has('success'))
@@ -64,10 +64,10 @@
                                         </div> --}}
                                     
                                     <div class="d-flex mb-5 align-items-center">
-                                        <span class="ml-auto"><a href="login" class="forgot-pass">Login Here!</a></span> 
+                                        <span class="ml-auto"><a href="login" class="forgot-pass">Sudah punya akun? Login disini!</a></span> 
                                     </div>
                                     
-                                    <button class="btn btn-block btn-primary" type="submit">Registration</button>
+                                    <button class="btn btn-block btn-primary" type="submit">Registrasi</button>
                                 </form>
                             </div>
                         </div>

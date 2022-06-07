@@ -13,6 +13,7 @@ use App\Exports\ArtikelAdminExport;
 use App\Exports\ArtikelPemilikExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Image;
 
 class Admin_DataArtikelAdminController extends Controller
 {
@@ -88,6 +89,8 @@ class Admin_DataArtikelAdminController extends Controller
         // dd($request->all());
         $nm = $request->gambar;
         $namaFile = time().rand(100,999).".".$nm->getClientOriginalExtension(); //memberi nama file dengan nomor acak
+        $image_resize = Image::make($nm->getRealPath());
+        $image_resize->resize(400, 400);
 
         $dtUpload = new KontenArtikel;
         $dtUpload->id_user          = session('loginId');
@@ -99,7 +102,7 @@ class Admin_DataArtikelAdminController extends Controller
         $dtUpload->role             = $role->role;
         $dtUpload->penulis          = session('loginName');
 
-        $nm->move('img/', $namaFile);
+        $image_resize->save('img/' .$namaFile , 80);
         $dtUpload->save();
 
         Alert::success('Data berhasil ditambahkan');
@@ -162,7 +165,9 @@ class Admin_DataArtikelAdminController extends Controller
         if ($request->hasFile('gambar')) {
             // $ubah->delete_image();
             $gambar = $request->file('gambar');
-            $request->gambar->move('img/', $awal);
+            $image_resize = Image::make($gambar->getRealPath());
+            $image_resize->resize(400, 400);
+            $image_resize->save('img/' .$awal , 80);
         }
 
         $ubah->update($dtArtikelAdmin);

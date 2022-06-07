@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('templete/css/style.css')}}">
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
 
-    <title>Business Owner Registration</title>
+    <title>Registrasi Pemilik Usaha Mikro</title>
   </head>
   <body>
         <div class="content">
@@ -30,10 +30,10 @@
                         <div class="row justify-content-center">
                             <div class="col-md-8">
                                 <div class="mb-4">
-                                    <h1>Business Owner Registration</h1>
+                                    <h1>Registrasi Pemilik Usaha Mikro</h1>
                                 </div>
                                 <div class="mb-4">
-                                    <span class="ml-auto"><a href="registration" class="forgot-pass">Guest Registration Here!</a></span>
+                                    <span class="ml-auto"><a href="registration" class="forgot-pass">Registrasi sebagai pengunjung disini!</a></span>
                                 </div>
                                 <form action="{{route('register-owner')}}" method="POST">
                                     @if(Session::has('success'))
@@ -63,10 +63,10 @@
                                         </div> --}}
                                     
                                     <div class="d-flex mb-5 align-items-center">
-                                        <span class="ml-auto"><a href="login" class="forgot-pass">Login Here!</a></span> 
+                                        <span class="ml-auto"><a href="login" class="forgot-pass">Sudah punya akun? Login disini!</a></span> 
                                     </div>
                                     
-                                    <button class="btn btn-block btn-primary" type="submit">Registration</button>
+                                    <button class="btn btn-block btn-primary" type="submit">Registrasi</button>
                                 </form>
                             </div>
                         </div>
