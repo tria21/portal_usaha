@@ -13,6 +13,9 @@ use Session;
 
 class CustomAuthController extends Controller
 {
+    public function landingPage(){
+        return view("dashboard.landing-page");
+    }
     public function login(){
         return view("auth.login");
     }

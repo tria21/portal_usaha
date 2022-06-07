@@ -47,30 +47,6 @@
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="{{route('dashboard-pengunjung')}}">Beranda</a></li>
-          <li><a class="nav-link scrollto active" href="{{route('tampil-tentang')}}">Tentang</a></li>
-          <li><a class="nav-link scrollto" href="{{route('tampil-artikel')}}">Artikel</a></li>
-          <li><a class="nav-link scrollto" href="{{route('tampil-usaha')}}">Usaha Mikro</a></li>
-          @if(session('loginRole') =='2') 
-          <li class="dropdown"><a href="#"><span>Akun</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="{{route('edit-akun-pengunjung')}}">Pengaturan Akun</a></li>
-              <li><a href="{{route('logout')}}">Logout</a></li>
-            </ul>
-          </li>
-          @elseif(session('loginRole') =='3')
-          <li><a class="nav-link scrollto" href="{{route('dashboard-admin')}}">Dashboard Admin</a></li>
-          @elseif(session('loginRole') =='1')
-          <li><a class="nav-link scrollto" href="{{route('dashboard-pemilik-usaha')}}">Dashboard Usaha</a></li>
-          @else
-          <li><a class="nav-link scrollto" href="{{route('login')}}">Login</a></li>
-          @endif
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
 
@@ -86,18 +62,16 @@
           <div class="carousel-item active" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkoprame.jpg")}})">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
-                <p class="animate__animated animate__fadeInUp">Portal Usaha Mikro Kabupaten Jombang</p>
+                <h1 class="animate__animated animate__fadeInDown">Selamat Datang di Portal Usaha Mikro Kabupaten Jombang</h1>
+                <a href="{{route('dashboard-pengunjung')}}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Pergi ke Beranda</a>
               </div>
             </div>
           </div>
-
           <div class="carousel-item" style="background-image: url({{asset("../newsroom/assets/img/slide/dinkopworsop.jpg")}})">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Dinas Koperasi dan Usaha Mikro Kabupaten Jombang</h2>
-                <p class="animate__animated animate__fadeInUp">Portal Usaha Mikro Kabupaten Jombang</p>
-                {{-- <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a> --}}
+                <h1 class="animate__animated animate__fadeInDown">Selamat Datang di Portal Usaha Mikro Kabupaten Jombang</h1>
+                <a href="{{route('dashboard-pengunjung')}}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Pergi ke Beranda</a>
               </div>
             </div>
           </div>
@@ -115,40 +89,6 @@
     </div>
   </section><!-- End Hero Section -->
 
-  <main id="main">
-
-    <!-- ======= Blog Page ======= -->
-    <div class="blog-page area-padding">
-      <div class="container">
-        <div class="row">
-          <!-- Start single blog -->
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <!-- single-blog start -->
-                <article class="blog-post-wrapper">
-                  @foreach ($dtTentang as $item)
-                  <div class="post-information">
-                    <div class="entry-content">
-                      <p>{!!$item->isi_beranda!!}</p>
-                    </div>
-                    <div class="clear"></div>
-                    <h6><b>*{{$item->deskripsi_tambahan}}<b></h6>
-                  </div>
-                  @endforeach
-                </article>
-                <div class="clear"></div>
-                <!-- single-blog end -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!-- End Blog Page -->
-
-  </main><!-- End #main -->
-
-
   <!-- ======= Footer ======= -->
   <footer>
     <div class="footer-area">
@@ -163,8 +103,8 @@
 
                 <p>Jl. Presiden KH. Abdurrahman Wahid No.132, Candi Mulyo, Kec. Jombang, Kabupaten Jombang, Jawa Timur 61419</p>
                 <div class="footer-contacts">
-                  <p><span>Telepon: </span> (0321) 861494</p>
-                  <p><span>Jam Kerja: </span> 07.00 - 15.00</p>
+                  <p><span>Telepon:</span> (0321) 861494</p>
+                  <p><span>Jam Kerja:</span> 07.00 - 15.00</p>
                 </div>
               </div>
             </div>

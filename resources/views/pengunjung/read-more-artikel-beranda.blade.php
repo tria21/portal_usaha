@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>eBusiness Bootstrap Template - Index</title>
+  <title>Portal Usaha Mikro Kabupaten Jombang</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -64,6 +64,8 @@
           <li><a class="nav-link scrollto" href="{{route('dashboard-admin')}}">Dashboard Admin</a></li>
           @elseif(session('loginRole') =='1')
           <li><a class="nav-link scrollto" href="{{route('dashboard-pemilik-usaha')}}">Dashboard Usaha</a></li>
+          @else
+          <li><a class="nav-link scrollto" href="{{route('login')}}">Login</a></li>
           @endif
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -212,6 +214,7 @@
                 <div class="clear"></div>
                 <div class="single-post-comments">
                   <div class="comment-respond">
+                    @if(session('loginId'))
                     <h3 class="comment-reply-title">Tulis Komentar </h3>
                     <form action="" method="POST">
                       @csrf
@@ -225,6 +228,9 @@
                         </div>
                       </div>
                     </form>
+                    @else
+                    <h3 class="comment-reply-title">Lakukan login untuk meninggalkan komentar</h3>
+                    @endif
                   </div>
                   <div class="comments-area">
                     <div class="comments-list">
@@ -251,6 +257,7 @@
                               <span>
                                 <p>{{$item->isi_komentar}}</p>
                               </span>
+                              @if(session('loginId'))
                               <form action="" method="POST">
                                 @csrf
                                 <div class="row">
@@ -263,6 +270,7 @@
                                   </div>
                                 </div>
                               </form>
+                              @endif
                               @foreach ($item->children as $children)
                               <li class="threaded-comments">
                                 <div class="comments-details">
