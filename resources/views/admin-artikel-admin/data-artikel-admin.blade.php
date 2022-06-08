@@ -21,7 +21,10 @@
   <!-- sweetalert2:css -->
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
   <!-- endinject -->
-  {{-- <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" /> --}}
+  
+    <!-- Favicons -->
+  <link href="{{asset("../img/pnglogosje.png")}}" rel="icon">
+  <link href="{{asset("../img/pnglogosje.png")}}" rel="apple-touch-icon">
 </head>
 <body>
   @include('sweetalert::alert')

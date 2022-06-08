@@ -27,12 +27,6 @@
   <!-- Template Main CSS File -->
   <link href="{{asset("../newsroom/assets/css/style.css")}}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: eBusiness - v4.7.0
-  * Template URL: https://bootstrapmade.com/ebusiness-bootstrap-corporate-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -43,8 +37,6 @@
 
       <div class="logo">
         <img src="{{asset('../skydash/template/images/logo-putih.png')}}" alt="logo"/>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav id="navbar" class="navbar">
@@ -175,10 +167,6 @@
                   </a>
                 </div>
                 <div class="blog-meta">
-                  {{-- <span class="comments-type">
-                    <i class="fa fa-comment-o"></i>
-                    <a href="#">13 comments</a>
-                  </span> --}}
                   <span class="date-type">
                     <i class="fa fa-calendar"></i>{{$item->created_at}}
                   </span>
@@ -187,11 +175,6 @@
                   <h4>
                     <a href="blog.html">{{$item->judul}}</a>
                   </h4>
-                  {{-- <p>
-                    @php $isi = $item->isi_artikel
-                    {{Str::limit($isi, 100)}}
-                    {!!$item->isi_artikel!!}
-                  </p> --}}
                 </div>
                 <span>
                   <a href="{{route('read-more-artikel-beranda', $item->id)}}" class="ready-btn">Baca</a>

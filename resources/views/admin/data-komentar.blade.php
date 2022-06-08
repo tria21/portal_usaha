@@ -19,6 +19,10 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
+  
+    <!-- Favicons -->
+  <link href="{{asset("../img/pnglogosje.png")}}" rel="icon">
+  <link href="{{asset("../img/pnglogosje.png")}}" rel="apple-touch-icon">
 </head>
 <body>
   <div class="container-scroller">

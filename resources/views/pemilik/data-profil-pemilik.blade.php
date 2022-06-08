@@ -19,9 +19,9 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/css/vertical-layout-light/style.css')}}">
   
-  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
-  <!-- endinject -->
-  {{-- <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" /> --}}
+  <!-- Favicons -->
+<link href="{{asset("../img/pnglogosje.png")}}" rel="icon">
+<link href="{{asset("../img/pnglogosje.png")}}" rel="apple-touch-icon">
 </head>
 <body>
   @include('sweetalert::alert')
@@ -177,9 +177,6 @@
                         <input type="file" class="form-control" id="image" name="image">
                       </div>
                     </div>
-                    {{-- <div class="form-group row">
-                      <img src="{{asset('img/'.$item->image)}}" height="10%" width="50%" alt="" srcset="">
-                    </div> --}}
                     <div class="form-group row">
                       <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
                       <div class="col-sm-9">
@@ -228,9 +225,6 @@
                         <input type="password" class="form-control" id="password" name="password">
                         <span class="text-danger">@error('password') {{$message}} @enderror</span>
                       </div>
-                      {{-- <div>
-                        <input type="checkbox" class="form-checkbox"> Show password
-                        </div> --}}
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                     <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Batal</a>

@@ -19,7 +19,10 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('../skydash/template/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
-  {{-- <link rel="shortcut icon" href="{{asset('../skydash/template/images/favicon.png')}}" /> --}}
+  
+    <!-- Favicons -->
+  <link href="{{asset("../img/pnglogosje.png")}}" rel="icon">
+  <link href="{{asset("../img/pnglogosje.png")}}" rel="apple-touch-icon">
 </head>
 <body>
   {{-- @include('sweetalert::alert') --}}
@@ -167,16 +170,6 @@
                       <label>Judul</label>
                       <input type="text" name="judul" class="form-control" id="judul" value="{{$dtArtikelAdmin->judul}}">
                     </div>
-                    {{-- <div class="form-group">
-                      <label>Unggah Gambar</label>
-                      <input type="file" name="gambar" class="file-upload-default">
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah Gambar">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Pilih File</button>
-                        </span>
-                      </div>
-                    </div> --}}
                     <div class="mb-3">
                       <label class="form-label">Unggah Gambar</label>
                       <input class="form-control" type="file" id="gambar" name="gambar">
