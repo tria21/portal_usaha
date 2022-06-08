@@ -39,7 +39,8 @@ Route::post('/login-user', [App\Http\Controllers\CustomAuthController::class, 'l
 Route::get('/logout', ['as' => 'logout', function (){
     session()->pull('loginId');
     session()->pull('loginName');
-    return redirect('login');
+    session()->pull('loginRole');
+    return redirect('/');
 }]);
 
 //tes
