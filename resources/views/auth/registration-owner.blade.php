@@ -61,7 +61,16 @@
                                         <input type="password" name="password" value="{{old('password')}}" id="password" class="form-control">
                                         <span class="text-danger">@error('password') {{$message}} @enderror</span>
                                     </div>
-                                    
+                                    <div class="form-group first">
+                                        <span id="captcha-img">
+                                            {!!captcha_img()!!}
+                                        </span>
+                                        {{-- <span id="reload" class="btn">Reload</button> --}}
+                                    </div>
+                                    <div class="form-group last mb-4"> 
+                                        <label for="captcha">Hasil Captcha</label>
+                                        <input type="text" name="captcha" class="form-control">
+                                    </div>
                                     <div class="d-flex mb-5 align-items-center">
                                         <span class="ml-auto"><a href="login" class="forgot-pass">Sudah punya akun? Login disini!</a></span> 
                                     </div>

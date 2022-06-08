@@ -20,21 +20,22 @@ Route::get('/', [App\Http\Controllers\CustomAuthController::class, 'landingPage'
 Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'login'])->name('login');
 Route::get('/registration', [App\Http\Controllers\CustomAuthController::class, 'registration']);
 Route::get('/registration-owner-form', [App\Http\Controllers\CustomAuthController::class, 'registrationOwnerForm']);
+Route::get('/reload', [App\Http\Controllers\CustomAuthController::class, 'reload']);
 Route::post('/registration-user', [App\Http\Controllers\CustomAuthController::class, 'registrationUser'])->name('register-user');
 Route::post('/registration-owner', [App\Http\Controllers\CustomAuthController::class, 'registrationOwner'])->name('register-owner');
 Route::post('/login-user', [App\Http\Controllers\CustomAuthController::class, 'loginUser'])->name('login-user');
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+// Route::get('/email/verify', function () {
+//     return view('auth.verify-email');
+// })->middleware('auth')->name('verification.notice');
+// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+//     $request->fulfill();
  
-    return redirect('/login');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-Route::get('/dashboard', [App\Http\Controllers\CustomAuthController::class, 'dashboard']);
-Route::get('/coba', function () {
-    return view('auth.coba');
-});
+//     return redirect('/login');
+// })->middleware(['auth', 'signed'])->name('verification.verify');
+// Route::get('/dashboard', [App\Http\Controllers\CustomAuthController::class, 'dashboard']);
+// Route::get('/coba', function () {
+//     return view('auth.coba');
+// });
 Route::get('/logout', ['as' => 'logout', function (){
     session()->pull('loginId');
     session()->pull('loginName');

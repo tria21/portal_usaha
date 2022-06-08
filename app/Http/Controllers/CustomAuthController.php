@@ -25,11 +25,15 @@ class CustomAuthController extends Controller
     public function registrationOwnerForm(){
         return view("auth.registration-owner");
     }
+    public function reload(){
+        return response()->json(['captcha'=> captcha_img()]);
+    }
     public function registrationUser(Request $request){
         $request->validate([
             'name'=>'required',
             'email'=>'required|email|unique:users',
-            'password'=>'required|min:8'
+            'password'=>'required|min:8',
+            'captcha'=>'required|captcha'
         ]);
         $user = new User();
         $user->name = $request->name;
@@ -37,18 +41,20 @@ class CustomAuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = '2';
         $res = $user->save();
-        event(new Registered($user));
+        // event(new Registered($user));
         if ($res) {
-            return back()->with('success', 'You have registered succesfuly. An email has been sent. Please check your inbox.');
+            return back()->with('success', 'Registrasi berhasil! Silahkan pergi ke laman login');
+            // return back()->with('success', 'You have registered succesfuly. An email has been sent. Please check your inbox.');
         }else{
-            return back()->with('fail', 'Something wrong');
+            return back()->with('fail', 'Registrasi gagal');
         }
     }
     public function registrationOwner(Request $request){
         $request->validate([
             'name'=>'required',
             'email'=>'required|email|unique:users',
-            'password'=>'required|min:8'
+            'password'=>'required|min:8',
+            'captcha'=>'required|captcha'
         ]);
         $user = new User();
         $user->name = $request->name;
@@ -56,11 +62,12 @@ class CustomAuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = '1';
         $res = $user->save();
-        event(new Registered($user));
+        // event(new Registered($user));
         if ($res) {
-            return back()->with('success', 'You have registered succesfuly. An email has been sent. Please check your inbox.');
+            return back()->with('success', 'Registrasi berhasil! Silahkan pergi ke laman login');
+            // return back()->with('success', 'You have registered succesfuly. An email has been sent. Please check your inbox.');
         }else{
-            return back()->with('fail', 'Something wrong');
+            return back()->with('fail', 'Registrasi gagal');
         }
     }
     public function loginUser(Request $request){
@@ -84,13 +91,13 @@ class CustomAuthController extends Controller
                         return redirect()->route('dashboard-pengunjung');
                     }
                 }else{
-                    return back()->with('fail','rolenya apa ges.');
+                    return back()->with('fail','Role tidak terdeteksi.');
                 }
             }else{
-                return back()->with('fail','Password not matches.');
+                return back()->with('fail','Password salah.');
             }
         }else{
-            return back()->with('fail','The email is not registered.');
+            return back()->with('fail','Email sudah dipakai');
         }
     }
 

@@ -47,7 +47,7 @@
                                     @endif
                                     @csrf
                                     <div class="form-group first">
-                                        <label for="name">Full Name</label>
+                                        <label for="name">Nama Lengkap</label>
                                         <input type="text" name="name" value="{{old('name')}}" id="name" class="form-control">
                                         <span class="text-danger">@error('name') {{$message}} @enderror</span>
                                     </div>
@@ -60,6 +60,16 @@
                                         <label for="password">Password</label>
                                         <input type="password" name="password" value="{{old('password')}}" id="password" class="form-control">
                                         <span class="text-danger">@error('password') {{$message}} @enderror</span>
+                                    </div>
+                                    <div class="form-group first">
+                                        <span id="captcha-img">
+                                            {!!captcha_img()!!}
+                                        </span>
+                                        {{-- <span id="reload" class="btn">Reload</button> --}}
+                                    </div>
+                                    <div class="form-group last mb-4"> 
+                                        <label for="captcha">Hasil Captcha</label>
+                                        <input type="text" name="captcha" class="form-control">
                                     </div>
                                     
                                     <div class="d-flex mb-5 align-items-center">
@@ -79,4 +89,16 @@
     <script src="{{asset('templete/js/popper.min.js')}}"></script>
     <script src="{{asset('templete/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('templete/js/main.js')}}"></script>
+    <script>
+        $('#reload').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type:'GET',
+                url: 'reload',
+                success:function (res){
+                    $('#captcha-img').html(res.captcha);
+                }
+            });
+        });
+    </script>
 </html>
