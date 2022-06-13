@@ -105,7 +105,7 @@
       <!-- partial -->
 
       <!-- sidebar -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link active" href="{{route('dashboard-admin')}}">
@@ -200,7 +200,7 @@
                           <th width="20%">
                             <img src="{{asset('img/'.$item->image)}}" height="70%"  width="70%" alt="" srcset="">
                           </th>
-                          <th>{{$item->caption_gambar}}</th>
+                          <th>{{ Str::limit($item->caotion_gambar, 25)}}</th>
                           <th>
                             <a href="{{route('edit-galeri',$item->id)}}" class="btn btn-info btn-sm">
                               <i class="ti-pencil btn-icon-append"></i></a>

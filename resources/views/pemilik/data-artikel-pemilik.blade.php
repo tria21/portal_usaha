@@ -105,7 +105,7 @@
       <!-- partial -->
 
       <!-- sidebar -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link active" href="{{route('dashboard-pemilik-usaha')}}">
@@ -186,7 +186,7 @@
                         @foreach ($dtArtikelPemilik as $item)
                         <tr>
                           <th>{{ $no++ }}</th>
-                          <th>{{$item->judul}}</th>
+                          <th>{{ Str::limit($item->judul, 25)}}</th>
                           <th width="20%">
                             <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
                           </th>

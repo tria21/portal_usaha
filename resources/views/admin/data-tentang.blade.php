@@ -105,7 +105,7 @@
       <!-- partial -->
 
       <!-- sidebar -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link active" href="{{route('dashboard-admin')}}">

@@ -104,7 +104,7 @@
       <!-- partial -->
 
       <!-- sidebar -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link active" href="{{route('dashboard-admin')}}">
@@ -193,8 +193,6 @@
                         <tr>
                           <th>No</th>
                           <th>Nama Pemilik</th>
-                          <th>Foto</th>
-                          <th>Email</th>
                           <th>Nama Usaha</th>
                           <th>Jenis Usaha</th>
                           <th>Aksi</th>
@@ -205,13 +203,9 @@
                         @foreach ($dtUsaha as $item)
                         <tr>
                           <th>{{$no++}}</th>
-                          <th>{{$item->name}}</th>
-                          <th width="20%">
-                            <img src="{{asset('img/'.$item->image)}}" height="10%" width="80%" alt="" srcset="">
-                          </th>
-                          <th>{{$item->email}}</th>
-                          <th>{{$item->nama_usaha}}</th>
-                          <th>{{$item->jenis_usaha}}</th>
+                          <th>{{ Str::limit($item->name, 25)}}</th>
+                          <th>{{ Str::limit($item->nama_usaha, 25)}}</th>
+                          <th>{{ Str::limit($item->jenis_usaha, 25)}}</th>
                           <th>
                             <a href="{{route('detail-akun-pemilik-usaha',$item->id)}}" class="btn btn-success btn-sm">
                               <i class="ti-eye btn-icon-append"></i></a>

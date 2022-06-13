@@ -104,7 +104,7 @@
       <!-- partial -->
 
       <!-- sidebar -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link active" href="{{route('dashboard-admin')}}">
@@ -190,7 +190,7 @@
                         <tr>
                           <th>{{$no++}}</th>
                           <th>{{$item->name}}</th>
-                          <th>{{$item->email}}</th>
+                          <th>{{ Str::limit($item->email, 25)}}</th>
                         </tr>
                         @endforeach
                       </tbody>
