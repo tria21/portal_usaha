@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\CustomAuthController::class, 'landingPage'])->name('/');
+Route::get('/', [App\Http\Controllers\DashboardPengunjungController::class, 'index'])->name('/');
 
 //Route Login
 Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'login'])->name('login');
