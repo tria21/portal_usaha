@@ -50,6 +50,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('dashboard.dashboard-admin', compact('CountAkPemilik', 'CountAkMasy', 'CountArAdmin', 'CountArPemilik', 'dtNotif', 'CountNotif'));
     }

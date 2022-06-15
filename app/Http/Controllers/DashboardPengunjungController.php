@@ -7,6 +7,7 @@ use App\Models\KontenArtikel;
 use App\Models\User;
 use App\Models\Komentar;
 use App\Models\Beranda;
+use App\Models\Galeri;
 use App\Models\Notifikasi;
 use App\Models\Sosmed;
 use Hash;
@@ -24,13 +25,19 @@ class DashboardPengunjungController extends Controller
         $TampilAkMasy    = User::select("*")    
                             ->where('id', session('loginId'))
                             ->get();
-        $dtGaleri = DB::select('select * from galeris');
+        $dtGaleri       =  Galeri::select("*")    
+                            ->orderBy('created_at', 'desc')
+                            ->get();
         // $TampilArAdmin = $dtArtikelAdmin = DB::select('select * from konten_artikels where role = ?', '3');
         return view('dashboard.dashboard-pengunjung', compact('TampilAkMasy', 'TampilArAdmin', 'dtGaleri'));
     }
 
     public function readMore($id){
-        $dtArtikelBeranda = KontenArtikel::all();
+        $dtArtikelBeranda = KontenArtikel::select("*")    
+                            ->orderBy('created_at', 'desc')
+                            ->skip(0)
+                            ->take(5)
+                            ->get();
         $dtArtikelID      = KontenArtikel::select("*")    
                             ->where('id', $id)
                             ->get();
@@ -65,7 +72,10 @@ class DashboardPengunjungController extends Controller
 
     public function profilUsaha($id){
         $dtUserID    = DB::select('select * from users where id = ?', [$id]);
-        $dtArtikelID = DB::select('select * from konten_artikels where id_user = ?', [$id]);
+        $dtArtikelID = KontenArtikel::select("*")    
+                        ->where('id_user', $id)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
         $dtSosmedID  = Sosmed::select("*")    
                         ->where('id_user', [$id])
                         ->whereNotIn('nama_sosmed', ['google maps', 'Google maps', 'Google Maps'])
@@ -78,7 +88,10 @@ class DashboardPengunjungController extends Controller
     }
 
     public function baseKategori($kategori){
-        $dtArtikelKategori = DB::select('select * from konten_artikels where kategori = ?', [$kategori]);
+        $dtArtikelKategori = KontenArtikel::select("*")    
+                            ->where('kategori', [$kategori])
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(9);
         return view('pengunjung.tampil-artikel-kategori', compact('dtArtikelKategori'));
     }
 

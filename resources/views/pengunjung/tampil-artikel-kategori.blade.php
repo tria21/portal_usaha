@@ -164,11 +164,16 @@
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
               <div class="section-headline text-center">
-                @forelse ($dtArtikelKategori as $kat)
+                @if($dtArtikelKategori)
+                @foreach($dtArtikelKategori as $item)
+                <h2>Artikel Kategori {{$item->kategori}}</h2>
+                @endforeach
+                @endif
+                {{-- @forelse ($dtArtikelKategori as $kat)
                 @php $kategori = $kat->kategori @endphp
                 <h2>Artikel Kategori {{$kategori}}</h2>
                 @empty
-                @endforelse
+                @endforelse --}}
               </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="row">
@@ -214,6 +219,9 @@
                   </div>
                   @endforelse
                 </div>
+                <center>
+                  {{ $dtArtikelKategori->links() }}<br>
+                  </center>
               </div>
             </div>
           </div>
