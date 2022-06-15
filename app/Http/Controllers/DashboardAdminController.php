@@ -48,7 +48,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('dashboard.dashboard-admin', compact('CountAkPemilik', 'CountAkMasy', 'CountArAdmin', 'CountArPemilik', 'dtNotif', 'CountNotif'));
@@ -66,7 +66,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                 ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                 ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                ->select('notifikasis.*', 'komentars.nama_user')
+                ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                 ->where('is_read_admin', 0)
                 ->get();
         return view('admin.data-akun-masyarakat', compact('dtMas', 'dtNotif', 'CountNotif'));
@@ -84,7 +84,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                         ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
                         ->get();
         return view('admin.cetak-akun-masyarakat', compact('cetakAkMasy', 'dtNotif', 'CountNotif'));
@@ -107,7 +107,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                 ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                 ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                ->select('notifikasis.*', 'komentars.nama_user')
+                ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                 ->where('is_read_admin', 0)
                 ->get();
         return view('admin.data-akun-usaha', compact('dtUsaha', 'dtNotif', 'CountNotif'));
@@ -128,7 +128,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.detail-akun-usaha', compact('dtUsaha', 'dtSosmed', 'dtAkunID', 'dtNotif', 'CountNotif'));
@@ -146,7 +146,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                 ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                 ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                ->select('notifikasis.*', 'komentars.nama_user')
+                ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                 ->where('is_read_admin', 0)
                 ->get();
         return view('admin.cetak-akun-usaha', compact('cetakAkUsaha', 'dtNotif', 'CountNotif'));
@@ -193,7 +193,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
@@ -211,7 +211,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik', 'dtArtikelID', 'dtNotif', 'CountNotif'));
@@ -229,7 +229,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                             ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                             ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                            ->select('notifikasis.*', 'komentars.nama_user')
+                            ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                             ->where('is_read_admin', 0)
                             ->get();
         return view('admin.cetak-artikel-usaha', compact('cetakArPemilik', 'dtNotif', 'CountNotif'));
@@ -256,7 +256,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                         ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
                         ->get();
 		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
@@ -277,7 +277,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                         ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
                         ->get();
 		return view('admin.data-beranda', compact('dtGaleri', 'dtNotif', 'CountNotif'));
@@ -294,7 +294,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.data-beranda', compact('dtGaleri', 'dtNotif', 'CountNotif'));
@@ -310,7 +310,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.data-tentang', compact('dtBeranda', 'dtCekBeranda', 'dtNotif', 'CountNotif'));
@@ -325,7 +325,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.edit-beranda',compact('dtBeranda', 'dtNotif', 'CountNotif'));
@@ -353,7 +353,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.input-galeri', compact('dtNotif', 'CountNotif'));
@@ -367,7 +367,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.input-tentang', compact('dtNotif', 'CountNotif'));
@@ -414,7 +414,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.edit-galeri',compact('dtGaleri', 'dtNotif', 'CountNotif'));
@@ -469,7 +469,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                    ->select('notifikasis.*', 'komentars.nama_user')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
                     ->get();
         return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
@@ -490,7 +490,7 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                         ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
                         ->get();
 		return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
