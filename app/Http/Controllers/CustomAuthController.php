@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Sosmed;
 use Hash;
 use Session;
+use Image;
 
 class CustomAuthController extends Controller
 {
@@ -138,7 +139,10 @@ class CustomAuthController extends Controller
         if ($image) {
             $namaFile = $image->getClientOriginalName(); 
             $user['image'] = $namaFile;
-            $proses = $image->move('img/', $namaFile);
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(400, 300);
+            $image_resize->save('img/' .$namaFile , 80);
+            // $proses = $image->move('img/', $namaFile);
         }
 
         $ubah->update($user);
