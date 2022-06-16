@@ -42,9 +42,9 @@ class CustomAuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = '2';
         $res = $user->save();
-        // event(new Registered($user));
+        event(new Registered($user));
         if ($res) {
-            return back()->with('success', 'Registrasi berhasil! Silahkan pergi ke laman login');
+            return back()->with('success', 'Registrasi berhasil! Periksa kotak masuk email anda untuk melakukan verifikasi');
             // return back()->with('success', 'You have registered succesfuly. An email has been sent. Please check your inbox.');
         }else{
             return back()->with('fail', 'Registrasi gagal');
@@ -63,9 +63,9 @@ class CustomAuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = '1';
         $res = $user->save();
-        // event(new Registered($user));
+        event(new Registered($user));
         if ($res) {
-            return back()->with('success', 'Registrasi berhasil! Silahkan pergi ke laman login');
+            return back()->with('success', 'Registrasi berhasil! Periksa kotak masuk email anda untuk melakukan verifikasi');
             // return back()->with('success', 'You have registered succesfuly. An email has been sent. Please check your inbox.');
         }else{
             return back()->with('fail', 'Registrasi gagal');
