@@ -7,10 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+    use CanResetPassword;
     use HasFactory;
     protected $table = "users";
     protected $primaryKey = "id";

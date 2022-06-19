@@ -34,9 +34,9 @@
                         <div class="row justify-content-center">
                             <div class="col-md-8">
                                 <div class="mb-4">
-                                    <h1>Login</h1>
+                                    <h1>Lupa Password</h1>
                                 </div>
-                                <form action="{{route('login-user')}}" method="POST">
+                                <form action="forgot-password" method="POST">
                                     @if(Session::has('success'))
                                     <div class="alert alert-success">{{Session::get('success')}}</div>
                                     @endif
@@ -44,24 +44,18 @@
                                     <div class="alert alert-danger">{{Session::get('fail')}}</div>
                                     @endif
                                     @csrf
-                                    <div class="form-group first">
-                                        <label for="email">Email</label>
+                                    <div class="form-group last mb-4">
+                                        <label for="email">Masukkan Email</label>
                                         <input type="email" name="email" value="{{old('email')}}" id="email"  class="form-control">
                                         <span class="text-danger">@error('email') {{$message}} @enderror</span>
                                     </div>
-                                    <div class="form-group last mb-4">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" value="{{old('password')}}" id="password" class="form-control">
-                                        <span class="text-danger">@error('password') {{$message}} @enderror</span>
-                                    </div>
                                     
                                     <div class="d-flex mb-5 align-items-center">
-                                        <span><a href="forgot-password" class="forgot-pass">Lupa password?</a></span> 
-                                        <span class="ml-auto"><a href="registration" class="forgot-pass">Belum punya akun? Registrasi disini!</a></span> 
+                                        <span><a href="login" class="forgot-pass">Kembali ke laman login</a></span> 
                                     </div> 
                                     
                                     <div>
-                                        <button class="btn btn-block btn-primary" type="submit">Login</button>
+                                        <button class="btn btn-block btn-primary" type="submit">Reset Password</button>
                                     </div>
                                 </form>
                             </div>

@@ -42,8 +42,14 @@ Route::get('/logout', ['as' => 'logout', function (){
     session()->pull('loginRole');
     return redirect('/');
 }]);
-
-//tes
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [App\Http\Controllers\CustomAuthController::class, 'forgotPassword'])->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+Route::post('/reset-password', [App\Http\Controllers\CustomAuthController::class, 'resetPassword'])->middleware('guest')->name('reset-password');
 
 //DashboardAdminController
 Route::get('/dashboard-admin', [App\Http\Controllers\DashboardAdminController::class, 'index'])->name('dashboard-admin');
