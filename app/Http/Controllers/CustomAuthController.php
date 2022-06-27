@@ -145,7 +145,9 @@ class CustomAuthController extends Controller
 
     public function profil(){
         $user = DB::select('select * from users where id = ?', [session('loginId')]);
-        $dtSosmed = DB::select('select * from sosmeds where id_user = ?', [session('loginId')]);
+        $dtSosmed = Sosmed::select("*")    
+                    ->where('id_user', session('loginId'))
+                    ->orderBy('created_at', 'desc');
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
