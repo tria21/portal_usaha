@@ -165,20 +165,16 @@
             <div class="col-md-8 col-sm-8 col-xs-12">
               <div class="section-headline text-center">
                 @if($dtArtikelKategori)
-                @foreach($dtArtikelKategori as $item)
-                <h2>Artikel Kategori {{$item->kategori}}</h2>
-                @endforeach
-                @endif
-                {{-- @forelse ($dtArtikelKategori as $kat)
+                @foreach($dtArtikelKategori as $kat)
                 @php $kategori = $kat->kategori @endphp
+                @endforeach
                 <h2>Artikel Kategori {{$kategori}}</h2>
-                @empty
-                @endforelse --}}
+                @endif
               </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="row">
                   <!-- Start Left Blog -->
-                  @forelse ($dtArtikelKategori as $item)
+                  @if($dtArtikelKategori)
                   @foreach ($dtArtikelKategori as $item)
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-blog">
@@ -213,15 +209,15 @@
                     <!-- Start single blog -->
                   </div>
                   @endforeach
-                  @empty
+                  @else
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <p>Tidak ada data yang cocok</p>
                   </div>
-                  @endforelse
+                  @endif
                 </div>
                 <center>
                   {{ $dtArtikelKategori->links() }}<br>
-                  </center>
+                </center>
               </div>
             </div>
           </div>

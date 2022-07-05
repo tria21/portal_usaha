@@ -17,6 +17,7 @@ use App\Exports\MasyarakatExport;
 use App\Exports\ArtikelPemilikExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Session;
 use Image;
 
 class DashboardAdminController extends Controller
@@ -69,6 +70,7 @@ class DashboardAdminController extends Controller
                 ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                 ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                 ->where('is_read_admin', 0)
+                ->orderBy('created_at', 'desc')
                 ->get();
         return view('admin.data-akun-masyarakat', compact('dtMas', 'dtNotif', 'CountNotif'));
     }
@@ -87,6 +89,7 @@ class DashboardAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
         return view('admin.cetak-akun-masyarakat', compact('cetakAkMasy', 'dtNotif', 'CountNotif'));
     }
@@ -110,6 +113,7 @@ class DashboardAdminController extends Controller
                 ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                 ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                 ->where('is_read_admin', 0)
+                ->orderBy('created_at', 'desc')
                 ->get();
         return view('admin.data-akun-usaha', compact('dtUsaha', 'dtNotif', 'CountNotif'));
     }
@@ -131,6 +135,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.detail-akun-usaha', compact('dtUsaha', 'dtSosmed', 'dtAkunID', 'dtNotif', 'CountNotif'));
     }
@@ -149,6 +154,7 @@ class DashboardAdminController extends Controller
                 ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                 ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                 ->where('is_read_admin', 0)
+                ->orderBy('created_at', 'desc')
                 ->get();
         return view('admin.cetak-akun-usaha', compact('cetakAkUsaha', 'dtNotif', 'CountNotif'));
     }
@@ -164,6 +170,7 @@ class DashboardAdminController extends Controller
 		$keyword = $request->cari;
  
 		$dtUsaha = User::select("*")
+		                ->where('role','1')
                         ->where('name', 'like', "%" . $keyword . "%")
                         ->orWhere('nama_usaha', 'like', "%" . $keyword . "%")
                         ->orWhere('jenis_usaha', 'like', "%" . $keyword . "%")
@@ -175,8 +182,9 @@ class DashboardAdminController extends Controller
         $dtNotif = DB::table('notifikasis')
                         ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
  
 		return view('admin.data-akun-usaha', compact('dtUsaha', 'dtNotif', 'CountNotif'));
@@ -196,6 +204,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
     }
@@ -214,6 +223,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.detail-artikel-usaha', compact('dtArtikelPemilik', 'dtArtikelID', 'dtNotif', 'CountNotif'));
     }
@@ -232,6 +242,7 @@ class DashboardAdminController extends Controller
                             ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                             ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                             ->where('is_read_admin', 0)
+                            ->orderBy('created_at', 'desc')
                             ->get();
         return view('admin.cetak-artikel-usaha', compact('cetakArPemilik', 'dtNotif', 'CountNotif'));
     }
@@ -247,6 +258,7 @@ class DashboardAdminController extends Controller
 		$keyword = $request->cari;
  
 		$dtArtikelPemilik = KontenArtikel::select("*")
+                		->where('role','1')
                         ->where('judul', 'like', "%" . $keyword . "%")
                         ->orWhere('kategori', 'like', "%" . $keyword . "%")
                         ->orWhere('penulis', 'like', "%" . $keyword . "%")
@@ -259,6 +271,7 @@ class DashboardAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
 		return view('admin.data-artikel-usaha', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
 	}
@@ -280,6 +293,7 @@ class DashboardAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
 		return view('admin.data-beranda', compact('dtGaleri', 'dtNotif', 'CountNotif'));
 	}
@@ -297,6 +311,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.data-beranda', compact('dtGaleri', 'dtNotif', 'CountNotif'));
     }
@@ -313,6 +328,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.data-tentang', compact('dtBeranda', 'dtCekBeranda', 'dtNotif', 'CountNotif'));
     }
@@ -328,6 +344,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.edit-beranda',compact('dtBeranda', 'dtNotif', 'CountNotif'));
     }
@@ -356,6 +373,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.input-galeri', compact('dtNotif', 'CountNotif'));
     }
@@ -370,12 +388,17 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.input-tentang', compact('dtNotif', 'CountNotif'));
     }
     
     public function store_tentang(Request $request)
     {
+        $request->validate([
+            'isi_beranda'=>'required',
+            'deskripsi_beranda'=>'required'
+        ]);
         $dtUpload = new Beranda;
         $dtUpload->isi_beranda          = $request->isi_beranda;
         $dtUpload->deskripsi_tambahan   = $request->deskripsi_tambahan;
@@ -389,6 +412,11 @@ class DashboardAdminController extends Controller
 
     public function store_galeri(Request $request)
     {
+        $request->validate([
+            'image'=>'required',
+            'caption_gambar'=>'required',
+        ]);
+        
         $nm = $request->image;
         $namaFile = time().rand(100,999).".".$nm->getClientOriginalExtension(); //memberi nama file dengan nomor acak
         $image_resize = Image::make($nm->getRealPath());
@@ -417,6 +445,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.edit-galeri',compact('dtGaleri', 'dtNotif', 'CountNotif'));
     }
@@ -472,6 +501,7 @@ class DashboardAdminController extends Controller
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                     ->where('is_read_admin', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
     }
@@ -493,6 +523,7 @@ class DashboardAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
 		return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
 	}

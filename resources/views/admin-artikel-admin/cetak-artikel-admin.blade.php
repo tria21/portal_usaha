@@ -18,32 +18,24 @@
             <table class="static" align="center" rules="all" border="1px" style="width: 95%;">
                 <tr>
                     <th>No</th>
-                    <th>ID</th>
                     <th>Judul</th>
                     <th>Gambar</th>
                     <th>Caption Gambar</th>
                     <th>Kategori</th>
-                    <th>Penulis</th>
                     <th>Isi Artikel</th>
-                    <th>ID User</th>
-                    <th>Role</th>
                     <th>Tanggal Terbit</th>
                 </tr>
                 <?php $no = 1 ?>
                 @foreach ($cetakArAdmin as $item)
                 <tr>
                     <th>{{ $no++ }}</th>
-                    <th>{{$item->id}}</th>
                     <th>{{$item->judul}}</th>
                     <th width="20%">
-                      <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
+                      <img src="{{asset('img/'.$item->gambar)}}" height="10%" alt="" srcset="">
                     </th>
                     <th>{{$item->caption_gambar}}</th>
                     <th>{{$item->kategori}}</th>
-                    <th>{{$item->penulis}}</th>
                     <th>{!!$item->isi_artikel!!}</th>
-                    <th>{{$item->id_user}}</th>
-                    <th>{{$item->role}}</th>
                     <th>{{$item->created_at}}</th>
                 </tr>
                 @endforeach

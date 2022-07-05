@@ -159,15 +159,16 @@
           <!-- Start single blog -->
           <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="section-headline text-center">
-              @forelse ($dtUsahaKategori as $kat)
-              @php $kategori = $kat->jenis_usaha @endphp
-              <h2>Jenis Usaha {{$kategori}}</h2>
-              @empty
-              @endforelse
+              @if($dtUsahaKategori)
+                @foreach($dtUsahaKategori as $kat)
+                @php $kategori = $kat->jenis_usaha @endphp
+                @endforeach
+                <h2>Artikel Kategori {{$kategori}}</h2>
+              @endif
             </div>
             <div class="row">
                 <!-- Start Left Blog -->
-                @forelse ($dtUsahaKategori as $item)
+                @if($dtUsahaKategori)
                 @foreach ($dtUsahaKategori as $item)
                 <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-blog">
@@ -186,11 +187,11 @@
                 <!-- Start single blog -->
                 </div>
                 @endforeach
-                @empty
+                @else
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <p>Tidak ada data yang cocok</p>
                   </div>
-                @endforelse
+                @endif
             </div>
             <center>
             {{ $dtUsahaKategori->links() }}<br>

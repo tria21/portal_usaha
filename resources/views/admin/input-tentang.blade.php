@@ -52,7 +52,10 @@
                   </div>
                 </div>
                 <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal"><b>{{ Str::limit($item->nama_user, 8)}}</b> Meninggalkan Komentar</h6>
+                  <h6 class="preview-subject font-weight-normal"><b>{{ Str::limit($item->nama_user, 8)}}</b> meninggalkan komentar di artikel <b>{{ Str::limit($item->judul, 8)}}</b></h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    {{ Str::limit($item->isi_komentar, 50)}}
+                  </p>
                   <p class="font-weight-light small-text mb-0 text-muted">
                     {{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}
                   </p>
@@ -164,15 +167,22 @@
                 <div class="card-body">
                   <h4 class="card-title">Tambah Tentang</h4>
                     <form class="forms-sample" action="{{route('input-proses-tentang')}}" method="POST" enctype="multipart/form-data">
-
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @endif
+                    @if(Session::has('fail'))
+                        <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                    @endif
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label for="editor">Isi Tentang</label>
                       <textarea class="form-control" name="isi_beranda" id="editor" placeholder="Tuliskan Isi Tentang" rows="4"></textarea>
+                      <span class="text-danger">@error('isi_beranda') {{$message}} @enderror</span>
                     </div>
                     <div class="form-group">
                       <label>Keterangan Tambahan</label>
                       <input type="text" name="deskripsi_tambahan" class="form-control" id="deskripsi_tambahan" placeholder="Masukkan Keterangan">
+                      <span class="text-danger">@error('deskripsi_tambahan') {{$message}} @enderror</span>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                     <a href="{{route('data-tentang')}}" class="btn btn-light">Batal</a>

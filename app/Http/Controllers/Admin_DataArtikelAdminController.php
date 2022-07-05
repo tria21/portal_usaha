@@ -13,6 +13,7 @@ use App\Exports\ArtikelAdminExport;
 use App\Exports\ArtikelPemilikExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Session;
 use Image;
 
 class Admin_DataArtikelAdminController extends Controller
@@ -36,6 +37,7 @@ class Admin_DataArtikelAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
         return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin', 'dtNotif', 'CountNotif'));
     }
@@ -54,6 +56,7 @@ class Admin_DataArtikelAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
        return view('admin-artikel-admin.detail-artikel-admin', compact('dtArtikelAdmin', 'dtArtikelID', 'dtNotif', 'CountNotif'));
     }
@@ -73,6 +76,7 @@ class Admin_DataArtikelAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
         return view('admin-artikel-admin.input-artikel-admin', compact('dtNotif', 'CountNotif'));
     }
@@ -138,6 +142,7 @@ class Admin_DataArtikelAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
         return view('admin-artikel-admin.edit-artikel-admin',compact('dtArtikelAdmin', 'dtNotif', 'CountNotif'));
     }
@@ -211,6 +216,7 @@ class Admin_DataArtikelAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
        return view('admin-artikel-admin.cetak-artikel-admin', compact('cetakArAdmin', 'dtNotif', 'CountNotif'));
     }
@@ -238,6 +244,7 @@ class Admin_DataArtikelAdminController extends Controller
                         ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                         ->select('notifikasis.*', 'komentars.nama_user')
                         ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
                         ->get();
 		return view('admin-artikel-admin.data-artikel-admin', compact('dtArtikelAdmin', 'dtNotif', 'CountNotif'));
 	}

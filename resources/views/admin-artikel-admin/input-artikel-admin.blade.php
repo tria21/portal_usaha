@@ -51,7 +51,10 @@
                   </div>
                 </div>
                 <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal"><b>{{ Str::limit($item->nama_user, 8)}}</b> Meninggalkan Komentar</h6>
+                  <h6 class="preview-subject font-weight-normal"><b>{{ Str::limit($item->nama_user, 8)}}</b> meninggalkan komentar di artikel <b>{{ Str::limit($item->judul, 8)}}</b></h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    {{ Str::limit($item->isi_komentar, 50)}}
+                  </p>
                   <p class="font-weight-light small-text mb-0 text-muted">
                     {{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}
                   </p>
@@ -164,19 +167,27 @@
                 <div class="card-body">
                   <h4 class="card-title">Tambah Artikel Admin</h4>
                     <form class="forms-sample" action="{{route('input-proses-artikel-admin')}}" method="POST" enctype="multipart/form-data">
-
+                        @if(Session::has('success'))
+                            <div class="alert alert-success">{{Session::get('success')}}</div>
+                        @endif
+                        @if(Session::has('fail'))
+                            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                        @endif
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label>Judul</label>
                       <input type="text" name="judul" class="form-control" id="judul" placeholder="Masukkan Judul Artikel">
+                      <span class="text-danger">@error('judul') {{$message}} @enderror</span>
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Unggah Gambar</label>
                       <input class="form-control" type="file" id="gambar" name="gambar">
+                      <span class="text-danger">@error('gambar') {{$message}} @enderror</span>
                     </div>
                     <div class="form-group">
                       <label>Caption Gambar</label>
                       <input type="text" name="caption_gambar" class="form-control" id="caption_gambar" placeholder="Masukkan Caption Gambar">
+                      <span class="text-danger">@error('caption_gambar') {{$message}} @enderror</span>
                     </div>
                     <div class="form-group">
                       <label for="exampleSelectGender">Kategori</label>

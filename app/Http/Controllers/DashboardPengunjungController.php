@@ -7,11 +7,12 @@ use App\Models\KontenArtikel;
 use App\Models\User;
 use App\Models\Komentar;
 use App\Models\Beranda;
-use App\Models\Galeri;
 use App\Models\Notifikasi;
 use App\Models\Sosmed;
-use Hash;
+use App\Models\Galeri;
 use Illuminate\Support\Facades\DB;
+use Session;
+use Hash;
 
 class DashboardPengunjungController extends Controller
 {
@@ -20,6 +21,8 @@ class DashboardPengunjungController extends Controller
         $TampilArAdmin  = KontenArtikel::select("*")    
                             ->where('role', 3)
                             ->orderBy('created_at', 'desc')
+                            ->skip(0)
+                            ->take(6)
                             ->get();
         // dd($TampilArAdmin);
         $TampilAkMasy    = User::select("*")    
@@ -27,8 +30,9 @@ class DashboardPengunjungController extends Controller
                             ->get();
         $dtGaleri       =  Galeri::select("*")    
                             ->orderBy('created_at', 'desc')
+                            ->skip(0)
+                            ->take(6)
                             ->get();
-        // $TampilArAdmin = $dtArtikelAdmin = DB::select('select * from konten_artikels where role = ?', '3');
         return view('dashboard.dashboard-pengunjung', compact('TampilAkMasy', 'TampilArAdmin', 'dtGaleri'));
     }
 
@@ -46,6 +50,7 @@ class DashboardPengunjungController extends Controller
                             ->firstOrFail();
         $dtKomentar       = Komentar::select("*")    
                             ->where('id_artikel', $id)
+                            ->orderBy('created_at', 'desc')
                             ->get();
         $TampilAkun       = User::select("*")    
                             ->where('id', session('loginId'))
@@ -105,7 +110,9 @@ class DashboardPengunjungController extends Controller
 
     public function tampilArtikel(){
         // $dtArtikel = DB::select('select * from konten_artikels');
-        $dtArtikel = KontenArtikel::paginate(9);
+        $dtArtikel = KontenArtikel::select("*")    
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(9);
         return view('pengunjung.tampil-all-artikel', compact('dtArtikel'));
     }
 
@@ -183,6 +190,7 @@ class DashboardPengunjungController extends Controller
  
 		$dtArtikel = KontenArtikel::select("*")
                     ->where('judul', 'like', "%" . $keyword . "%")
+                    ->orderBy('created_at', 'desc')
                     ->paginate(9);
         
         return view('pengunjung.tampil-all-artikel', compact('dtArtikel'));
@@ -195,6 +203,7 @@ class DashboardPengunjungController extends Controller
  
 		$TampilUsaha = User::select("*")
                     ->where('nama_usaha', 'like', "%" . $keyword . "%")
+                    ->orderBy('created_at', 'desc')
                     ->paginate(9);
         
         return view('pengunjung.tampil-all-usaha', compact('TampilUsaha'));

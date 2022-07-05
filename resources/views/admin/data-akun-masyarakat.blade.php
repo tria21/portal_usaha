@@ -51,7 +51,10 @@
                   </div>
                 </div>
                 <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal"><b>{{ Str::limit($item->nama_user, 8)}}</b> Meninggalkan Komentar</h6>
+                  <h6 class="preview-subject font-weight-normal"><b>{{ Str::limit($item->nama_user, 8)}}</b> meninggalkan komentar di artikel <b>{{ Str::limit($item->judul, 8)}}</b></h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    {{ Str::limit($item->isi_komentar, 50)}}
+                  </p>
                   <p class="font-weight-light small-text mb-0 text-muted">
                     {{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}
                   </p>

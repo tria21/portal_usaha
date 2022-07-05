@@ -51,7 +51,10 @@
                   </div>
                 </div>
                 <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal"><b>{{ Str::limit($item->nama_user, 8)}}</b> Meninggalkan Komentar</h6>
+                  <h6 class="preview-subject font-weight-normal"><b>{{ Str::limit($item->nama_user, 8)}}</b> meninggalkan komentar di artikel <b>{{ Str::limit($item->judul, 8)}}</b></h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    {{ Str::limit($item->isi_komentar, 50)}}
+                  </p>
                   <p class="font-weight-light small-text mb-0 text-muted">
                     {{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}
                   </p>
@@ -104,7 +107,7 @@
       <!-- partial -->
 
       <!-- sidebar -->
-      <nav class="sidebar" id="sidebar">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link active" href="{{route('dashboard-admin')}}">
@@ -157,72 +160,72 @@
       
     <!-- CONTENT -->
     <div class="main-panel">        
-      <div class="content-wrapper">
-        <div class="row">
-          <div class="col-md-6 grid-margin stretch-card">
-            <div class="card">
-              @csrf
-              @foreach ($dtAkunID as $item)
-              <div class="card-body">
-                <h4 class="card-title">Informasi Akun Pemilik Usaha</h4>
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-square" src="{{asset('img/'.$item->image)}}" alt="User profile picture" height="10%" width="50%">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                @csrf
+                @foreach ($dtAkunID as $item)
+                <div class="card-body">
+                  <h4 class="card-title">Informasi Akun Pemilik Usaha</h4>
+                  <div class="text-center">
+                    <img class="profile-user-img img-fluid img-square" src="{{asset('img/'.$item->image)}}" alt="User profile picture" height="10%" width="50%">
+                  </div>
+                  <center><h4 class="card-title">{{$item->nama_usaha}}</h4></center>
+                  <center>
+                    <p class="card-description">
+                      {{$item->name}}
+                    </p>
+                  </center>
+                  <form class="forms-sample" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group row">
+                      <label for="email" class="col-sm-3 col-form-label">Email</label>
+                      <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" name="email" value="{{$item->email}}" readonly>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="jenis_usaha" name="jenis_usaha" value="{{$item->jenis_usaha}}" readonly>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="alamat_usaha" class="col-sm-3 col-form-label">Alamat</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="alamat_usaha" name="alamat_usaha" value="{{$item->alamat_usaha}}" readonly>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-                <center><h4 class="card-title">{{$item->nama_usaha}}</h4></center>
-                <center>
-                  <p class="card-description">
-                    {{$item->name}}
-                  </p>
-                </center>
-                <form class="forms-sample" enctype="multipart/form-data">
-                  {{ csrf_field() }}
-                  <div class="form-group row">
-                    <label for="email" class="col-sm-3 col-form-label">Email</label>
-                    <div class="col-sm-9">
-                      <input type="email" class="form-control" id="email" name="email" value="{{$item->email}}" readonly>
+              </div>
+              @endforeach
+            </div>
+            <div class="col-md-6 grid-margin stretch-card">
+              @csrf
+              <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Informasi Akun Sosial Media</h4>
+                  <form class="forms-sample">
+                    {{ csrf_field() }}
+                    <div class="form-group row">
+                      @foreach ($dtSosmed as $item)
+                      <label for="facebook" class="col-sm-3 col-form-label">{{$item->nama_sosmed}}</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="facebook" name="facebook" value="{{$item->link_sosmed}}">
+                      </div>
+                      @endforeach
                     </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="jenis_usaha" class="col-sm-3 col-form-label">Jenis Usaha</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="jenis_usaha" name="jenis_usaha" value="{{$item->jenis_usaha}}" readonly>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="alamat_usaha" class="col-sm-3 col-form-label">Alamat</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="alamat_usaha" name="alamat_usaha" value="{{$item->alamat_usaha}}" readonly>
-                    </div>
-                  </div>
-                </form>
+                    <a href="{{route('data-akun-pemilik-usaha-admin')}}" class="btn btn-danger">Kembali</a>
+                  </form>
+                </div>
               </div>
             </div>
-            @endforeach
-          </div>
-          <div class="col-md-6 grid-margin stretch-card">
-            @csrf
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Informasi Akun Sosial Media</h4>
-                <form class="forms-sample">
-                  {{ csrf_field() }}
-                  <div class="form-group row">
-                    @foreach ($dtSosmed as $item)
-                    <label for="facebook" class="col-sm-3 col-form-label">{{$item->nama_sosmed}}</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="facebook" name="facebook" value="{{$item->link_sosmed}}">
-                    </div>
-                    @endforeach
-                  </div>
-                  <a href="{{route('data-akun-pemilik-usaha-admin')}}" class="btn btn-danger">Kembali</a>
-                </form>
-              </div>
-            </div>
-          </div>
         </div>
+        <!-- main-panel ends -->
       </div>
-    </div>
-  <!-- END CONTENT -->
+    <!-- END CONTENT -->
 
         <!-- footer -->
         <footer class="footer">

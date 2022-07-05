@@ -74,6 +74,36 @@ class CustomAuthController extends Controller
             return back()->with('fail', 'Registrasi gagal');
         }
     }
+    public function loginUser(Request $request){
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required|min:8'
+        ]);
+        $user = User::where('email','=',$request->email)->first();
+        if($user){
+            if(Hash::check($request->password, $user->password)){
+                $request->session()->put('loginId',$user->id);
+                $request->session()->put('loginName',$user->name);
+                $request->session()->put('loginRole',$user->role);
+                $role = $user->role;
+                if($role){
+                    if($role=='3'){
+                        return redirect()->route('dashboard-admin');
+                    }else if($role=='1'){
+                        return redirect()->route('dashboard-pemilik-usaha');
+                    }else{
+                        return redirect()->route('dashboard-pengunjung');
+                    }
+                }else{
+                    return back()->with('fail','Role tidak terdeteksi.');
+                }
+            }else{
+                return back()->with('fail','Password salah.');
+            }
+        }else{
+            return back()->with('fail','Email sudah dipakai');
+        }
+    }
     public function forgotPassword(Request $request){
         $request->validate([
             'email' => 'required|email'
@@ -112,48 +142,19 @@ class CustomAuthController extends Controller
                     ? redirect()->route('login')->with('success', 'Reset password berhasil! Silahkan lakukan login')
                     : back()->withErrors(['email' => [__($status)]]);
     }
-    public function loginUser(Request $request){
-        $request->validate([
-            'email'=>'required|email',
-            'password'=>'required|min:8'
-        ]);
-        $user = User::where('email','=',$request->email)->first();
-        if($user){
-            if(Hash::check($request->password, $user->password)){
-                $request->session()->put('loginId',$user->id);
-                $request->session()->put('loginName',$user->name);
-                $request->session()->put('loginRole',$user->role);
-                $role = $user->role;
-                if($role){
-                    if($role=='3'){
-                        return redirect()->route('dashboard-admin');
-                    }else if($role=='1'){
-                        return redirect()->route('dashboard-pemilik-usaha');
-                    }else{
-                        return redirect()->route('dashboard-pengunjung');
-                    }
-                }else{
-                    return back()->with('fail','Role tidak terdeteksi.');
-                }
-            }else{
-                return back()->with('fail','Password salah.');
-            }
-        }else{
-            return back()->with('fail','Email sudah dipakai');
-        }
-    }
-
     public function profil(){
         $user = DB::select('select * from users where id = ?', [session('loginId')]);
         $dtSosmed = Sosmed::select("*")    
                     ->where('id_user', session('loginId'))
-                    ->orderBy('created_at', 'desc');
+                    ->orderBy('created_at', 'desc')
+                    ->get();
         $dtNotif = DB::table('notifikasis')
                     ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
                     ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
                     ->select('notifikasis.*', 'komentars.nama_user')
                     ->where('konten_artikels.id_user', session('loginId'))
                     ->where('is_read_pemilik', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         $CountNotif = DB::table('notifikasis')
                             ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
@@ -183,9 +184,8 @@ class CustomAuthController extends Controller
             $namaFile = $image->getClientOriginalName(); 
             $user['image'] = $namaFile;
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->resize(400, 300);
+            $image_resize->resize(300, 300);
             $image_resize->save('img/' .$namaFile , 80);
-            // $proses = $image->move('img/', $namaFile);
         }
 
         $ubah->update($user);
@@ -214,6 +214,7 @@ class CustomAuthController extends Controller
                     ->select('notifikasis.*', 'komentars.nama_user')
                     ->where('konten_artikels.id_user', session('loginId'))
                     ->where('is_read_pemilik', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         $CountNotif = DB::table('notifikasis')
                             ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
@@ -246,6 +247,7 @@ class CustomAuthController extends Controller
                     ->select('notifikasis.*', 'komentars.nama_user')
                     ->where('konten_artikels.id_user', session('loginId'))
                     ->where('is_read_pemilik', 0)
+                    ->orderBy('created_at', 'desc')
                     ->get();
         $CountNotif = DB::table('notifikasis')
                             ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
