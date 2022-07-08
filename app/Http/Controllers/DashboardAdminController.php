@@ -94,6 +94,26 @@ class DashboardAdminController extends Controller
         return view('admin.cetak-akun-masyarakat', compact('cetakAkMasy', 'dtNotif', 'CountNotif'));
     }
 
+    public function cetak_akun_masyarakat_custom($tglawal, $tglakhir)
+    {
+        $cetakAkMasyCustom = User::select("*")    
+                        ->where('role', 2) 
+                        ->whereBetween('created_at',[$tglawal, $tglakhir])
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read_admin', 0)
+                        ->count();
+        $dtNotif = DB::table('notifikasis')
+                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                        ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
+                        ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        return view('admin.cetak-akun-masyarakat-custom', compact('cetakAkMasyCustom', 'dtNotif', 'CountNotif'));
+    }
+
     public function export_excel_masyarakat()
 	{
 		return Excel::download(new MasyarakatExport, 'akun-masyarakat.xlsx');
@@ -159,6 +179,27 @@ class DashboardAdminController extends Controller
         return view('admin.cetak-akun-usaha', compact('cetakAkUsaha', 'dtNotif', 'CountNotif'));
     }
 
+    public function cetak_akun_pemilik_custom($tglawal, $tglakhir)
+    {
+        // dd($tglawal, $tglakhir);
+        $cetakAkUsahaCustom = User::select("*")    
+                ->where('role', 1)
+                ->whereBetween('created_at',[$tglawal, $tglakhir])
+                ->orderBy('created_at', 'desc')
+                ->get();
+        $CountNotif = Notifikasi::select("*")    
+                ->where('is_read_admin', 0)
+                ->count();
+        $dtNotif = DB::table('notifikasis')
+                ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
+                ->where('is_read_admin', 0)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        return view('admin.cetak-akun-usaha-custom', compact('cetakAkUsahaCustom', 'dtNotif', 'CountNotif'));
+    }
+
     public function export_excel_pemilik()
 	{
 		return Excel::download(new PemilikExport, 'akun-pemilik-usaha.xlsx');
@@ -170,11 +211,12 @@ class DashboardAdminController extends Controller
 		$keyword = $request->cari;
  
 		$dtUsaha = User::select("*")
-		                ->where('role','1')
+		                ->where('role', 1)
                         ->where('name', 'like', "%" . $keyword . "%")
-                        ->orWhere('nama_usaha', 'like', "%" . $keyword . "%")
-                        ->orWhere('jenis_usaha', 'like', "%" . $keyword . "%")
-                        ->orWhere('alamat_usaha', 'like', "%" . $keyword . "%")
+                        // ->orWhere('nama_usaha', 'like', "%" . $keyword . "%")
+                        // ->orWhere('jenis_usaha', 'like', "%" . $keyword . "%")
+                        // ->orWhere('alamat_usaha', 'like', "%" . $keyword . "%")
+                        // ->orWhere('created_at', 'like', "%" . $keyword . "%")
                         ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
                         ->where('is_read_admin', 0)
@@ -247,6 +289,26 @@ class DashboardAdminController extends Controller
         return view('admin.cetak-artikel-usaha', compact('cetakArPemilik', 'dtNotif', 'CountNotif'));
     }
 
+    public function cetak_artikel_usaha_custom($tglawal, $tglakhir)
+    {
+        $cetakArPemilikCustom = KontenArtikel::select("*")    
+                            ->where('role', 1)
+                            ->whereBetween('created_at',[$tglawal, $tglakhir])
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        $CountNotif = Notifikasi::select("*")    
+                            ->where('is_read_admin', 0)
+                            ->count();
+        $dtNotif = DB::table('notifikasis')
+                            ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                            ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                            ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
+                            ->where('is_read_admin', 0)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        return view('admin.cetak-artikel-usaha-custom', compact('cetakArPemilikCustom', 'dtNotif', 'CountNotif'));
+    }
+
     public function export_excel_artikel_usaha()
 	{
 		return Excel::download(new ArtikelPemilikExport, 'artikel-pemilik-usaha-admin.xlsx');
@@ -258,10 +320,11 @@ class DashboardAdminController extends Controller
 		$keyword = $request->cari;
  
 		$dtArtikelPemilik = KontenArtikel::select("*")
-                		->where('role','1')
+                		->where('role', 1)
                         ->where('judul', 'like', "%" . $keyword . "%")
-                        ->orWhere('kategori', 'like', "%" . $keyword . "%")
-                        ->orWhere('penulis', 'like', "%" . $keyword . "%")
+                        // ->orWhere('kategori', 'like', "%" . $keyword . "%")
+                        // ->orWhere('penulis', 'like', "%" . $keyword . "%")
+                        // ->orWhere('created_at', 'like', "%" . $keyword . "%")
                         ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
                         ->where('is_read_admin', 0)
@@ -505,26 +568,4 @@ class DashboardAdminController extends Controller
                     ->get();
         return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
     }
-
-    public function cari_komentar(Request $request)
-	{
-		// menangkap data pencarian
-		$keyword = $request->cari;
- 
-		$dtKomentar = Komentar::select("*")
-                        ->where('nama_user', 'like', "%" . $keyword . "%")
-                        ->orWhere('isi_komentar', 'like', "%" . $keyword . "%")
-                        ->paginate(10);
-        $CountNotif = Notifikasi::select("*")    
-                        ->where('is_read_admin', 0)
-                        ->count();
-        $dtNotif = DB::table('notifikasis')
-                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
-                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                        ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
-                        ->where('is_read_admin', 0)
-                        ->orderBy('created_at', 'desc')
-                        ->get();
-		return view('admin.data-komentar', compact('dtKomentar', 'dtNotif', 'CountNotif'));
-	}
 }

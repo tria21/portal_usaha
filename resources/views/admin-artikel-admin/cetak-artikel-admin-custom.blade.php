@@ -26,7 +26,7 @@
                     <th>Tanggal Terbit</th>
                 </tr>
                 <?php $no = 1 ?>
-                @foreach ($cetakArAdmin as $item)
+                @foreach ($cetakArAdminCustom as $item)
                 <tr>
                     <th>{{ $no++ }}</th>
                     <th>{{$item->judul}}</th>

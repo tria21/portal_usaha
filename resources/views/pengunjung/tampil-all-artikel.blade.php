@@ -196,7 +196,7 @@
                     </div>
                     <div class="blog-text">
                     <h4>
-                        <a href="#">{{ Str::limit($item->judul, 25)}}</a>
+                        <a href="#">{{ Str::limit($item->judul, 17)}}</a>
                     </h4>
                     </div>
                     <span>

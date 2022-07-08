@@ -28,7 +28,7 @@
                     {{-- <th>Link Sosial Media</th> --}}
                   </tr>
                   <?php $no = 1 ?>
-                  @foreach ($cetakAkUsaha as $item)
+                  @foreach ($cetakAkUsahaCustom as $item)
                   <tr>
                     <th>{{$no++}}</th>
                     <th>{{$item->name}}</th>

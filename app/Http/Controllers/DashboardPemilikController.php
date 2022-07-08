@@ -134,6 +134,33 @@ class DashboardPemilikController extends Controller
         return view('pemilik.cetak-artikel-pemilik', compact('cetakArPemilik', 'dtNotif', 'CountNotif'));
     }
 
+    public function cetak_artikel_pemilik_custom($tglawal, $tglakhir)
+    {
+        $cetakArPemilikCustom = KontenArtikel::select("*")    
+                        ->where('id_user', session('loginId'))
+                        ->whereBetween('created_at',[$tglawal, $tglakhir])
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+
+        $CountNotif = DB::table('notifikasis')
+                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                        ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
+                        ->where('konten_artikels.id_user', session('loginId'))
+                        ->where('is_read_pemilik', 0)
+                        ->count();
+
+        $dtNotif = DB::table('notifikasis')
+                ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
+                ->where('konten_artikels.id_user', session('loginId'))
+                ->where('is_read_pemilik', 0)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        return view('pemilik.cetak-artikel-pemilik-custom', compact('cetakArPemilikCustom', 'dtNotif', 'CountNotif'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -301,14 +328,14 @@ class DashboardPemilikController extends Controller
                         ->where('is_read_pemilik', 0)
                         ->count();
 
-    $dtNotif = DB::table('notifikasis')
-                ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
-                ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
-                ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
-                ->where('konten_artikels.id_user', session('loginId'))
-                ->where('is_read_pemilik', 0)
-                ->orderBy('created_at', 'desc')
-                ->get();
+        $dtNotif = DB::table('notifikasis')
+                    ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                    ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                    ->select('notifikasis.*', 'komentars.nama_user', 'komentars.isi_komentar', 'konten_artikels.judul')
+                    ->where('konten_artikels.id_user', session('loginId'))
+                    ->where('is_read_pemilik', 0)
+                    ->orderBy('created_at', 'desc')
+                    ->get();
  
 		return view('pemilik.data-artikel-pemilik', compact('dtArtikelPemilik', 'dtNotif', 'CountNotif'));
  

@@ -173,6 +173,29 @@
                       <a href="{{route('input-artikel-pemilik')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                     </div>
                   </div>
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="col-2">
+                      <center><p><b>Cetak dari : </b></p></center>
+                    </div>
+                    <div class="col-3">
+                      <input type="date" name="tglawal" class="form-control" id="tglawal">
+                    </div>
+                    <div class="col-1">
+                      <center><p><b>s/d</b></p></center>
+                    </div>
+                    <div class="col-3">
+                      <input type="date" name="tglakhir" class="form-control" id="tglakhir">
+                    </div>
+                    <div class="col-1">
+                      <a href="" onclick="this.href='/cetak-artikel-pemilik-custom/'+ document.getElementById('tglawal').value +
+                      '/' + document.getElementById('tglakhir').value " target="_blank" class="btn btn-sm btn-outline-primary">
+                      PDF</a>
+                    </div>
+                    {{-- <div class="col-1">
+                      <a href="#" target="_blank" class="btn btn-sm btn-outline-dark">
+                        Excel</a>
+                    </div> --}}
+                  </div>
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
@@ -181,6 +204,7 @@
                           <th>Judul</th>
                           <th>Gambar</th>
                           <th>Kategori</th>
+                          <th>Tanggal Terbit</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -194,6 +218,7 @@
                             <img src="{{asset('img/'.$item->gambar)}}" height="10%" width="80%" alt="" srcset="">
                           </th>
                           <th>{{$item->kategori}}</th>
+                          <th>{{$item->created_at}}</th>
                           <th>
                             <a href="{{route('detail-artikel-pemilik',$item->id)}}" class="btn btn-success btn-sm">
                               <i class="ti-eye btn-icon-append"></i></a>

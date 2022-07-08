@@ -221,6 +221,26 @@ class Admin_DataArtikelAdminController extends Controller
        return view('admin-artikel-admin.cetak-artikel-admin', compact('cetakArAdmin', 'dtNotif', 'CountNotif'));
     }
 
+    public function cetak_artikel_admin_custom($tglawal, $tglakhir)
+    {
+        $cetakArAdminCustom = KontenArtikel::select("*")    
+                        ->where('role', 3)
+                        ->whereBetween('created_at',[$tglawal, $tglakhir])
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        $CountNotif = Notifikasi::select("*")    
+                        ->where('is_read_admin', 0)
+                        ->count();
+        $dtNotif = DB::table('notifikasis')
+                        ->join('konten_artikels', 'notifikasis.id_artikel', '=', 'konten_artikels.id')
+                        ->join('komentars', 'notifikasis.id_komentar', '=', 'komentars.id')
+                        ->select('notifikasis.*', 'komentars.nama_user')
+                        ->where('is_read_admin', 0)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+       return view('admin-artikel-admin.cetak-artikel-admin-custom', compact('cetakArAdminCustom', 'dtNotif', 'CountNotif'));
+    }
+
     public function export_excel_artikel_admin()
 	{
 		return Excel::download(new ArtikelAdminExport, 'artikel-admin.xlsx');
@@ -232,9 +252,10 @@ class Admin_DataArtikelAdminController extends Controller
 		$keyword = $request->cari;
  
 		$dtArtikelAdmin = KontenArtikel::select("*")
-                        // ->where('role', 3)
+                        ->where('role', 3)
                         ->where('judul', 'like', "%" . $keyword . "%")
-                        ->orWhere('kategori', 'like', "%" . $keyword . "%")
+                        // ->orWhere('kategori', 'like', "%" . $keyword . "%")
+                        // ->orWhere('created_at', 'like', "%" . $keyword . "%")
                         ->paginate(10);
         $CountNotif = Notifikasi::select("*")    
                         ->where('is_read_admin', 0)

@@ -20,6 +20,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Email</th>
+                    <th>Tanggal Dibuat</th>
                   </tr>
                   <?php $no = 1 ?>
                   @foreach ($cetakAkMasy as $item)
@@ -27,6 +28,7 @@
                     <th>{{ $no++ }}</th>
                     <th>{{$item->name}}</th>
                     <th>{{$item->email}}</th>
+                    <th>{{$item->created_at}}</th>
                   </tr>
                 @endforeach
             </table>
