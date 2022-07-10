@@ -154,12 +154,17 @@
                         @endif
                     {{ csrf_field() }}
                     <div class="form-group">
-                      <label>Nama Sosial Media</label>
-                      <input type="text" name="nama_sosmed" class="form-control" id="nama_sosmed" placeholder="Masukkan Nama Sosial Media">
-                      <span class="text-danger">@error('nama_sosmed') {{$message}} @enderror</span>
+                      <label for="exampleSelectGender">Nama Media Sosial</label>
+                        <select name="nama_sosmed" class="form-control" id="nama_sosmed">
+                          <option value="">--Pilih Media Sosial--</option>
+                          <option value="WhatsApp">WhatsApp</option>
+                          <option value="Instagram">Instagram</option>
+                          <option value="Shopee">Shopee</option>
+                          <option value="Lainnya">Lainnya</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                      <label>Link Sosial Media</label>
+                      <label>Username Media Sosial / Nomor (Untuk WhatsApp, Contoh Format: 628580414xxxx)</label>
                       <input type="text" name="link_sosmed" class="form-control" id="link_sosmed" placeholder="Masukkan Link Sosial Media">
                       <span class="text-danger">@error('link_sosmed') {{$message}} @enderror</span>
                     </div>

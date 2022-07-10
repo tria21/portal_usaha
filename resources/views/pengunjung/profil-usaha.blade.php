@@ -117,7 +117,13 @@
                     <ul>
                       @foreach ($dtSosmedID as $item)
                       <li>
-                        <a href="{{$item->link_sosmed}}">{{$item->nama_sosmed}}</a>
+                        @if($item->nama_sosmed =='Instagram') 
+                        <a href="https://www.instagram.com/{{$item->link_sosmed}}">{{$item->nama_sosmed}}</a>
+                        @elseif($item->nama_sosmed =='WhatsApp')
+                        <a href="https://wa.me/{{$item->link_sosmed}}">{{$item->nama_sosmed}}</a>
+                        @elseif($item->nama_sosmed =='Shopee')
+                        <a href="https://shopee.co.id/{{$item->link_sosmed}}">{{$item->nama_sosmed}}</a>
+                        @endif
                       </li>
                       @endforeach
                     </ul>
