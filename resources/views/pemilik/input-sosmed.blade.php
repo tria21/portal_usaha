@@ -160,11 +160,40 @@
                           <option value="WhatsApp">WhatsApp</option>
                           <option value="Instagram">Instagram</option>
                           <option value="Shopee">Shopee</option>
-                          <option value="Lainnya">Lainnya</option>
                         </select>
                     </div>
                     <div class="form-group">
                       <label>Username Media Sosial / Nomor (Untuk WhatsApp, Contoh Format: 628580414xxxx)</label>
+                      <input type="text" name="link_sosmed" class="form-control" id="link_sosmed" placeholder="Masukkan Link Sosial Media">
+                      <span class="text-danger">@error('link_sosmed') {{$message}} @enderror</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    <a href="{{route('data-profil-pemilik')}}" class="btn btn-light">Batal</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Tambah Google Maps Dan Sosial Media Lainnya</h4>
+                    <form class="forms-sample" action="{{route('input-proses-sosmed')}}" method="POST">
+                        @if(Session::has('success'))
+                            <div class="alert alert-success">{{Session::get('success')}}</div>
+                        @endif
+                        @if(Session::has('fail'))
+                            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                        @endif
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <label>Nama Sosial Media</label>
+                      <input type="text" name="nama_sosmed" class="form-control" id="nama_sosmed" placeholder="Masukkan Nama Sosial Media">
+                      <span class="text-danger">@error('nama_sosmed') {{$message}} @enderror</span>
+                    </div>
+                    <div class="form-group">
+                      <label>Link Sosial Media</label>
                       <input type="text" name="link_sosmed" class="form-control" id="link_sosmed" placeholder="Masukkan Link Sosial Media">
                       <span class="text-danger">@error('link_sosmed') {{$message}} @enderror</span>
                     </div>

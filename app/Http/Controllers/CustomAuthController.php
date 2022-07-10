@@ -101,7 +101,7 @@ class CustomAuthController extends Controller
                 return back()->with('fail','Password salah.');
             }
         }else{
-            return back()->with('fail','Email sudah dipakai');
+            return back()->with('fail','Email salah');
         }
     }
     public function forgotPassword(Request $request){

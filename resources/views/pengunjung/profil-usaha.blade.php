@@ -123,6 +123,8 @@
                         <a href="https://wa.me/{{$item->link_sosmed}}">{{$item->nama_sosmed}}</a>
                         @elseif($item->nama_sosmed =='Shopee')
                         <a href="https://shopee.co.id/{{$item->link_sosmed}}">{{$item->nama_sosmed}}</a>
+                        @else
+                        <a href="{{$item->link_sosmed}}">{{$item->nama_sosmed}}</a>
                         @endif
                       </li>
                       @endforeach
