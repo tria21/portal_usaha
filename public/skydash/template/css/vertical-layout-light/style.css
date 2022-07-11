@@ -28835,6 +28835,10 @@ div.tagsinput span.tag a {
   margin: auto;
 }
 
+.navbar .navbar-brand-wrapper .brand-logo img {
+  margin-left: 5px;
+}
+
 .navbar .navbar-menu-wrapper {
   background: #ffffff;
   transition: width 0.25s ease;
