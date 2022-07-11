@@ -159,7 +159,13 @@
                       <input type="text" name="nama_sosmed" class="form-control" id="nama_sosmed" value="{{$dtSosmed->nama_sosmed}}">
                     </div>
                     <div class="form-group">
+                      @if($dtSosmed->nama_sosmed =='Instagram' || $dtSosmed->nama_sosmed =='Shopee') 
+                      <label>Username Sosial Media</label>
+                      @elseif($dtSosmed->nama_sosmed =='WhatsApp')
+                      <label>Nomor (Contoh Format: 628580414xxxx)</label>
+                      @else
                       <label>Link Sosial Media</label>
+                      @endif
                       <input type="text" name="link_sosmed" class="form-control" id="link_sosmed" value="{{$dtSosmed->link_sosmed}}">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
