@@ -157,6 +157,12 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('dashboard-pengunjung')}}" >
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Dashboard Pengunjung</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- end sidebar -->
