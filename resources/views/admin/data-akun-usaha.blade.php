@@ -239,7 +239,7 @@
                           <th>{{ Str::limit($item->name, 25)}}</th>
                           <th>{{ Str::limit($item->nama_usaha, 25)}}</th>
                           <th>{{ Str::limit($item->jenis_usaha, 25)}}</th>
-                          <th>{{ Str::limit($item->created_at, 25)}}</th>
+                          <th> {{\Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y')}}</th>
                           <th>
                             <a href="{{route('detail-akun-pemilik-usaha',$item->id)}}" class="btn btn-success btn-sm">
                               <i class="ti-eye btn-icon-append"></i></a>
